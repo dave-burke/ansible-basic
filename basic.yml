@@ -1,0 +1,38 @@
+- hosts: all
+  tasks:
+          - name: Ensure mosh is installed
+            apt: name=mosh state=installed
+
+          - name: Ensure vim is installed
+            apt: name=vim state=installed
+
+          - name: Ensure tmux is installed
+            apt: name=tmux state=installed
+
+          - name: Ensure git is installed
+            apt: name=git state=installed
+
+          - name: Ensure docker is installed
+            apt: name=docker.io state=installed
+          
+          - name: Add a docker group
+            group: name=docker
+
+          - name: Add a non-root user
+            user: name=dave groups=sudo,docker shell=/bin/zsh
+
+          - name: Create .ssh directory
+            file: path=/home/dave/.ssh state=directory owner=dave group=dave mode=0700
+
+          - name: Copy root authorized_keys to dave user
+            command: cp /root/.ssh/authorized_keys /home/dave/.ssh/ creates=/home/dave/.ssh/authorized_keys
+
+          - name: Set authorized_keys ownership
+            file: path=/home/dave/.ssh/authorized_keys owner=dave group=dave
+
+          - name: Clone dotfiles repository
+            git: repo=https://github.com/dave-burke/dotfiles.git dest=/home/dave/dotfiles force=yes
+
+          - name: Bootstrap dotfiles
+            shell: executable=/home/dave/dotfiles/bootstrap.sh -f creates=/home/dave/.config/mc/lib/mc-solarized-skin
+
