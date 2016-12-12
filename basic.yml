@@ -12,6 +12,9 @@
           - name: Ensure git is installed
             apt: name=git state=installed
 
+          - name: Ensure zsh is installed
+            apt: name=zsh state=installed
+
           - name: Ensure docker is installed
             apt: name=docker.io state=installed
           
@@ -19,7 +22,7 @@
             group: name=docker
 
           - name: Add a non-root user
-            user: name=dave groups=sudo,docker shell=/bin/zsh
+            user: name=dave groups=sudo,docker shell=/usr/bin/zsh
 
           - name: Create .ssh directory
             file: path=/home/dave/.ssh state=directory owner=dave group=dave mode=0700
