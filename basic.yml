@@ -34,8 +34,10 @@
                     line: PasswordAuthentication no
 
           - name: Clone dotfiles repository
+            remote_user: dave
             git: repo=https://github.com/dave-burke/dotfiles.git dest=/home/dave/dotfiles force=yes
 
           - name: Bootstrap dotfiles
+            remote_user: dave
             shell: executable=/home/dave/dotfiles/bootstrap.sh -f creates=/home/dave/.config/mc/lib/mc-solarized-skin
 
