@@ -24,14 +24,8 @@
           - name: Add a non-root user
             user: name=dave groups=sudo,docker shell=/usr/bin/zsh
 
-          - name: Create .ssh directory
-            file: path=/home/dave/.ssh state=directory owner=dave group=dave mode=0700
-
-          - name: Copy root authorized_keys to dave user
-            command: cp /root/.ssh/authorized_keys /home/dave/.ssh/ creates=/home/dave/.ssh/authorized_keys
-
-          - name: Set authorized_keys ownership
-            file: path=/home/dave/.ssh/authorized_keys owner=dave group=dave
+          - name: Set authorized keys
+            authorized_key: user=dave key=https://github.com/dave-burke.keys
 
           - name: Clone dotfiles repository
             git: repo=https://github.com/dave-burke/dotfiles.git dest=/home/dave/dotfiles force=yes
