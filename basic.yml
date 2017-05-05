@@ -27,6 +27,12 @@
           - name: Set authorized keys
             authorized_key: user=dave key=https://github.com/dave-burke.keys
 
+          - name: Disable password logins
+            lineinfile:
+                    dest: /etc/ssh/sshd_config
+                    regexp: #?PasswordAuthentication.*
+                    line: PasswordAuthentication no
+
           - name: Clone dotfiles repository
             git: repo=https://github.com/dave-burke/dotfiles.git dest=/home/dave/dotfiles force=yes
 
