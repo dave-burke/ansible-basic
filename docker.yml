@@ -1,0 +1,7 @@
+---
+- name: Ensure docker is installed
+  apt: name=docker.io state=installed
+
+- name: Add a docker group
+  group: name=docker
+

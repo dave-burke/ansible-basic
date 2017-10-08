@@ -1,0 +1,21 @@
+---
+- name: Ensure mosh is installed
+  apt: name=mosh state=installed
+
+- name: Ensure vim is installed
+  apt: name=vim state=installed
+
+- name: Ensure tmux is installed
+  apt: name=tmux state=installed
+
+- name: Ensure git is installed
+  apt: name=git state=installed
+
+- name: Ensure zsh is installed
+  apt: name=zsh state=installed
+
+- name: Ensure zip is installed
+  apt: name=zip state=installed
+
+- name: Ensure tree is installed
+  apt: name=tree state=installed
