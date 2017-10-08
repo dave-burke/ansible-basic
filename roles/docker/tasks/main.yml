@@ -5,3 +5,5 @@
 - name: Add a docker group
   group: name=docker
 
+- name: Add non-root user {{user}} to docker group
+  user: name={{user}} groups=docker append=true

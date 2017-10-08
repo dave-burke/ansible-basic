@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+recipient="{{email_recipient}}"
+
+if [[ -z "${SMARTD_MESSAGE}" ]]; then
+	SMARTD_MESSAGE="This is a message from the SMART daemon on servy, but I didn't get the text of it."
+fi
+if [[ -z "${SMARTD_FULLMESSAGE}" ]]; then
+	SMARTD_FULLMESSAGE="This is a full message from the SMART daemon on servy, but I didn't get the text of it."
+fi
+if [[ -z "${SMARTD_SUBJECT}" ]]; then
+	SMARTD_SUBJECT="SMART daemon default subject"
+fi
+echo -e "${SMARTD_MESSAGE}\n\n${SMARTD_FULLMESSAGE}" | mutt -s "${SMARTD_SUBJECT}" "${recipient}"
+

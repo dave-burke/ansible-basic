@@ -1,0 +1,15 @@
+---
+- name: Add a non-root user
+  user: name={{user}} groups=sudo append=true shell=/usr/bin/zsh
+
+- name: Set authorized keys
+  authorized_key: user={{user}} key=https://github.com/{{github_user}}.keys
+
+- name: Clone dotfiles repository
+  remote_user: "{{user}}"
+  git: repo=https://github.com/{{github_user}}/dotfiles.git dest=/home/{{user}}/dotfiles force=yes
+
+- name: Bootstrap dotfiles
+  remote_user: "{{user}}"
+  shell: executable=/home/{{user}}/dotfiles/bootstrap.sh -f creates=/home/{{user}}/.zshrc
+

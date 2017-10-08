@@ -1,0 +1,12 @@
+---
+- import_tasks: mdadm.yml
+- import_tasks: smart.yml
+- name: Ensure storage raid is mounted
+  mount:
+        path: /mnt/storage
+        #src: /dev/md0
+        src: UUID={{storage_uuid}}
+        fstype: ext4
+        #opts: rw,relatime,data=ordered
+        opts: defaults 
+        state: mounted

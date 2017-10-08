@@ -1,0 +1,12 @@
+---
+- name: Ensure smartmontools is installed
+  apt: name=smartmontools state=installed
+
+- name: Add smartd.conf
+  copy: src=smartd.conf dest=/etc/smartd.conf
+
+- name: Add smartmontools run script for mutt
+  template: src=10mutt dest=/etc/smartmontools/run.d/10mutt mode=755
+
+- name: Ensure smartmontools is started
+  service: name=smartmontools enabled=yes state=started

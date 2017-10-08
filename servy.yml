@@ -1,0 +1,26 @@
+---
+- import_playbook: basic.yml
+- hosts: servy
+  vars:
+          user: dave
+  tasks:
+        - name: Ensure storage raid is mounted
+          mount:
+                path: /mnt/storage
+                #src: /dev/md0
+                src: UUID={{storage_uuid}}
+                fstype: ext4
+                #opts: rw,relatime,data=ordered
+                opts: defaults 
+                state: mounted
+
+        - name: "Link to {{item}}"
+          file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link
+          with_items:
+                  - audio
+                  - dev
+                  - docs
+                  - photos
+                  - uploads
+                  - videos
+

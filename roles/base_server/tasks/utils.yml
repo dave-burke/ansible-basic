@@ -19,3 +19,7 @@
 
 - name: Ensure tree is installed
   apt: name=tree state=latest
+
+- name: Ensure pv is installed
+  apt: name=pv state=latest
+

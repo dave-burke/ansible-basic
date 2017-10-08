@@ -1,0 +1,8 @@
+---
+- name: Update all packages to the latest version
+  apt: upgrade=dist update_cache=yes
+
+- include_tasks: utils.yml
+- include_tasks: user.yml
+- include_tasks: security.yml
+

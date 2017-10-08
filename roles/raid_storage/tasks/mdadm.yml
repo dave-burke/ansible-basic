@@ -1,0 +1,12 @@
+---
+- name: Ensure mdadm is installed
+  apt: name=mdadm state=installed
+
+- name: Add mdadm_warning.sh mdadm
+  template: src=mdadm_warning.sh dest=/etc/mdadm_warning.sh mode=755
+
+- name: Add mdadm_warning.sh as PROGRAM in mdadm.conf
+  lineinfile:
+          path: /etc/mdadm/mdadm.conf
+          line: "PROGRAM /etc/mdadm_warning.sh"
+

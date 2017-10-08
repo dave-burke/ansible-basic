@@ -1,0 +1,18 @@
+- hosts: all
+  roles:
+        - base_server
+- hosts: servy
+  roles:
+        - docker
+        - email_notifier
+        - raid_storage
+  tasks:
+        - name: "Link to {{item}}"
+          file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link
+          with_items:
+                  - audio
+                  - dev
+                  - docs
+                  - photos
+                  - uploads
+                  - videos
