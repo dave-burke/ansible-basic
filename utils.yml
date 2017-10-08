@@ -1,21 +1,21 @@
 ---
 - name: Ensure mosh is installed
-  apt: name=mosh state=installed
+  apt: name=mosh state=latest
 
 - name: Ensure vim is installed
-  apt: name=vim state=installed
+  apt: name=vim state=latest
 
 - name: Ensure tmux is installed
-  apt: name=tmux state=installed
+  apt: name=tmux state=latest
 
 - name: Ensure git is installed
-  apt: name=git state=installed
+  apt: name=git state=latest
 
 - name: Ensure zsh is installed
-  apt: name=zsh state=installed
+  apt: name=zsh state=latest
 
 - name: Ensure zip is installed
-  apt: name=zip state=installed
+  apt: name=zip state=latest
 
 - name: Ensure tree is installed
-  apt: name=tree state=installed
+  apt: name=tree state=latest
