@@ -11,5 +11,5 @@
 
 - name: Bootstrap dotfiles
   remote_user: dave
-  shell: executable=/home/dave/dotfiles/bootstrap.sh -f creates=/home/dave/.config/mc/lib/mc-solarized-skin
+  shell: executable=/home/dave/dotfiles/bootstrap.sh -f creates=/home/dave/.zshrc
 
