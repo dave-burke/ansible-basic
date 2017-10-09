@@ -11,5 +11,5 @@
 
 - name: Bootstrap dotfiles
   remote_user: "{{user}}"
-  shell: executable=/home/{{user}}/dotfiles/bootstrap.sh -f creates=/home/{{user}}/.zshrc
+  command: /home/{{user}}/dotfiles/bootstrap.sh -f creates=/home/{{user}}/.zshrc
 
