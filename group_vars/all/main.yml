@@ -1,5 +1,5 @@
 user: dave
 github_user: dave-burke
-email_sender: "{{vault_email_sender}}"
-email_password: "{{vault_email_password}}"
+gmail_user: "{{vault_gmail_user}}"
+gmail_password: "{{vault_gmail_password}}"
 email_recipient: "{{vault_email_recipient}}"

@@ -1,7 +1,0 @@
----
-- name: Ensure mutt is installed
-  apt: name=mutt state=installed
-
-#- name: Add muttrc file
-  #copy: src=files/root/.muttrc dest=/root/.muttrc
-

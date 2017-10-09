@@ -4,7 +4,7 @@
 - hosts: servy
   roles:
         - docker
-        - email_notifier
+        - gmail_mutt
         - raid_storage
   tasks:
         - name: "Link to {{item}}"
