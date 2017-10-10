@@ -7,3 +7,14 @@
 
 - name: Add non-root user {{user}} to docker group
   user: name={{user}} groups=docker append=true
+
+- name: Ensure pip is installed
+  apt: name=python-pip state=latest
+
+- name: install certain python modules for docker
+  pip:
+        name: "{{item}}"
+        state: latest
+  with_items:
+        - docker
+        - docker-py
