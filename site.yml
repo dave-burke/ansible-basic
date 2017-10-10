@@ -3,8 +3,8 @@
         - base_server
 - hosts: servy
   roles:
-        - docker
         - raid_storage
+        - dns
   tasks:
         - name: "Link to {{item}}"
           file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link

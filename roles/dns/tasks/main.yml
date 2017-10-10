@@ -1,0 +1,30 @@
+---
+- name: Add hosts
+  lineinfile:
+          path: /etc/hosts
+          regexp: ".*{{item.host}}"
+          line: "{{item.ip}}	{{item.host}}"
+  with_items: "{{hosts}}"
+
+- name: Ensure docker container is started
+  docker_container:
+          name: dns
+          image: andyshinn/dnsmasq
+          pull: true
+          state: started
+          restart_policy: always
+          volumes: /etc/hosts:/etc/hosts:ro
+          ports:
+                  - 53:53/tcp
+                  - 53:53/udp
+          capabilities:
+                  - NET_ADMIN
+          command: >
+                --address /{{domain}}/{{ansible_default_ipv4.address}}
+                --domain={{domain}}
+                --expand-hosts
+                --log-facility=-
+                --dns-forward-max 1000
+                --domain-needed
+                --bogus-priv
+
