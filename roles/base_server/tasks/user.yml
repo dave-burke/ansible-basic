@@ -1,6 +1,6 @@
 ---
 - name: Add a non-root user
-  user: name={{user}} groups=sudo append=true shell=/usr/bin/zsh
+  user: name={{user}} groups={{sudo_group}} append=true shell=/usr/bin/zsh
 
 - name: Set authorized keys
   authorized_key: user={{user}} key=https://github.com/{{github_user}}.keys

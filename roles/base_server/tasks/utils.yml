@@ -1,25 +1,25 @@
 ---
 - name: Ensure mosh is installed
-  apt: name=mosh state=latest
+  package: name=mosh state=latest
 
 - name: Ensure vim is installed
-  apt: name=vim state=latest
+  package: name=vim state=latest
 
 - name: Ensure tmux is installed
-  apt: name=tmux state=latest
+  package: name=tmux state=latest
 
 - name: Ensure git is installed
-  apt: name=git state=latest
+  package: name=git state=latest
 
 - name: Ensure zsh is installed
-  apt: name=zsh state=latest
+  package: name=zsh state=latest
 
 - name: Ensure zip is installed
-  apt: name=zip state=latest
+  package: name=zip state=latest
 
 - name: Ensure tree is installed
-  apt: name=tree state=latest
+  package: name=tree state=latest
 
 - name: Ensure pv is installed
-  apt: name=pv state=latest
+  package: name=pv state=latest
 

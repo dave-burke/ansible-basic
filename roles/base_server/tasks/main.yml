@@ -1,6 +1,11 @@
 ---
-- name: Update all packages to the latest version
+- name: Update all apt packages to the latest version
   apt: upgrade=dist update_cache=yes
+  when: ansible_os_family == "Debian"
+
+- name: Update all pacman packages to the latest version
+  pacman: upgrade=true
+  when: ansible_os_family == "Manjaro Linux"
 
 - include_tasks: utils.yml
 - include_tasks: user.yml

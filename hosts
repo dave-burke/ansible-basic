@@ -1,1 +1,8 @@
 servy ansible_host=192.168.2.150
+compy ansible_host=192.168.2.142 #ansible_connection=local
+
+[debian]
+servy
+
+[arch]
+compy
