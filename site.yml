@@ -1,6 +1,6 @@
 - hosts: all
   roles:
-        - base_server
+        - base
 - hosts: servy
   roles:
         - raid_storage
