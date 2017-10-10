@@ -4,7 +4,7 @@
   when: ansible_os_family == "Debian"
 
 - name: Update all pacman packages to the latest version
-  pacman: upgrade=true
+  pacman: upgrade=true update_cache=yes
   when: ansible_os_family == "Manjaro Linux"
 
 - include_tasks: utils.yml
