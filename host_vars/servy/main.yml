@@ -1,5 +1,8 @@
 storage_uuid: "4ba8b760-634e-4915-9d61-bfcc27f19848"
 domain: "{{vault_domain}}"
+plex_config_dir: "/mnt/storage/docker/plex/config"
+plex_upload_dir: "/mnt/storage/docker/plex/upload"
+plex_media_dir: "/mnt/storage"
 hosts:
         - { ip: 192.168.2.150, host: servy }
         - { ip: 192.168.2.142, host: compy }
