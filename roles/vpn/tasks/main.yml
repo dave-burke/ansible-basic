@@ -1,0 +1,81 @@
+---
+- name: Install pexpect python module for the expect task
+  pip: name=pexpect state=latest
+
+- name: Ensure openvpn data volume exists
+  docker_volume: name={{openvpn_data_volume}} state=present
+
+- name: Check for openvpn config
+  command: docker run -v {{openvpn_data_volume}}:/etc/openvpn --rm {{openvpn_docker_image}} ls /etc/openvpn/openvpn.conf
+  ignore_errors: yes
+  check_mode: no
+  changed_when: False
+  register: openvpn_config_check
+
+- name: Ensure openvpn config is generated
+  docker_container:
+          name: "tmp-openvpn-genconfig"
+          image: "{{openvpn_docker_image}}"
+          detach: no
+          cleanup: yes
+          volumes:
+                  - "{{openvpn_data_volume}}:/etc/openvpn"
+          entrypoint: "ovpn_genconfig -u udp://{{public_domain}}"
+  when: openvpn_config_check.rc == 1
+
+- name: Check for pki infrastructure
+  command: docker run -v {{openvpn_data_volume}}:/etc/openvpn --rm {{openvpn_docker_image}} ls /etc/openvpn/pki
+  ignore_errors: yes
+  check_mode: no
+  changed_when: False
+  register: openvpn_pki_check
+
+- name: "Generate PKI"
+  expect:
+          command: docker run -v {{openvpn_data_volume}}:/etc/openvpn --rm -it {{openvpn_docker_image}} ovpn_initpki
+          timeout: 300 # 5 minutes (Generating DH Params takes time)
+          responses:
+                "pass phrase": "{{openvpn_pki_pass}}"
+                "Common Name": "{{public_domain}}"
+  when: openvpn_pki_check.rc == 1
+
+- name: Ensure openvpn containers are started
+  docker_container:
+          name: "ovpn-{{item.proto}}"
+          image: "{{openvpn_docker_image}}"
+          pull: true
+          state: started
+          restart_policy: always
+          capabilities:
+                  - NET_ADMIN
+          privileged: yes
+          ports:
+                  - "{{item.port}}:1194/{{item.proto}}"
+          volumes:
+                  - "{{openvpn_data_volume}}:/etc/openvpn"
+          command: ovpn_run --proto {{item.proto}}
+  with_items:
+          - { port: 1194, proto: udp }
+          - { port: 443, proto: tcp }
+
+- name: Get current client list
+  command: docker run -v {{openvpn_data_volume}}:/etc/openvpn --rm {{openvpn_docker_image}} ovpn_listclients
+  check_mode: no
+  register: openvpn_client_list
+
+- name: Ensure client keys are generated
+  expect:
+          command: "docker run -v {{openvpn_data_volume}}:/etc/openvpn --rm -it {{openvpn_docker_image}} easyrsa build-client-full {{item}} nopass"
+          responses:
+                "pass phrase": "{{openvpn_pki_pass}}"
+  when: "openvpn_client_list.stdout.find(item) == -1"
+  with_items: "{{openvpn_clients}}"
+
+- name: Save generated keys
+  shell: docker run -v {{openvpn_data_volume}}:/etc/openvpn --rm {{openvpn_docker_image}} ovpn_getclient {{item}} > {{openvpn_key_dir}}/{{item}}.ovpn
+  args:
+          creates: "{{openvpn_key_dir}}/{{item}}.ovpn"
+  with_items: "{{openvpn_clients}}"
+  become: "{{user}}"
+  when: "openvpn_key_dir is defined"
+
