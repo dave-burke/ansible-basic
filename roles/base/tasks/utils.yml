@@ -2,8 +2,16 @@
 - name: Ensure mosh is installed
   package: name=mosh state=latest
 
+- name: Check if gvim is installed
+  shell: command -v gvim
+  ignore_errors: yes
+  check_mode: no
+  changed_when: False
+  register: gvim_check
+
 - name: Ensure vim is installed
   package: name=vim state=latest
+  when: gvim_check.rc == 1
 
 - name: Ensure tmux is installed
   package: name=tmux state=latest
