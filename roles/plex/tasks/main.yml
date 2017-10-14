@@ -35,6 +35,10 @@
                   ADVERTISE_IP: "http://{{ansible_default_ipv4.address}}:32400/"
                   PLEX_UID: "{{plex_user.uid}}"
                   PLEX_GID: "{{plex_group.gid}}"
+                  VIRTUAL_HOST: "plex.{{ansible_hostname}}.{{domain}}"
+                  VIRTUAL_PORT: 32400
+                  #LETSENCRYPT_HOST: "plex.{{ansible_hostname}}.{{domain}}"
+                  #LETSENCRYPT_EMAIL: "{{email_recipient}}"
           hostname: "plex.{{ansible_hostname}}.{{domain}}"
           volumes:
                 - "{{plex_config_dir}}:/config"
