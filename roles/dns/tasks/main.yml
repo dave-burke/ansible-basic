@@ -22,6 +22,9 @@
           command: >
                 --address /{{domain}}/{{ansible_default_ipv4.address}}
                 --domain={{domain}}
+                --no-resolv
+                --server 9.9.9.9
+                --server 149.112.112.112
                 --expand-hosts
                 --log-facility=-
                 --dns-forward-max 1000
