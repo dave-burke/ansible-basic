@@ -1,6 +1,6 @@
 ---
 - name: Ensure smartmontools is installed
-  apt: name=smartmontools state=installed
+  apt: name=smartmontools state=present
 
 - name: Add smartd.conf
   copy: src=smartd.conf dest=/etc/smartd.conf

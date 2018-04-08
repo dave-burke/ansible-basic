@@ -1,6 +1,6 @@
 ---
 - name: Ensure mutt is installed
-  apt: name=mutt state=installed
+  apt: name=mutt state=present
 
 - name: Add muttrc file
   template: src=muttrc dest=/root/.muttrc mode=600
