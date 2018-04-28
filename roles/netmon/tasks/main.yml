@@ -31,11 +31,13 @@
   lineinfile:
     path: "{{smokeping_dir}}/config/site-confs/smokeping.conf"
     line: "RedirectMatch ^/$ /smokeping/smokeping.cgi"
+  notify: restart_smokeping
 
 - name: Ensure Targets file
   copy:
     src: Targets
     dest: "{{smokeping_dir}}/config/Targets"
+  notify: restart_smokeping
 
 - name: Set smokeping owner name
   lineinfile:
@@ -43,6 +45,7 @@
     regexp: "^owner( *)=.*$"
     line: "owner\\1= {{user}}"
     backrefs: yes
+  notify: restart_smokeping
 
 - name: Set smokeping contact email
   lineinfile:
@@ -50,4 +53,5 @@
     regexp: "^contact( *)=.*$"
     line: "contact\\1= {{email_recipient}}"
     backrefs: yes
+  notify: restart_smokeping
 
