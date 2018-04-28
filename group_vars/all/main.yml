@@ -1,5 +1,7 @@
+---
 user: dave
 github_user: dave-burke
 gmail_user: "{{vault_gmail_user}}"
 gmail_password: "{{vault_gmail_password}}"
 email_recipient: "{{vault_email_recipient}}"
+

@@ -10,3 +10,4 @@
 
 - name: Ensure smartmontools is started
   service: name=smartmontools enabled=yes state=started
+
