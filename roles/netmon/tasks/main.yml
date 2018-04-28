@@ -1,0 +1,48 @@
+---
+- name: Ensure a smokeping group exists
+  group: name=smokeping
+  register: smokeping_group
+
+- name: Ensure smokeping user exists
+  user: name=smokeping group=plex createhome=no
+  register: smokeping_user
+
+- name: Ensure smokeping container is started
+  docker_container:
+    name: smokeping
+    image: linuxserver/smokeping
+    pull: true
+    state: started
+    restart_policy: always
+    volumes:
+      - "{{smokeping_dir}}/data:/data"
+      - "{{smokeping_dir}}/config:/config"
+      - "/etc/localtime:/etc/localtime:ro"
+    ports:
+      - "{{smokeping_port}}:80/tcp"
+    env:
+      TZ: "America/Chicago"
+      PUID: "{{smokeping_user.uid}}"
+      PGID: "{{smokeping_group.gid}}"
+      VIRTUAL_HOST: "netmon.{{ansible_hostname}}.{{domain}}"
+      VIRTUAL_PORT: "{{smokeping_port}}"
+
+- name: Ensure Targets file
+  copy:
+    src: Targets
+    dest: "{{smokeping_dir}}/config/Targets"
+
+- name: Set smokeping owner name
+  lineinfile:
+    path: "{{smokeping_dir}}/config/General"
+    regexp: "^owner( *)=.*$"
+    line: "owner\\1= {{user}}"
+    backrefs: yes
+
+- name: Set smokeping contact email
+  lineinfile:
+    path: "{{smokeping_dir}}/config/General"
+    regexp: "^contact( *)=.*$"
+    line: "contact\\1= {{email_recipient}}"
+    backrefs: yes
+
