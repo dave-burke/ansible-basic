@@ -2,19 +2,19 @@ storage_uuid: "4ba8b760-634e-4915-9d61-bfcc27f19848"
 
 # DNS config
 hosts:
-        - { ip: 192.168.2.150, host: servy }
-        - { ip: 192.168.2.142, host: compy }
-        - { ip: 192.168.2.1, host: rowdy}
-        - { ip: 192.168.1.1, host: rowdyjr}
+  - { ip: 192.168.2.150, host: servy }
+  - { ip: 192.168.2.142, host: compy }
+  - { ip: 192.168.2.1, host: rowdy}
+  - { ip: 192.168.1.1, host: rowdyjr}
 domain: "{{vault_domain}}"
 public_domain: "{{vault_public_domain}}"
 
 # OpenVPN Server config
 openvpn_pki_pass: "{{vault_openvpn_pki_pass}}"
 openvpn_clients:
-        - tabby
-        - dcell
-        - scell
+  - tabby
+  - dcell
+  - scell
 openvpn_key_dir: "/mnt/storage/backup/keys"
 
 # OpenVPN Client config

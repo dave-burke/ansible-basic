@@ -1,40 +1,40 @@
 ---
 - name: Ensure torrent container is started
   docker_container:
-          name: torrent
-          image: haugene/transmission-openvpn
-          pull: true
-          state: started
-          restart_policy: always
-          devices:
-                  - "/dev/net/tun"
-          capabilities:
-                  - NET_ADMIN
-          volumes:
-                  - "{{torrent_dir}}:/data"
-                  - "/etc/localtime:/etc/localtime:ro"
-          ports:
-                  - "{{web_ui_port}}:{{web_ui_port}}"
-          dns_servers:
-                  # DNS replies must come back from the docker gateway or
-                  # they are rejected as spoofing attempts.
-                  - "{{ansible_docker0.ipv4.address}}"
-          env:
-                  PUID: "{{base_user.uid}}"
-                  PGID: "{{base_user.group}}"
-                  OPENVPN_OPTS: "--inactive 3600 --ping 10 --ping-exit 60"
-                  OPENVPN_PROVIDER: "{{openvpn_provider}}"
-                  OPENVPN_CONFIG: "{{openvpn_config}}"
-                  OPENVPN_USERNAME: "{{openvpn_username}}"
-                  OPENVPN_PASSWORD: "{{openvpn_password}}"
-                  LOCAL_NETWORK: "{{ansible_default_ipv4.network}}/{{ansible_default_ipv4.netmask}}"
-                  TRANSMISSION_ENCRYPTION: "1"
-                  TRANSMISSION_BLOCKLIST_ENABLED: "{{torrent_blocklist_enabled}}"
-                  TRANSMISSION_BLOCKLIST_URL: "{{torrent_blocklist_url}}"
-                  TRANSMISSION_SPEED_LIMIT_UP: "{{torrent_speed_limit_up}}"
-                  TRANSMISSION_SPEED_LIMIT_UP_ENABLED: "{{torrent_speed_limit_up_enabled}}"
-                  TRANSMISSION_SPEED_LIMIT_DOWN: "{{torrent_speed_limit_down}}"
-                  TRANSMISSION_SPEED_LIMIT_DOWN_ENABLED: "{{torrent_speed_limit_down_enabled}}"
-                  VIRTUAL_HOST: "torrent.{{ansible_hostname}}.{{domain}}"
-                  VIRTUAL_PORT: "{{web_ui_port}}" 
+    name: torrent
+    image: haugene/transmission-openvpn
+    pull: true
+    state: started
+    restart_policy: always
+    devices:
+      - "/dev/net/tun"
+    capabilities:
+      - NET_ADMIN
+    volumes:
+      - "{{torrent_dir}}:/data"
+      - "/etc/localtime:/etc/localtime:ro"
+    ports:
+      - "{{web_ui_port}}:{{web_ui_port}}"
+    dns_servers:
+      # DNS replies must come back from the docker gateway or
+      # they are rejected as spoofing attempts.
+      - "{{ansible_docker0.ipv4.address}}"
+    env:
+      PUID: "{{base_user.uid}}"
+      PGID: "{{base_user.group}}"
+      OPENVPN_OPTS: "--inactive 3600 --ping 10 --ping-exit 60"
+      OPENVPN_PROVIDER: "{{openvpn_provider}}"
+      OPENVPN_CONFIG: "{{openvpn_config}}"
+      OPENVPN_USERNAME: "{{openvpn_username}}"
+      OPENVPN_PASSWORD: "{{openvpn_password}}"
+      LOCAL_NETWORK: "{{ansible_default_ipv4.network}}/{{ansible_default_ipv4.netmask}}"
+      TRANSMISSION_ENCRYPTION: "1"
+      TRANSMISSION_BLOCKLIST_ENABLED: "{{torrent_blocklist_enabled}}"
+      TRANSMISSION_BLOCKLIST_URL: "{{torrent_blocklist_url}}"
+      TRANSMISSION_SPEED_LIMIT_UP: "{{torrent_speed_limit_up}}"
+      TRANSMISSION_SPEED_LIMIT_UP_ENABLED: "{{torrent_speed_limit_up_enabled}}"
+      TRANSMISSION_SPEED_LIMIT_DOWN: "{{torrent_speed_limit_down}}"
+      TRANSMISSION_SPEED_LIMIT_DOWN_ENABLED: "{{torrent_speed_limit_down_enabled}}"
+      VIRTUAL_HOST: "torrent.{{ansible_hostname}}.{{domain}}"
+      VIRTUAL_PORT: "{{web_ui_port}}" 
 

@@ -7,6 +7,6 @@
 
 - name: Add mdadm_warning.sh as PROGRAM in mdadm.conf
   lineinfile:
-          path: /etc/mdadm/mdadm.conf
-          line: "PROGRAM /etc/mdadm_warning.sh"
+    path: /etc/mdadm/mdadm.conf
+    line: "PROGRAM /etc/mdadm_warning.sh"
 

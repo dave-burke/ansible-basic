@@ -1,21 +1,21 @@
 - hosts: all
   roles:
-        - base
+    - base
 - hosts: servy
   roles:
-        - raid_storage
-        - dns
-        - vpn
-        - reverse-proxy
-        - plex
-        - torrent
+    - raid_storage
+    - dns
+    - vpn
+    - reverse-proxy
+    - plex
+    - torrent
   tasks:
-        - name: "Link to {{item}}"
-          file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link
-          with_items:
-                  - audio
-                  - dev
-                  - docs
-                  - photos
-                  - uploads
-                  - videos
+    - name: "Link to {{item}}"
+      file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link
+      with_items:
+        - audio
+        - dev
+        - docs
+        - photos
+        - uploads
+        - videos

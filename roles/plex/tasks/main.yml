@@ -9,33 +9,33 @@
 
 - name: Ensure plex container is started
   docker_container:
-          name: plex
-          image: "plexinc/pms-docker:plexpass"
-          pull: true
-          state: started
-          restart_policy: always
-          ports:
-                  - 32400:32400/tcp
-                  - 3005:3005/tcp
-                  - 8324:8324/tcp
-                  - 32469:32469/tcp
-                  - 1900:1900/udp
-                  - 32410:32410/udp
-                  - 32412:32412/udp
-                  - 32413:32413/udp
-                  - 32414:32414/udp
-          env:
-                  TZ: "{{timezone}}"
-                  ADVERTISE_IP: "http://{{ansible_default_ipv4.address}}:32400/"
-                  PLEX_UID: "{{plex_user.uid}}"
-                  PLEX_GID: "{{plex_group.gid}}"
-                  VIRTUAL_HOST: "plex.{{ansible_hostname}}.{{domain}}"
-                  VIRTUAL_PORT: 32400
-                  #LETSENCRYPT_HOST: "plex.{{ansible_hostname}}.{{domain}}"
-                  #LETSENCRYPT_EMAIL: "{{email_recipient}}"
-          hostname: "plex.{{ansible_hostname}}.{{domain}}"
-          volumes:
-                - "{{plex_config_dir}}:/config"
-                - "{{plex_upload_dir}}:/upload"
-                - "{{plex_media_dir}}:/mnt/storage:ro"
+    name: plex
+    image: "plexinc/pms-docker:plexpass"
+    pull: true
+    state: started
+    restart_policy: always
+    ports:
+      - 32400:32400/tcp
+      - 3005:3005/tcp
+      - 8324:8324/tcp
+      - 32469:32469/tcp
+      - 1900:1900/udp
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+    env:
+      TZ: "{{timezone}}"
+      ADVERTISE_IP: "http://{{ansible_default_ipv4.address}}:32400/"
+      PLEX_UID: "{{plex_user.uid}}"
+      PLEX_GID: "{{plex_group.gid}}"
+      VIRTUAL_HOST: "plex.{{ansible_hostname}}.{{domain}}"
+      VIRTUAL_PORT: 32400
+      #LETSENCRYPT_HOST: "plex.{{ansible_hostname}}.{{domain}}"
+      #LETSENCRYPT_EMAIL: "{{email_recipient}}"
+    hostname: "plex.{{ansible_hostname}}.{{domain}}"
+    volumes:
+      - "{{plex_config_dir}}:/config"
+      - "{{plex_upload_dir}}:/upload"
+      - "{{plex_media_dir}}:/mnt/storage:ro"
 
