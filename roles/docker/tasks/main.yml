@@ -14,7 +14,7 @@
 - name: install certain python modules for docker
   pip:
     name: "{{item}}"
-    state: latest
+    state: forcereinstall
   with_items:
     - docker
     - docker-py
