@@ -7,6 +7,31 @@ title = Network Latency Grapher
 remark = Welcome to the SmokePing website of WORKS Company. \
          Here you will learn all about the latency of our network.
 
++ Local
+
+menu = Local Network
+title = Local Network
+
+	++ Localhost
+	menu = Localhost
+	title = Localhost
+	host = localhost
+
+	++ Rowdy
+	menu = Rowdy
+	title = Rowdy
+	host = 192.168.2.1
+
+	++ RowdyJr
+	menu = Rowdy Jr
+	title = Rowdy Jr
+	host = 192.168.1.1
+
+	++ CableModem
+	menu = Cable Modem
+	title = Cable Modem
+	host = 192.168.100.1
+
 + InternetSites
 
 menu = Internet Sites
