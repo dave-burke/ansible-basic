@@ -2,4 +2,5 @@
 dependencies:
 - { role: docker }
 - { role: dns }
+- { role: reverse-proxy }
 
