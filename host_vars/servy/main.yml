@@ -23,8 +23,6 @@ openvpn_provider: "{{vault_openvpn_provider}}"
 openvpn_config: "{{vault_openvpn_config}}"
 openvpn_username: "{{vault_openvpn_username}}"
 openvpn_password: "{{vault_openvpn_password}}"
-smokeping_dir: "/mnt/storage/docker/smokeping"
-smokeping_port: "8090"
 torrent_dir: "/mnt/storage/docker/torrent"
 torrent_blocklist_enabled: "true"
 torrent_blocklist_url: "{{vault_torrent_blocklist_url}}"
@@ -37,4 +35,8 @@ torrent_speed_limit_down_enabled: "true"
 plex_config_dir: "/mnt/storage/docker/plex/config"
 plex_upload_dir: "/mnt/storage/docker/plex/upload"
 plex_media_dir: "/mnt/storage"
+
+# Smokeping config
+smokeping_dir: "/mnt/storage/docker/smokeping"
+smokeping_port: "8090"
 
