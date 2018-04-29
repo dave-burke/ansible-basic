@@ -1,0 +1,33 @@
+---
+- name: Ensure dig is installed
+  package: name=dnsutils state=latest
+
+- name: Ensure script dir is present
+  file: name=/opt/dyndns_update state=directory
+
+- name: Ensure script file is present
+  copy:
+    src: dyndns-update.sh
+    dest: /opt/dyndns_update/dyndns-update.sh
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: 0744
+
+- name: Ensure data file is present
+  file:
+    name: /var/opt/dyndns-update_ip
+    state: touch
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: 0644
+
+- name: Ensure config file is present
+  template: src=dyndns-update.cfg dest=/etc/opt/dyndns-update.cfg mode=644
+
+- name: Configure cron to update dns
+  cron:
+    name: "Update dyndns"
+    user: "{{user}}"
+    minute: "*/15"
+    job: /opt/dyndns_update/dyndns-update.sh
+

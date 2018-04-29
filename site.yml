@@ -11,6 +11,7 @@
     - plex
     - torrent
     - netmon
+    - dyndns_client
   tasks:
     - name: "Link to {{item}}"
       file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link

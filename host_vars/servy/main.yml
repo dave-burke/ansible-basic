@@ -40,3 +40,7 @@ plex_media_dir: "/mnt/storage"
 smokeping_dir: "/mnt/storage/docker/smokeping"
 smokeping_port: "8090"
 
+# DynDNS config
+dyndns_domain: "{{vault_dyndns_domain}}"
+dyndns_token: "{{vault_dyndns_token}}"
+
