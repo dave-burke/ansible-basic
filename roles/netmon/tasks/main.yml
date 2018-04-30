@@ -33,6 +33,12 @@
     line: "RedirectMatch ^/$ /smokeping/smokeping.cgi"
   notify: restart_smokeping
 
+- name: Ensure Presentation file
+  copy:
+    src: Presentation
+    dest: "{{smokeping_dir}}/config/Presentation"
+  notify: restart_smokeping
+
 - name: Ensure Targets file
   copy:
     src: Targets
