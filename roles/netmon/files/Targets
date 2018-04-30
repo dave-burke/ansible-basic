@@ -152,15 +152,38 @@ title =North American Connectivity
 menu = DNS
 title = DNS
 
+	++ AllDNS
+	menu = All DNS Servers
+	title = All DNS Servers
+	host = \
+		/DNS/QuadNine \
+		/DNS/QuadNineBackup \
+		/DNS/CloudFlare \
+		/DNS/CloudFlare2 \
+		/DNS/GoogleDNS1 \
+		/DNS/GoogleDNS2 \
+		/DNS/OpenDNS1 \
+		/DNS/OpenDNS2
+
 	++ QuadNine
 	menu = Quad Nine
 	title = Quad Nine
 	host = 9.9.9.9
 
+	++ QuadNineBackup
+	menu = Quad Nine Backup
+	title = Quad Nine (Backup)
+	host = 149.112.112.112
+
 	++ CloudFlare
 	menu = Cloudflare
 	title = Cloudflare DNS 1.1.1.1
 	host = 1.1.1.1
+
+	++ CloudFlare2
+	menu = Cloudflare 2
+	title = Cloudflare DNS 1.0.0.1
+	host = 1.0.0.1
 
 	++ GoogleDNS1
 	menu = Google DNS 1
