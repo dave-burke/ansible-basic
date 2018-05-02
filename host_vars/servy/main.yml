@@ -44,3 +44,6 @@ smokeping_port: "8090"
 dyndns_domain: "{{vault_dyndns_domain}}"
 dyndns_token: "{{vault_dyndns_token}}"
 
+# Minecraft config
+minecraft_dir: "/mnt/storage/docker/minecraft"
+

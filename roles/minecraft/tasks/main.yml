@@ -1,0 +1,20 @@
+---
+- name: Ensure minecraft directory is owned by the default user
+  file: name={{minecraft_dir}} state=directory owner={{user}} group={{user}}
+
+- name: Ensure minecraft container is started
+  docker_container:
+    name: minecraft
+    image: itzg/minecraft-server
+    pull: true
+    state: started
+    restart_policy: always
+    volumes:
+      - "{{minecraft_dir}}:/data"
+    ports:
+      - "25565:25565/tcp"
+    env:
+      EULA: true
+      DIFFICULTY: peaceful
+      ONLINE_MODE: false
+
