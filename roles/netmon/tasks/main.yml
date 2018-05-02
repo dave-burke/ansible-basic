@@ -4,7 +4,7 @@
   register: smokeping_group
 
 - name: Ensure smokeping user exists
-  user: name=smokeping group=plex createhome=no
+  user: name=smokeping group=smokeping createhome=no
   register: smokeping_user
 
 - name: Ensure smokeping container is started
