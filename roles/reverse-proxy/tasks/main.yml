@@ -2,6 +2,11 @@
 - name: Ensure cert volume exists
   docker_volume: name={{letsencrypt_cert_volume}} state=present
 
+- name: Ensure static config file exists
+  template:
+    src: static.conf
+    dest: "{{http_static_config_file}}"
+
 - name: Ensure nginx container is started
   docker_container:
     name: "{{nginx_container}}"
@@ -14,8 +19,9 @@
     volumes:
       - /etc/nginx/conf.d
       - /etc/nginx/vhost.d
-      - /usr/share/nginx/html
+      - "{{http_static_dir}}:/usr/share/nginx/html:ro"
       - "{{letsencrypt_cert_volume}}:/etc/nginx/certs:ro"
+      - "{{http_static_config_file}}:/etc/nginx/conf.d/static.conf:ro"
     labels:
       com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: ""
   register: docker_nginx_container_status

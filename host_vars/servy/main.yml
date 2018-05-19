@@ -47,3 +47,7 @@ dyndns_token: "{{vault_dyndns_token}}"
 # Minecraft config
 minecraft_dir: "/mnt/storage/docker/minecraft"
 
+# NGINX config
+http_static_config_file: "/mnt/storage/docker/nginx/static.conf"
+http_static_dir: "/mnt/storage/docker/http/static"
+
