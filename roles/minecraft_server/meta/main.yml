@@ -1,5 +1,5 @@
 ---
 dependencies:
 - { role: docker }
-- { role: reverse-proxy }
+- { role: reverse_proxy }
 

@@ -14,7 +14,7 @@
     - raid_storage
     - dns
     - vpn
-    - reverse-proxy
+    - reverse_proxy
     - plex
     - torrent
     - netmon
