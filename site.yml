@@ -19,7 +19,7 @@
     - torrent
     - netmon
     - dyndns_client
-    - minecraft
+    - minecraft_server
     - backup_server
   tasks:
     - name: "Link to {{item}}"
