@@ -5,6 +5,8 @@ storage_uuid: "4ba8b760-634e-4915-9d61-bfcc27f19848"
 hosts:
   - { ip: 192.168.2.150, host: servy }
   - { ip: 192.168.2.142, host: compy }
+  - { ip: 192.168.2.143, host: asuzw }
+  - { ip: 192.168.2.144, host: asuz }
   - { ip: 192.168.2.1, host: rowdy}
   - { ip: 192.168.1.1, host: rowdyjr}
 domain: "{{vault_domain}}"
