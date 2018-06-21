@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Minecraft
+GenericName=Minecraft
+Comment=Script to set user display name and launch minecraft
+MimeType=application/x-shellscript
+Exec=/opt/minecraft/minecraft.sh
+Icon=minecraft
+Terminal=true
+Type=Application
+Categories=Game;

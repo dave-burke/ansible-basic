@@ -1,0 +1,23 @@
+---
+- name: "Ensure minecraft install directory is present"
+  file:
+    state: directory
+    path: /opt/minecraft
+
+- name: "Ensure minecraft jar is downloaded"
+  get_url:
+    url: "http://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar"
+    dest: "/opt/minecraft/minecraft.jar"
+
+- name: "Ensure custom minecraft launcher is present"
+  copy:
+    src: minecraft.sh
+    dest: /opt/minecraft/minecraft.sh
+    mode: 0755
+
+- name: "Ensure minecraft desktop file is present"
+  copy:
+    src: minecraft.desktop
+    dest: /usr/share/applications/minecraft.desktop
+    mode: 0755
+
