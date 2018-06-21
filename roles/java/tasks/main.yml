@@ -1,0 +1,4 @@
+---
+- name: Ensure java is installed
+  package: name={{java_pkg}} state=latest
+
