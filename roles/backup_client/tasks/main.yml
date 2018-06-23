@@ -38,5 +38,5 @@
     user: "{{backup_client_user}}"
     minute: 0
     hour: 0
-    job: "for dir in Desktop Documents pics; do rdiff-backup ${dir} backup::/mnt/storage/backup/{{backup_client_user}}/${dir}; done"
+    job: "for dir in Desktop Documents pics; do rdiff-backup ${dir} backup::{{hostvars[backup_server_host].backup_server_root_dir}}/{{backup_client_user}}/${dir}; done"
 

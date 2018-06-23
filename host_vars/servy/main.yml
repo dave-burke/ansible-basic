@@ -1,5 +1,7 @@
 ---
 storage_uuid: "4ba8b760-634e-4915-9d61-bfcc27f19848"
+storage_root: /mnt/storage
+docker_root: "{{storage_root}}/docker"
 
 # DNS config
 hosts:
@@ -18,14 +20,14 @@ openvpn_clients:
   - tabby
   - dcell
   - scell
-openvpn_key_dir: "/mnt/storage/backup/keys"
+openvpn_key_dir: "{{storage_root}}/backup/keys"
 
 # OpenVPN Client config
 openvpn_provider: "{{vault_openvpn_provider}}"
 openvpn_config: "{{vault_openvpn_config}}"
 openvpn_username: "{{vault_openvpn_username}}"
 openvpn_password: "{{vault_openvpn_password}}"
-torrent_dir: "/mnt/storage/docker/torrent"
+torrent_dir: "{{docker_root}}/torrent"
 torrent_blocklist_enabled: "true"
 torrent_blocklist_url: "{{vault_torrent_blocklist_url}}"
 torrent_speed_limit_up: "10000"
@@ -34,12 +36,12 @@ torrent_speed_limit_down: "20000"
 torrent_speed_limit_down_enabled: "true"
 
 # Plex config
-plex_config_dir: "/mnt/storage/docker/plex/config"
-plex_upload_dir: "/mnt/storage/docker/plex/upload"
-plex_media_dir: "/mnt/storage"
+plex_config_dir: "{{docker_root}}/plex/config"
+plex_upload_dir: "{{docker_root}}/plex/upload"
+plex_media_dir: "{{storage_root}}"
 
 # Smokeping config
-smokeping_dir: "/mnt/storage/docker/smokeping"
+smokeping_dir: "{{docker_root}}/smokeping"
 smokeping_port: "8090"
 
 # DynDNS config
@@ -47,13 +49,13 @@ dyndns_domain: "{{vault_dyndns_domain}}"
 dyndns_token: "{{vault_dyndns_token}}"
 
 # Minecraft config
-minecraft_dir: "/mnt/storage/docker/minecraft"
+minecraft_dir: "{{docker_root}}/minecraft"
 
 # NGINX config
-http_static_config_file: "/mnt/storage/docker/nginx/static.conf"
-http_static_dir: "/mnt/storage/docker/http/static"
+http_static_config_file: "{{docker_root}}/nginx/static.conf"
+http_static_dir: "{{docker_root}}/http/static"
 
-backup_server_root_dir: /mnt/storage/backup
+backup_server_root_dir: "{{storage_root}}/backup"
 backup_server_configs:
   - dir: suz
     public_key: "{{ssh_backup_keys.suz.asuz}}"

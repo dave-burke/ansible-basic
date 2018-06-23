@@ -3,7 +3,7 @@
 - import_tasks: smart.yml
 - name: Ensure storage raid is mounted
   mount:
-    path: /mnt/storage
+    path: "{{storage_root}}"
     #src: /dev/md0
     src: UUID={{storage_uuid}}
     fstype: ext4
