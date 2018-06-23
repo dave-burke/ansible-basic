@@ -31,3 +31,12 @@
         user {{backup_server_user}}
         identityfile /home/{{backup_client_user}}/.ssh/{{backup_client_keyfile}}
 
+- name: Ensure cron task is present
+  cron:
+    name: "Backup documents"
+    state: present
+    user: "{{backup_client_user}}"
+    minute: 0
+    hour: 0
+    job: "for dir in Desktop Documents pics; do rdiff-backup ${dir} backup::/mnt/storage/backup/{{backup_client_user}}/${dir}; done"
+
