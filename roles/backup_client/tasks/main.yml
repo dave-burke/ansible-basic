@@ -4,7 +4,7 @@
 
 - name: Ensure backup public key is present
   copy:
-    content: "{{ssh_backup_key_pub}}"
+    content: "{{ssh_backup_keys[backup_client_user][inventory_hostname]}}"
     dest: "/home/{{backup_client_user}}/.ssh/{{backup_client_keyfile}}.pub"
     mode: 0644
     owner: "{{backup_client_user}}"
