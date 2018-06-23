@@ -1,0 +1,19 @@
+---
+- name: Ensure rdiff-backup is installed
+  apt: name=rdiff-backup state=present
+
+- name: Ensure backup directories exist
+  file:
+    state: directory
+    path: "{{backup_server_root_dir}}/{{item.dir}}"
+    owner: "root"
+    group: "root"
+  with_items: "{{backup_server_configs}}"
+
+- name: Ensure backup keys are authorized
+  authorized_key:
+    state: present
+    user: root
+    key: "{{item.public_key}}"
+    key_options: "command=\"rdiff-backup --server --restrict {{backup_server_root_dir}}/{{item.dir}}\",no-port-forwarding,no-X11-forwarding,no-pty"
+  with_items: "{{backup_server_configs}}"

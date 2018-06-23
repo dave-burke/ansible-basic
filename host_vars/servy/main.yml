@@ -53,3 +53,8 @@ minecraft_dir: "/mnt/storage/docker/minecraft"
 http_static_config_file: "/mnt/storage/docker/nginx/static.conf"
 http_static_dir: "/mnt/storage/docker/http/static"
 
+backup_server_root_dir: /mnt/storage/backup
+backup_server_configs:
+  - dir: suz
+    public_key: "{{ssh_backup_keys.suz.asuz}}"
+
