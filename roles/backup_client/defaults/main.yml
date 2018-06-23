@@ -1,0 +1,3 @@
+---
+backup_server_user: root
+backup_client_keyfile: id_rsa_backup

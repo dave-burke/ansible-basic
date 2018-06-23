@@ -1,0 +1,33 @@
+---
+- name: Ensure rdiff-backup is installed
+  apt: name=rdiff-backup state=present
+
+- name: Ensure backup public key is present
+  copy:
+    content: "{{ssh_backup_key_pub}}"
+    dest: "/home/{{backup_client_user}}/.ssh/{{backup_client_keyfile}}.pub"
+    mode: 0644
+    owner: "{{backup_client_user}}"
+    group: "{{backup_client_user}}"
+
+- name: Ensure backup private key is present
+  copy:
+    content: "{{ssh_backup_key}}"
+    dest: "/home/{{backup_client_user}}/.ssh/{{backup_client_keyfile}}"
+    mode: 0600
+    owner: "{{backup_client_user}}"
+    group: "{{backup_client_user}}"
+
+- name: Ensure backup ssh config is present
+  blockinfile:
+    dest: "/home/{{backup_client_user}}/.ssh/config"
+    create: yes
+    mode: 0644
+    owner: "{{backup_client_user}}"
+    group: "{{backup_client_user}}"
+    block: |
+      host backup
+        hostname {{backup_server_host}}.{{domain}}
+        user {{backup_server_user}}
+        identityfile /home/{{backup_client_user}}/.ssh/{{backup_client_keyfile}}
+

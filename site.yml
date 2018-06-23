@@ -2,6 +2,13 @@
 - hosts: all
   roles:
     - base
+- hosts: asuz
+  tasks:
+    - import_role:
+        name: backup_client
+      vars:
+        backup_server_host: servy
+        backup_client_user: suz
 - hosts: servy
   roles:
     - raid_storage
