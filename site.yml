@@ -2,10 +2,13 @@
 - hosts: all
   roles:
     - base
+- hosts: compy
+  roles:
+    - minecraft_client
 - hosts: asuz
   tasks:
-    - import_role:
-        name: backup_client
+    - import_role: name=minecraft_client
+    - import_role: name=backup_client
       vars:
         backup_server_host: servy
         backup_client_user: suz
