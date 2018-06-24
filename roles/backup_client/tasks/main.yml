@@ -27,7 +27,7 @@
     group: "{{backup_client_user}}"
     block: |
       host backup
-        hostname {{backup_server_host}}.{{domain}}
+        hostname {{backup_server_host}}.{{hostvars[backup_server_host].domain}}
         user {{backup_server_user}}
         identityfile /home/{{backup_client_user}}/.ssh/{{backup_client_keyfile}}
 
