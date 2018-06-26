@@ -1,0 +1,2 @@
+[default]
+region = {{s3_sync_region}}

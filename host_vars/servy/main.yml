@@ -60,3 +60,11 @@ backup_server_configs:
   - dir: suz
     public_key: "{{ssh_backup_keys.suz.asuz}}"
 
+# S3 Sync
+s3_sync_key: "AKIAJQRAEWFN47U44MBQ"
+s3_sync_secret_key: "{{vault_s3_sync_secret_key}}"
+s3_sync_bucket_name: "{{vault_s3_sync_bucket_name}}"
+s3_sync_region: "us-east-1"
+s3_sync_items:
+  - prefix: minecraft
+    path: "{{minecraft_dir}}"
