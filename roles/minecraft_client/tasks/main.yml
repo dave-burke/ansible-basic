@@ -15,6 +15,12 @@
     dest: /opt/minecraft/minecraft.sh
     mode: 0755
 
+- name: "Ensure minecraft icon file is present"
+  copy:
+    src: minecraft.png
+    dest: /opt/minecraft/minecraft.png
+    mode: 0644
+
 - name: "Ensure minecraft desktop file is present"
   copy:
     src: minecraft.desktop
