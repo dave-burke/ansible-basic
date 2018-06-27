@@ -21,6 +21,7 @@
       - NET_ADMIN
     command: >
       --address /{{domain}}/{{ansible_default_ipv4.address}}
+      --local=/{{domain}}/
       --domain={{domain}}
       --no-resolv
       --server 9.9.9.9
