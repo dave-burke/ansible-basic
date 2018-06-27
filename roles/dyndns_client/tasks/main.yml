@@ -20,6 +20,8 @@
     owner: "{{user}}"
     group: "{{user}}"
     mode: 0644
+  register: dyndns_data_file_log
+  changed_when: dyndns_data_file_log.diff.before.state != "file"
 
 - name: Ensure config file is present
   template: src=dyndns-update.cfg dest=/etc/opt/dyndns-update.cfg mode=644
