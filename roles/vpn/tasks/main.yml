@@ -62,6 +62,7 @@
   command: docker run -v {{openvpn_data_volume}}:/etc/openvpn --rm {{openvpn_docker_image}} ovpn_listclients
   check_mode: no
   register: openvpn_client_list
+  changed_when: false
 
 - name: Ensure client keys are generated
   expect:
