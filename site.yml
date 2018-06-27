@@ -8,25 +8,25 @@
     - minecraft_client
 
 - hosts: asuz
-  tasks:
-    - import_role: name=minecraft_client
-    - import_role: name=backup_client
-      vars:
-        backup_server_host: servy
-        backup_client_user: suz
+  roles:
+    - minecraft_client
+    - role: backup_client
+      backup_server_host: servy
+      backup_client_user: suz
 
 - hosts: servy
+  roles:
+    - raid_storage
+    - dns
+    - vpn
+    - reverse_proxy
+    - plex
+    - torrent
+    - netmon
+    - dyndns_client
+    - minecraft_server
+    - backup_server
   tasks:
-    - import_role: name=raid_storage
-    - import_role: name=dns
-    - import_role: name=vpn
-    - import_role: name=reverse_proxy
-    - import_role: name=plex
-    - import_role: name=torrent
-    - import_role: name=netmon
-    - import_role: name=dyndns_client
-    - import_role: name=minecraft_server
-    - import_role: name=backup_server
     - name: "Link to {{item}}"
       file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link
       with_items:
