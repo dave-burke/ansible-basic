@@ -15,7 +15,7 @@
       - "25565:25565/tcp"
     env:
       EULA: true
-      DIFFICULTY: peaceful
+      DIFFICULTY: normal
       ONLINE_MODE: false
 
 - name: Ensure mapcrafter container is started
