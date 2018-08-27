@@ -5,10 +5,23 @@
 
 - hosts: compy
   roles:
+    - role: ssh_user
+      user: dave
+      authorized_hosts:
+        - servy
+        - asuz
+        - phone
+        - tabby
+        - pavey
     - minecraft_client
 
 - hosts: asuz
   roles:
+    - role: ssh_user
+      user: dave
+      authorized_hosts:
+        - servy
+        - compy
     - minecraft_client
     - role: backup_client
       backup_server_host: servy
@@ -16,6 +29,14 @@
 
 - hosts: servy
   roles:
+    - role: ssh_user
+      user: dave
+      authorized_hosts:
+        - compy
+        - asuz
+        - phone
+        - tabby
+        - pavey
     - raid_storage
     - dns
     - vpn
