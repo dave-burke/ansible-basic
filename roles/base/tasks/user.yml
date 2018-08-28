@@ -3,9 +3,6 @@
   user: name={{user}} groups={{sudo_group}} append=true shell=/usr/bin/zsh
   register: base_user
 
-- name: Set authorized keys
-  authorized_key: user={{user}} key=https://github.com/{{github_user}}.keys
-
 - name: Clone dotfiles repository
   remote_user: "{{user}}"
   git: repo=https://github.com/{{github_user}}/dotfiles.git dest=/home/{{user}}/dotfiles
