@@ -15,12 +15,8 @@
     mode: 0600
 
 - name: "Ensure hosts are authorized"
-  lineinfile:
-    path: /home/{{user}}/.ssh/authorized_keys
-    line: "{{lookup('file', 'ssh/{{user}}/{{item}}/id_rsa.pub')}}"
-    create: true
-    owner: "{{user}}"
-    group: "{{user}}"
-    mode: 0600
+  authorized_key:
+    user: "{{user}}"
+    key: "{{lookup('file', 'ssh/{{user}}/{{item}}/id_rsa.pub')}}"
   with_items: "{{authorized_hosts}}"
 
