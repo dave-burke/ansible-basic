@@ -14,6 +14,16 @@
         - tabby
         - pavey
     - minecraft_client
+  tasks:
+    - name: Ensure storage disk is mounted
+      mount:
+        path: "/mnt/storage"
+        src: UUID=338a8dd5-3d41-433d-87c7-56a9339fa194
+        fstype: ext3
+        opts: defaults
+        dump: 0
+        passno: 3
+        state: mounted
 
 - hosts: asuz
   roles:
