@@ -14,6 +14,7 @@
         - tabby
         - pavey
     - minecraft_client
+    - role: photo-mgmt
   tasks:
     - name: Ensure storage disk is mounted
       mount:
