@@ -1,2 +1,0 @@
----
-ssh_backup_key: "{{vault_ssh_backup_key}}"

@@ -56,9 +56,9 @@ http_static_config_file: "{{docker_root}}/nginx/static.conf"
 http_static_dir: "{{docker_root}}/http/static"
 
 backup_server_root_dir: "{{storage_root}}/backup"
-backup_server_configs:
-  - dir: suz
-    public_key: "{{ssh_backup_keys.suz.asuz}}"
+backup_client_configs:
+  - user: suz
+    host: asuz
 
 # S3 Sync
 s3_sync_key: "AKIAJQRAEWFN47U44MBQ"
