@@ -95,7 +95,6 @@
       with_items:
         - audio
         - dev
-        - docs
         - photos
         - uploads
         - videos
