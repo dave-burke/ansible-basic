@@ -1,6 +1,6 @@
 ---
 - name: Ensure rdiff-backup is installed
-  apt: name=rdiff-backup state=present
+  package: name=rdiff-backup state=present
 
 - name: Ensure backup private key is present
   copy:
@@ -23,12 +23,27 @@
         user {{backup_server_user}}
         identityfile /home/{{backup_client_user}}/.ssh/{{backup_client_keyfile}}
 
+- name: Ensure local bin directory is present in user home
+  file:
+    state: directory
+    dest: "/home/{{backup_client_user}}/.local/bin/"
+    mode: 0755
+    owner: "{{backup_client_user}}"
+    group: "{{backup_client_user}}"
+
+- name: Ensure backup script is present
+  template:
+    src: backup.sh
+    dest: "/home/{{backup_client_user}}/.local/bin/backup.sh"
+    mode: 0744
+    owner: "{{backup_client_user}}"
+    group: "{{backup_client_user}}"
+    
 - name: Ensure cron task is present
   cron:
     name: "Backup documents"
     state: present
     user: "{{backup_client_user}}"
-    minute: 0
-    hour: 0
-    job: "for dir in Desktop Documents pics; do rdiff-backup ${dir} backup::{{hostvars[backup_server_host].backup_server_root_dir}}/{{backup_client_user}}/${dir}; done"
+    special_time: daily
+    job: "~/.local/bin/backup.sh"
 

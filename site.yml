@@ -37,6 +37,12 @@
     - role: backup_client
       backup_server_host: servy
       backup_client_user: suz
+      backup_client_dirs:
+        - dir: ~/Desktop
+          exclusions:
+            - "Recent\\ Photos"
+        - dir: ~/Documents
+        - dir: ~/pics
 
 - hosts: servy
   roles:
