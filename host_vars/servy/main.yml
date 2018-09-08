@@ -59,6 +59,8 @@ backup_server_root_dir: "{{storage_root}}/backup"
 backup_client_configs:
   - user: suz
     host: asuz
+  - user: dave
+    host: compy
 
 # S3 Sync
 s3_sync_key: "AKIAJQRAEWFN47U44MBQ"

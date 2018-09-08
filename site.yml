@@ -14,7 +14,29 @@
         - tabby
         - pavey
     - minecraft_client
-    - role: photo-mgmt
+    - photo-mgmt
+    - role: backup_client
+      backup_server_host: servy
+      backup_client_user: dave
+      backup_client_dirs:
+        - dir: "~"
+          exclusions:
+            - "Desktop/recent_photos"
+            - "Desktop/LiftingVids"
+            - "Dropbox"
+            - ".dropbox"
+            - ".dropbox-dist"
+            - "Dropbox-tm"
+            - ".dropbox-tm"
+            - "tmp"
+            - ".eclipse"
+            - ".gradle"
+            - ".Idea"
+            - ".local/share/irrationalgames"
+            - ".local/share/Steam"
+            - ".local/share/Trash"
+            - ".local/share/tracker"
+            - ".cache"
   tasks:
     - name: Ensure storage disk is mounted
       mount:
@@ -63,7 +85,7 @@
     - netmon
     - dyndns_client
     - minecraft_server
-    - backup_server
+    - role: backup_server
     - s3_sync
   tasks:
     - name: "Link to {{item}}"
