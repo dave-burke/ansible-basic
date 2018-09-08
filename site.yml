@@ -19,7 +19,8 @@
       backup_server_host: servy
       backup_client_user: dave
       backup_client_dirs:
-        - dir: "~"
+        - name: home
+          dir: "~"
           exclusions:
             - "Desktop/recent_photos"
             - "Desktop/LiftingVids"
@@ -37,6 +38,7 @@
             - ".local/share/Trash"
             - ".local/share/tracker"
             - ".cache"
+        - dir: "/mnt/storage/docs"
   tasks:
     - name: Ensure storage disk is mounted
       mount:

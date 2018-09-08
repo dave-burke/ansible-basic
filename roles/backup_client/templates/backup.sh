@@ -2,8 +2,11 @@
 
 set -e
 
+backup_root="{{hostvars[backup_server_host].backup_server_root_dir}}/{{backup_client_user}}/{{inventory_hostname}}"
+
 {% for item in backup_client_dirs %}
-# Backup {{item.dir}}
+# Backup {{item.name | default(item.dir)}}
+backup_target="{{ '${backup_root}/' }}{{ item.name|default('$(basename ' + item.dir + ')') }}"
 rdiff-backup
 {%- if item.exclusions is defined %}
  \
@@ -11,8 +14,8 @@ rdiff-backup
 	--exclude {{item.dir}}/{{exclusion}} \
 {% endfor %}
 	{% else %} {% endif %}
-{{item.dir}} backup::"{{hostvars[backup_server_host].backup_server_root_dir}}/{{backup_client_user}}/{{inventory_hostname}}/{{ '$(basename ' }}{{item.dir}}{{ ')' }}"
-rdiff-backup --remove-older-than 3M backup::"{{hostvars[backup_server_host].backup_server_root_dir}}/{{backup_client_user}}/{{inventory_hostname}}/{{ '$(basename ' }}{{item.dir}}{{ ')' }}" > /dev/null
+{{item.dir}} backup::{{ '"${backup_target}"' }}
+rdiff-backup --remove-older-than 3M backup::{{ '"${backup_target}"' }} > /dev/null
 
 {% endfor%}
 
