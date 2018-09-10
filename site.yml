@@ -15,6 +15,7 @@
         - pavey
     - minecraft_client
     - photo-mgmt
+    - budget
     - role: backup_client
       backup_server_host: servy
       backup_client_user: dave
