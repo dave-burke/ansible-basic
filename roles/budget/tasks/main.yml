@@ -1,7 +1,7 @@
 ---
 - name: "Ensure local bin directory is present"
   file:
-    name: "/home/{{user}}/bin"
+    name: "/home/{{user}}/.local/bin"
     state: directory
     mode: 0755
     owner: "{{user}}"
@@ -10,5 +10,5 @@
 - name: "Ensure budget start script is present"
   copy:
     src: dothebudget.sh
-    dest: "/home/{{user}}/bin/dothebudget"
+    dest: "/home/{{user}}/.local/bin/dothebudget"
 
