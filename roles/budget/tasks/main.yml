@@ -12,8 +12,3 @@
     src: dothebudget.sh
     dest: "/home/{{user}}/bin/dothebudget"
 
-- name: "Ensure budget finish script is present"
-  copy:
-    src: finishthebudget.sh
-    dest: "/home/{{user}}/bin/finishthebudget"
-
