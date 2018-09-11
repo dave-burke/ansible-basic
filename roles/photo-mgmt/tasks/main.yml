@@ -8,15 +8,31 @@
 - name: Clone photo-management repository
   git: 
     repo: "https://github.com/{{github_user}}/photo-management.git"
-    dest: "/opt/photo-management"
+    dest: "{{install_dir}}"
     force: true
 
 - name: Ensure config file is present
   copy: 
     content: "{{ lookup('file', 'host_vars/{{ansible_hostname}}/files/photo-mgmt.cfg')}}"
-    dest: /opt/photo-management/config.cfg
+    dest: "{{install_dir}}/config.cfg"
 
 - name: Ensure secrets file is present
   copy: 
     content: "{{ lookup('file', 'host_vars/{{ansible_hostname}}/files/photo-mgmt-secrets.cfg')}}"
-    dest: /opt/photo-management/secrets.cfg
+    dest: "{{install_dir}}/secrets.cfg"
+
+- name: Ensure /opt/bin exists
+  file: name=/opt/bin state=directory
+
+- name: Ensure run script is on PATH
+  file:
+    src: "{{install_dir}}/run.sh"
+    dest: /opt/bin/photoimport
+    state: link
+
+- name: Ensure backup script is on PATH
+  file:
+    name: /opt/bin/photobackup
+    state: link
+    src: "{{install_dir}}/run-backup.sh"
+
