@@ -11,4 +11,7 @@
   copy:
     src: dothebudget.sh
     dest: "/home/{{user}}/.local/bin/dothebudget"
+    mode: 0755
+    owner: "{{user}}"
+    group: "{{user}}"
 
