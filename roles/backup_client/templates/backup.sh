@@ -11,7 +11,7 @@ rdiff-backup
 {%- if item.exclusions is defined %}
  \
 {% for exclusion in item.exclusions %}
-	--exclude {{item.dir}}/{{exclusion}} \
+	--exclude "{{item.dir}}/{{exclusion}}" \
 {% endfor %}
 	{% else %} {% endif %}
 {{item.dir}} backup::{{ '"${backup_target}"' }}

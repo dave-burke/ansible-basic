@@ -21,24 +21,23 @@
       backup_client_user: dave
       backup_client_dirs:
         - name: home
-          dir: "~"
+          dir: "/home/dave"
           exclusions:
-            - "Desktop/recent_photos"
-            - "Desktop/LiftingVids"
-            - "Dropbox"
-            - ".dropbox"
-            - ".dropbox-dist"
-            - "Dropbox-tm"
-            - ".dropbox-tm"
-            - "tmp"
+            - ".Idea"
+            - ".cache"
+            - ".config/syncthing/index*db"
+            - ".dropbox*"
             - ".eclipse"
             - ".gradle"
-            - ".Idea"
-            - ".local/share/irrationalgames"
             - ".local/share/Steam"
             - ".local/share/Trash"
+            - ".local/share/irrationalgames"
             - ".local/share/tracker"
-            - ".cache"
+            - "Desktop/LiftingVids"
+            - "Desktop/recent_photos"
+            - "Downloads"
+            - "Dropbox*"
+            - "tmp"
         - dir: "/mnt/storage/docs"
   tasks:
     - name: Ensure storage disk is mounted
@@ -63,11 +62,11 @@
       backup_server_host: servy
       backup_client_user: suz
       backup_client_dirs:
-        - dir: ~/Desktop
+        - dir: /home/suz/Desktop
           exclusions:
-            - "Recent\\ Photos"
-        - dir: ~/Documents
-        - dir: ~/pics
+            - "Recent Photos"
+        - dir: /home/suz/Documents
+        - dir: /home/suz/pics
 
 - hosts: servy
   roles:
