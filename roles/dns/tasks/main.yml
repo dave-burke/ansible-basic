@@ -6,6 +6,22 @@
     line: "{{item.ip}}	{{item.host}}"
   with_items: "{{hosts}}"
 
+- name: Disable systemd-resolved stub listener
+  lineinfile:
+    path: "/etc/systemd/resolved.conf"
+    line: "DNSStubListener=no"
+    regexp: "DNSStubListener="
+
+- name: Manage resolv.conf file
+  copy:
+    backup: yes
+    dest: /etc/resolv.conf
+    content: |
+      # Managed by Ansible
+      nameserver 127.0.0.1
+      search {{domain}}
+    mode: 644
+
 - name: Ensure docker container is started
   docker_container:
     name: dns
