@@ -31,3 +31,6 @@
 - name: Ensure pv is installed
   package: name=pv state=latest
 
+- name: Ensure tomb in installed
+  package: name=tomb state=latest
+
