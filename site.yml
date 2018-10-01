@@ -83,6 +83,7 @@
     - vpn
     - reverse_proxy
     - plex
+    - budget_web
     - torrent
     - netmon
     - dyndns_client

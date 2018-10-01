@@ -70,3 +70,6 @@ s3_sync_region: "us-east-1"
 s3_sync_items:
   - prefix: minecraft
     path: "{{minecraft_dir}}"
+
+# hledger config
+hledger_dir: "/mnt/storage/backup/dave/compy/docs/personal/finances/ledger/"
