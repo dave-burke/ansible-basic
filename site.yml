@@ -88,7 +88,7 @@
     - netmon
     - dyndns_client
     - minecraft_server
-    - role: backup_server
+    - backup_server
     - s3_sync
   tasks:
     - name: "Link to {{item}}"
