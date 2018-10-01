@@ -63,5 +63,6 @@
     volumes_from: "{{nginx_container}}"
     volumes:
       - "{{letsencrypt_cert_volume}}:/etc/nginx/certs"
+      - "{{http_static_dir}}:/usr/share/nginx/html:rw"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
