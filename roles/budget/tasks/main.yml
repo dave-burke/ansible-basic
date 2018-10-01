@@ -1,4 +1,10 @@
 ---
+- name: "Ensure hledger is present"
+  package: name=hledger state=latest
+
+- name: "Ensure hledger ui is present"
+  package: name=hledger-ui state=latest
+
 - name: "Ensure local bin directory is present"
   file:
     name: "/home/{{user}}/.local/bin"
@@ -7,10 +13,10 @@
     owner: "{{user}}"
     group: "{{user}}"
 
-- name: "Ensure budget start script is present"
+- name: "Ensure custom hl script is present"
   copy:
-    src: dothebudget.sh
-    dest: "/home/{{user}}/.local/bin/dothebudget"
+    src: hl
+    dest: "/home/{{user}}/.local/bin/hl"
     mode: 0755
     owner: "{{user}}"
     group: "{{user}}"

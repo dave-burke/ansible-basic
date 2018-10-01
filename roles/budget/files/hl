@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+export LEDGER_FILE=~/docs/personal/finances/ledger/main.ledger
+hledger --auto $@
+
