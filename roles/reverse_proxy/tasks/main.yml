@@ -10,7 +10,7 @@
 - name: Ensure nginx container is started
   docker_container:
     name: "{{nginx_container}}"
-    image: "{{nginx_image}}"
+    image: nginx
     pull: true
     state: started
     restart_policy: always
@@ -55,7 +55,7 @@
 - name: Ensure letsencrypt container is started
   docker_container:
     name: nginx-letsencrypt
-    image: "{{letsencrypt_image}}"
+    image: "jrcs/letsencrypt-nginx-proxy-companion"
     pull: true
     state: started
     recreate: "{{docker_nginx_container_status.changed}}"

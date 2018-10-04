@@ -1,7 +1,5 @@
 ---
 letsencrypt_cert_volume: letsencrypt_certs
-nginx_image: nginx
 nginx_container: nginx
 docker_gen_image: jwilder/docker-gen
-letsencrypt_image: jrcs/letsencrypt-nginx-proxy-companion
 
