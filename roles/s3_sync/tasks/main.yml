@@ -22,6 +22,6 @@
     name: "{{item.prefix}} backup"
     user: "{{user}}"
     special_time: daily
-    job: "aws s3 sync {{item.path}} s3://{{s3_sync_bucket_name}}/{{item.prefix}}"
+    job: "aws s3 sync {{item.path}} s3://{{s3_sync_bucket_name}}/{{item.prefix}} > /dev/null"
   with_items: "{{s3_sync_items}}"
 
