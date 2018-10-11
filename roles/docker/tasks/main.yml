@@ -13,8 +13,6 @@
 
 - name: install certain python modules for docker
   pip:
-    name: "{{item}}"
+    name: docker
     state: latest
-  with_items:
-    - docker
 
