@@ -49,6 +49,10 @@
     capabilities:
       - NET_ADMIN
     privileged: yes
+    dns_servers:
+      # DNS replies must come back from the docker gateway or
+      # they are rejected as spoofing attempts.
+      - "{{ansible_docker0.ipv4.address}}"
     ports:
       - "{{item.port}}:1194/{{item.proto}}"
     volumes:
