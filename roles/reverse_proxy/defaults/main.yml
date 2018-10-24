@@ -1,6 +1,5 @@
 ---
 letsencrypt_cert_volume: letsencrypt_certs
-nginx_vhost_volume: nginx_vhost
 nginx_container: nginx
 docker_gen_image: jwilder/docker-gen
 

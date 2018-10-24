@@ -1,9 +1,6 @@
 ---
 - name: Ensure cert volume exists
   docker_volume: name={{letsencrypt_cert_volume}} state=present
-  
-- name: Ensure vhost volume exists
-  docker_volume: name={{nginx_vhost_volume}} state=present
 
 - name: Ensure static config file exists
   template:
@@ -21,7 +18,7 @@
       - 80:80/tcp
     volumes:
       - /etc/nginx/conf.d
-      - "{{nginx_vhost_volume}}:/etc/nginx/vhost.d:ro"
+      - /etc/nginx/vhost.d
       - "{{http_static_dir}}:/usr/share/nginx/html:ro"
       - "{{letsencrypt_cert_volume}}:/etc/nginx/certs:ro"
       - "{{http_static_config_file}}:/etc/nginx/conf.d/static.conf:ro"
@@ -63,9 +60,9 @@
     state: started
     recreate: "{{docker_nginx_container_status.changed}}"
     restart_policy: always
+    volumes_from: "{{nginx_container}}"
     volumes:
-      - "{{nginx_vhost_volume}}:/etc/nginx/vhost.d:rw"
-      - "{{letsencrypt_cert_volume}}:/etc/nginx/certs:rw"
+      - "{{letsencrypt_cert_volume}}:/etc/nginx/certs"
       - "{{http_static_dir}}:/usr/share/nginx/html:rw"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
