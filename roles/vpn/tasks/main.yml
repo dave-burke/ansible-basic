@@ -66,13 +66,26 @@
 # Android does not respect OpenVPN's DNS specification.
 # This uses iptables to redirect any queries for 8.8.8.8 to
 # our internal DNS server.
-- name: "Ensure queries from container goes to internal dns"
+- name: "Ensure queries from container to 8.8.8.8 goes to internal dns"
   iptables:
     action: insert
     table: nat
     chain: PREROUTING
     source: "{{item.ansible_facts.docker_container.NetworkSettings.IPAddress}}"
     destination: "8.8.8.8"
+    destination_port: "53"
+    protocol: "{{item.item.proto}}"
+    jump: "DNAT"
+    to_destination: "{{docker_dns_container_status.ansible_facts.docker_container.NetworkSettings.IPAddress}}:53"
+  with_items: "{{docker_vpn_container_status.results}}"
+  
+- name: "Ensure DNS queries from container to 8.8.4.4 goes to internal dns"
+  iptables:
+    action: insert
+    table: nat
+    chain: PREROUTING
+    source: "{{item.ansible_facts.docker_container.NetworkSettings.IPAddress}}"
+    destination: "8.8.4.4"
     destination_port: "53"
     protocol: "{{item.item.proto}}"
     jump: "DNAT"
