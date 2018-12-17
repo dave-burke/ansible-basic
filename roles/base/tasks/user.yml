@@ -11,5 +11,6 @@
 - name: Bootstrap dotfiles
   remote_user: "{{user}}"
   command: /home/{{user}}/dotfiles/bootstrap.sh -f creates=/home/{{user}}/.zshrc
-  creates: /home/{{user}}/.commonrc
+  args:
+    creates: /home/{{user}}/.commonrc
 
