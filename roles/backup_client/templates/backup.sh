@@ -15,7 +15,7 @@ rdiff-backup
 {% endfor %}
 	{% else %} {% endif %}
 {{item.dir}} backup::{{ '"${backup_target}"' }}
-rdiff-backup --remove-older-than 3M backup::{{ '"${backup_target}"' }} > /dev/null
+rdiff-backup --force --remove-older-than 3M backup::{{ '"${backup_target}"' }} > /dev/null
 
 {% endfor%}
 
