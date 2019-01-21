@@ -90,6 +90,7 @@
     - minecraft_server
     - backup_server
     - s3_sync
+    - nfs_server
   tasks:
     - name: "Link to {{item}}"
       file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link

@@ -1,0 +1,38 @@
+---
+- name: Ensure nfs server is installed
+  package: name=nfs-kernel-server state=present
+
+- name: Ensure nfs mount directory exists
+  file:
+    state: directory
+    path: "/srv/nfs"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Ensure shares are mounted
+  mount:
+    state: mounted
+    opts: "bind"
+    fstype: "none"
+    src: "{{item.dir}}"
+    path: "/srv/nfs/{{item.name}}"
+  with_items: "{{nfs_mounts}}"
+
+- name: Ensure shares are exported
+  lineinfile:
+    create: true
+    path: /etc/exports
+    owner: root
+    group: root
+    mode: 0644
+    line: "/srv/nfs/{{item.name}} {{ansible_default_ipv4.network}}/{{ansible_default_ipv4.netmask}}(ro,sync,no_subtree_check)"
+  with_items: "{{nfs_mounts}}"
+  #TODO exportfs -ra handler
+
+- name: Ensure nfs service is started
+  service:
+    name: nfs-server
+    enabled: yes
+    state: started
+

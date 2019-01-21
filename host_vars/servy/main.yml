@@ -73,3 +73,12 @@ s3_sync_items:
 
 # hledger config
 hledger_dir: "/mnt/storage/backup/dave/compy/docs/personal/finances/ledger/"
+
+# nfs config
+nfs_mounts:
+  - dir: /mnt/storage/videos
+    name: videos
+  - dir: /mnt/storage/audio/music
+    name: music
+  - dir: /mnt/storage/photos
+    name: photos
