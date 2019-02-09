@@ -14,9 +14,9 @@
     ports:
       - "25565:25565/tcp"
     env:
-      EULA: true
+      EULA: "true"
       DIFFICULTY: normal
-      ONLINE_MODE: false
+      ONLINE_MODE: "false"
 
 - name: Ensure mapcrafter container is started
   docker_container:

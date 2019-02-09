@@ -15,5 +15,5 @@
       HLEDGER_HOST: "0.0.0.0"
       HLEDGER_BASE_URL: "http://budget.{{ansible_hostname}}.{{domain}}"
       VIRTUAL_HOST: "budget.{{ansible_hostname}}.{{domain}}"
-      VIRTUAL_PORT: 5000
+      VIRTUAL_PORT: "5000"
 
