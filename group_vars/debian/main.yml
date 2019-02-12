@@ -1,4 +1,5 @@
 ---
 sudo_group: sudo
 java_pkg: openjdk-{{java_version}}-jdk
+ag_pkg: silversearcher-ag
 

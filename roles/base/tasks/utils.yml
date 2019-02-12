@@ -34,3 +34,14 @@
 - name: Ensure tomb in installed
   package: name=tomb state=latest
 
+- name: Ensure bat is installed
+  package: name=bat state=latest
+  when: ansible_os_family == "Archlinux"
+
+- name: Ensure fd is installed
+  package: name=fd state=latest
+  when: ansible_os_family == "Archlinux"
+
+- name: Ensure ag is installed
+  package: name={{ag_pkg}} state=latest
+

@@ -1,4 +1,5 @@
 ---
 sudo_group: wheel
 java_pkg: "jdk{{java_version}}-openjdk"
+ag_pkg: "the_silver_searcher"
 
