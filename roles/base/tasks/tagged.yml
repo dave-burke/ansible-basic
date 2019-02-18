@@ -3,6 +3,13 @@
   apt: upgrade=dist update_cache=yes
   when: ansible_os_family == "Debian"
 
+- name: Ensure local bin directory exists
+  file:
+    dest: /home/{{user}}/.local/bin
+    state: directory
+    owner: "{{user}}"
+    group: "{{user}}"
+
 - name: Add Arch upgrade script
   copy:
     src: upgrade.sh
