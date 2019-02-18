@@ -17,6 +17,7 @@ public_domain: "{{vault_public_domain}}"
 # OpenVPN Server config
 openvpn_pki_pass: "{{vault_openvpn_pki_pass}}"
 openvpn_clients:
+  - happy
   - tabby
   - dcell
   - scell
