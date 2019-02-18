@@ -16,3 +16,10 @@
     name: docker
     state: latest
 
+- name: Add docker-clean script
+  copy:
+    src: docker-cleanup.sh
+    dest: /home/{{user}}/.local/bin/docker-cleanup.sh
+    mode: 0755
+    owner: "{{user}}"
+    group: "{{user}}"
