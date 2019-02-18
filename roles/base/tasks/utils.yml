@@ -42,6 +42,10 @@
   package: name=fd state=latest
   when: ansible_os_family == "Archlinux"
 
+- name: Ensure pulsemixer is installed
+  package: name=pulsemixer state=latest
+  when: ansible_os_family == "Archlinux"
+
 - name: Ensure ag is installed
   package: name={{ag_pkg}} state=latest
 
