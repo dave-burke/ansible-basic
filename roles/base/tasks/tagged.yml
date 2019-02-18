@@ -3,6 +3,15 @@
   apt: upgrade=dist update_cache=yes
   when: ansible_os_family == "Debian"
 
+- name: Add Arch upgrade script
+  copy:
+    src: upgrade.sh
+    dest: /home/{{user}}/.local/bin/upgrade.sh
+    mode: 0755
+    owner: "{{user}}"
+    group: "{{user}}"
+  when: ansible_os_family == "Archlinux"
+
 - include_tasks: utils.yml
 - include_tasks: user.yml
 - include_tasks: security.yml
