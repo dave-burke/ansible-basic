@@ -9,10 +9,10 @@
       user: dave
       authorized_hosts:
         - servy
+        - happy
         - asuz
         - phone
         - tabby
-        - pavey
     - minecraft_client
     - photo-mgmt
     - budget
@@ -57,6 +57,7 @@
       authorized_hosts:
         - servy
         - compy
+        - happy
     - minecraft_client
     - role: backup_client
       backup_server_host: servy
@@ -74,10 +75,10 @@
       user: dave
       authorized_hosts:
         - compy
+        - happy
         - asuz
         - phone
         - tabby
-        - pavey
     - raid_storage
     - dns
     - vpn
@@ -101,3 +102,18 @@
         - uploads
         - videos
 
+- hosts: happy
+  tasks:
+    - name: Blacklist PC Speaker module
+      tags: ['pcspeaker', 'pcspkr']
+      file:
+        dest: /etc/modprobe.d/nobeep.conf
+        content: "blacklist pcspkr"
+  roles:
+    - role: ssh_user
+      user: dave
+      authorized_hosts:
+        - servy
+        - phone
+        - tabby
+        - compy
