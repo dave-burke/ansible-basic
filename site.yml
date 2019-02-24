@@ -106,7 +106,7 @@
   tasks:
     - name: Blacklist PC Speaker module
       tags: ['pcspeaker', 'pcspkr']
-      file:
+      copy:
         dest: /etc/modprobe.d/nobeep.conf
         content: "blacklist pcspkr"
   roles:
