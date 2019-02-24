@@ -1,0 +1,12 @@
+---
+- name: Ensure gvim is installed
+  package: name=gvim state=latest
+  when: "'headless' not in group_names"
+
+- name: Ensure vim is installed
+  package: name=vim state=latest
+  when: "'headless' in group_names"
+
+- name: Install plugins
+  command: "vim +PluginInstall +qa"
+
