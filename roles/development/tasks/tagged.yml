@@ -1,0 +1,16 @@
+---
+- name: Ensure IntelliJ is installed
+  package: name=intellij-idea-community-edition state=latest
+
+- name: Ensure VS Code is installed
+  package: name=code state=latest
+
+- name: Ensure NPM is installed
+  package: name=npm state=latest
+
+- name: Ensure Firefox is installed
+  package: name=firefox state=latest
+
+- name: Ensure Chromium is installed
+  package: name=chromium state=latest
+

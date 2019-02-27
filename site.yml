@@ -13,6 +13,7 @@
         - asuz
         - phone
         - tabby
+    - development
     - minecraft_client
     - photo-mgmt
     - budget
@@ -110,6 +111,7 @@
         dest: /etc/modprobe.d/nobeep.conf
         content: "blacklist pcspkr"
   roles:
+    - development
     - role: ssh_user
       user: dave
       authorized_hosts:
