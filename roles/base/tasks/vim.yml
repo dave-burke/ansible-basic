@@ -1,6 +1,6 @@
 ---
 - name: Ensure gvim is installed
-  package: name=gvim state=latest
+  package: name={{gvim_pkg}} state=latest
   when: "'headless' not in group_names"
 
 - name: Ensure vim is installed
