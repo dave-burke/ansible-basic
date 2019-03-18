@@ -98,6 +98,7 @@
       file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link
       with_items:
         - audio
+        - backup
         - dev
         - photos
         - uploads
