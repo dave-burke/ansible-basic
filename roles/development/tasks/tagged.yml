@@ -14,3 +14,11 @@
 - name: Ensure Chromium is installed
   package: name=chromium state=latest
 
+- name: Ensure cmake is installed
+  package: name=cmake state=latest
+
+- name: Install YouCompleteMe
+  command: "/home/{{user}}/.vim/bundle/youcompleteme/install.py"
+  args:
+    creates: "/home/{{user}}/.vim/bundle/youcompleteme/third_party/ycmd/ycm_core.so"
+
