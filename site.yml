@@ -113,6 +113,7 @@
         content: "blacklist pcspkr"
   roles:
     - development
+    - minecraft_client
     - role: ssh_user
       user: dave
       authorized_hosts:
