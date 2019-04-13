@@ -2,6 +2,8 @@
 
 set -e
 
+MINECRAFT_USER="${1:-${USER}}"
+
 disableMeta(){
 	if command -v gsettings >/dev/null; then
 		if gsettings writable org.gnome.mutter overlay-key >/dev/null; then
@@ -28,17 +30,17 @@ enableMeta(){
 	fi
 }
 
-if [[ -z ${USER} ]]; then
-	echo "Couldn't determine your username. The USER variable is not set."
+if [[ -z ${MINECRAFT_USER} ]]; then
+	echo "Couldn't determine your username. Perhaps the USER variable is not set."
 	exit 1
 fi
-if [[ "${USER}" == "root" ]]; then
+if [[ "${MINECRAFT_USER}" == "root" ]]; then
 	echo "Don't run minecraft as root."
 	exit 1
 fi
 
-echo "Launching Minecraft as ${USER}"
-sed -i "s/\"displayName\": \"thoughtcriminal\"/\"displayName\": \"${USER}\"/" ~/.minecraft/launcher_profiles.json
+echo "Launching Minecraft as ${MINECRAFT_USER}"
+sed -i "s/\"displayName\": \"thoughtcriminal\"/\"displayName\": \"${MINECRAFT_USER}\"/" ~/.minecraft/launcher_profiles.json
 
 disableMeta
 java -jar /opt/minecraft/minecraft.jar
