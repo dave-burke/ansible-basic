@@ -1,0 +1,12 @@
+---
+- name: Ensure toggle script is present
+  copy: 
+    src: toggle-touchpad.sh
+    dest: /usr/local/sbin/
+    owner: root
+    user: root
+    mode: 0755
+
+- name: Ensure udev rule is present
+  copy: src=udev.rules dest=/etc/udev/rules.d/01-mouse-touchpad-toggle.rules
+

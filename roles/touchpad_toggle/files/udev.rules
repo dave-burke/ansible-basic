@@ -1,0 +1,2 @@
+ACTION=="add", ATTRS{product}=="*Mouse", RUN+="/usr/local/sbin/toggle-touchpad.sh false"
+ACTION=="remove", ATTRS{product}=="*Mouse", RUN+="/usr/local/sbin/toggle-touchpad.sh true"

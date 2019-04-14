@@ -60,6 +60,7 @@
         - compy
         - happy
     - minecraft_client
+    - touchpad_toggle
     - role: backup_client
       backup_server_host: servy
       backup_client_user: suz
