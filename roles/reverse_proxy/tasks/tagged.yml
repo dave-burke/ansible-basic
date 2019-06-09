@@ -21,7 +21,7 @@
   register: docker_nginx_container_status
 
 - name: Ensure docker-gen image is up to date
-  docker_image: name={{docker_gen_image}}
+  docker_image: name={{docker_gen_image}} source=pull
   register: docker_gen_image_status
 
 - name: Ensure template file is current
