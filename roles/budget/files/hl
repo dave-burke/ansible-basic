@@ -2,7 +2,7 @@
 
 set -e
 
-export LEDGER_FILE=~/docs/personal/finances/ledger/main.ledger
+export LEDGER_FILE=~/docs/personal/finances/budget/main.ledger
 if [[ "${1}" == "edit" ]]; then
 	dir="$(dirname ${LEDGER_FILE})"
 	cd "${dir}"
