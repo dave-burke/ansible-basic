@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #sudo pacman-key --refresh-keys
-trizen -Syu
+pikaur -Syu
 sudo pacman-mirrors -g
 sudo pacdiff
-sudo trizen -Rns $(trizen -Qtdq)
+sudo pikaur -Rns $(pikaur -Qtdq)
 
 echo "Check for new kernels!"
 
