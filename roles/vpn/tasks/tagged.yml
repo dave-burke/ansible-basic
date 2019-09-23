@@ -40,6 +40,7 @@
   when: openvpn_pki_check.rc == 1
 
 - name: Ensure openvpn containers are started
+  tags: ['vpn-dnsfix']
   docker_container:
     name: "ovpn-{{item.proto}}"
     image: "{{openvpn_docker_image}}"
@@ -67,6 +68,7 @@
 # This uses iptables to redirect any queries for 8.8.8.8 to
 # our internal DNS server.
 - name: "Ensure queries from container to 8.8.8.8 goes to internal dns"
+  tags: ['vpn-dnsfix']
   iptables:
     action: insert
     table: nat
