@@ -5,6 +5,7 @@
 
 - hosts: compy
   roles:
+    - dave
     - role: ssh_user
       user: dave
       authorized_hosts:
