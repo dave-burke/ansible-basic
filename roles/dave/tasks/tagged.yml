@@ -1,4 +1,7 @@
 ---
+- name: Ensure user exists
+  user: name={{user}} shell=/usr/bin/zsh
+
 - name: Ensure autostart directory exists
   file:
     state: directory
@@ -15,6 +18,7 @@
     group: "{{user}}"
     mode: '0644'
 
+- include_tasks: dotfiles.yml
 - include_tasks: utils.yml
 - include_tasks: vim.yml
 

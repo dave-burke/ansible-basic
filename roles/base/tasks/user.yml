@@ -1,16 +1,4 @@
 ---
 - name: Add a non-root user
-  user: name={{user}} groups={{sudo_group}} append=true shell=/usr/bin/zsh
+  user: name={{admin_user}} groups={{sudo_group}} append=true shell=/usr/bin/zsh
   register: base_user
-
-- name: Clone dotfiles repository
-  remote_user: "{{user}}"
-  git: repo=git@github.com:{{github_user}}/dotfiles.git dest=/home/{{user}}/dotfiles
-  ignore_errors: yes
-
-- name: Bootstrap dotfiles
-  remote_user: "{{user}}"
-  command: /home/{{user}}/dotfiles/bootstrap.sh -f creates=/home/{{user}}/.zshrc
-  args:
-    creates: /home/{{user}}/.commonrc
-

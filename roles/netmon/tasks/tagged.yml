@@ -49,7 +49,7 @@
   lineinfile:
     path: "{{smokeping_dir}}/config/General"
     regexp: "^owner( *)=.*$"
-    line: "owner\\1= {{user}}"
+    line: "owner\\1= {{admin_user}}"
     backrefs: yes
   notify: restart_smokeping
 

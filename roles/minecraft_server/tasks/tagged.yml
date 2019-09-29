@@ -1,6 +1,6 @@
 ---
 - name: Ensure minecraft directory is owned by the default user
-  file: name={{minecraft_dir}} state=directory owner={{user}} group={{user}}
+  file: name={{minecraft_dir}} state=directory owner={{admin_user}} group={{admin_user}}
 
 - name: Ensure minecraft container is started
   docker_container:
