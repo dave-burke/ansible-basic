@@ -114,6 +114,7 @@
         dest: /etc/modprobe.d/nobeep.conf
         content: "blacklist pcspkr"
   roles:
+    - dave
     - development
     - minecraft_client
     - role: ssh_user
