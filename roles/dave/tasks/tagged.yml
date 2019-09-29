@@ -1,6 +1,6 @@
 ---
 - name: Ensure user exists
-  user: name={{user}} shell=/usr/bin/zsh
+  user: name={{username}} shell=/usr/bin/zsh
 
 - name: Ensure autostart directory exists
   file:

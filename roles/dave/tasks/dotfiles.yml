@@ -1,12 +1,12 @@
 ---
 - name: Clone dotfiles repository
-  remote_user: "{{user}}"
-  git: repo=git@github.com:{{github_user}}/dotfiles.git dest=/home/{{user}}/dotfiles
+  remote_user: "{{username}}"
+  git: repo=git@github.com:{{github_user}}/dotfiles.git dest=/home/{{username}}/dotfiles
   ignore_errors: yes
 
 - name: Bootstrap dotfiles
-  remote_user: "{{user}}"
-  command: /home/{{user}}/dotfiles/bootstrap.sh -f creates=/home/{{user}}/.zshrc
+  remote_user: "{{username}}"
+  command: /home/{{username}}/dotfiles/bootstrap.sh -f creates=/home/{{username}}/.zshrc
   args:
-    creates: /home/{{user}}/.commonrc
+    creates: /home/{{username}}/.commonrc
 

@@ -2,16 +2,16 @@
 - name: Ensure autostart directory exists
   file:
     state: directory
-    path: /home/{{user}}/.config/autostart
-    owner: "{{user}}"
+    path: /home/{{username}}/.config/autostart
+    owner: "{{username}}"
     group: "users"
     mode: '0755'
 
 - name: Set caps lock to backspace on startup
   copy:
     src: capslock_backspace.desktop
-    dest: /home/{{user}}/.config/autostart/
-    owner: "{{user}}"
-    group: "{{user}}"
+    dest: /home/{{username}}/.config/autostart/
+    owner: "{{username}}"
+    group: "{{username}}"
     mode: '0644'
 
