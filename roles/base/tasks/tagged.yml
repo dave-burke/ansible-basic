@@ -19,8 +19,6 @@
     group: "{{user}}"
   when: ansible_os_family == "Archlinux"
 
-- include_tasks: utils.yml
-- include_tasks: vim.yml
 - include_tasks: user.yml
 - include_tasks: security.yml
 

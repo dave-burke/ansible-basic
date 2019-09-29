@@ -15,3 +15,6 @@
     group: "{{user}}"
     mode: '0644'
 
+- include_tasks: utils.yml
+- include_tasks: vim.yml
+
