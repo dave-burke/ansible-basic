@@ -1,0 +1,2 @@
+host_vars/servy/vault.yml diff=vault merge=binary
+group_vars/all/vault.yml diff=vault merge=binary
