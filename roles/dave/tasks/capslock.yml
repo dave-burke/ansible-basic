@@ -1,0 +1,11 @@
+---
+- name: "Ensure caps:backspace option with dconf"
+  become: yes
+  become_user: "{{user}}"
+  dconf:
+    key: "/org/gnome/desktop/input-sources/xkb-options"
+    value: "['caps:backspace']"
+  tags: ['caps']
+
+# dotfiles set this option via .xprofile for non-gnome window managers
+

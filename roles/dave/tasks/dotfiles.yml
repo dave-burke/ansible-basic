@@ -1,0 +1,14 @@
+---
+- name: Clone dotfiles repository
+  become: yes
+  become_user: "{{username}}"
+  git: repo=git@github.com:{{github_user}}/dotfiles.git dest=/home/{{username}}/dotfiles
+  ignore_errors: yes
+
+- name: Bootstrap dotfiles
+  become: yes
+  become_user: "{{username}}"
+  command: /home/{{username}}/dotfiles/bootstrap.sh -f creates=/home/{{username}}/.zshrc
+  args:
+    creates: /home/{{username}}/.commonrc
+

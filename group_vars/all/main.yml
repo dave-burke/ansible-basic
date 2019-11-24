@@ -1,5 +1,6 @@
 ---
-user: dave
+admin_user: dave
+user: dave # default unless otherwise specified
 github_user: dave-burke
 gmail_user: "{{vault_gmail_user}}"
 gmail_password: "{{vault_gmail_password}}"

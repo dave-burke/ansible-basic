@@ -113,6 +113,7 @@
   args:
     creates: "{{openvpn_key_dir}}/{{item}}.ovpn"
   with_items: "{{openvpn_clients}}"
-  become: "{{user}}"
+  become: yes
+  become_user: "{{user}}"
   when: "openvpn_key_dir is defined"
 
