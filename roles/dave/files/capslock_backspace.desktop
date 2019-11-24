@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Capslock->Backspace
-Comment=Use setxkbd to set the caps:backspace option
-Exec=sh -c 'setxkbmap -option caps:backspace'
-Terminal=false
-Type=Application
-X-GNOME-Autostart-enabled=true
-

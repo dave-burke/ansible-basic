@@ -2,22 +2,6 @@
 - name: Ensure user exists
   user: name={{username}} shell=/usr/bin/zsh
 
-- name: Ensure autostart directory exists
-  file:
-    state: directory
-    path: /home/{{user}}/.config/autostart
-    owner: "{{user}}"
-    group: "users"
-    mode: '0755'
-
-- name: Set caps lock to backspace on startup
-  copy:
-    src: capslock_backspace.desktop
-    dest: /home/{{user}}/.config/autostart/
-    owner: "{{user}}"
-    group: "{{user}}"
-    mode: '0644'
-
 - include_tasks: utils.yml
 - include_tasks: vim.yml
 - include_tasks: dotfiles.yml

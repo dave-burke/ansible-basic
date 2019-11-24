@@ -1,17 +1,11 @@
 ---
-- name: Ensure autostart directory exists
-  file:
-    state: directory
-    path: /home/{{username}}/.config/autostart
-    owner: "{{username}}"
-    group: "users"
-    mode: '0755'
+- name: "Ensure caps:backspace option with dconf"
+  become: yes
+  become_user: "{{user}}"
+  dconf:
+    key: "/org/gnome/desktop/input-sources/xkb-options"
+    value: "['caps:backspace']"
+  tags: ['caps']
 
-- name: Set caps lock to backspace on startup
-  copy:
-    src: capslock_backspace.desktop
-    dest: /home/{{username}}/.config/autostart/
-    owner: "{{username}}"
-    group: "{{username}}"
-    mode: '0644'
+# dotfiles set this option via .xprofile for non-gnome window managers
 
