@@ -44,3 +44,11 @@
     group: "{{user}}"
     mode: "755"
 
+- name: "Ensure borg backup is scheduled"
+  cron:
+    state: "present"
+    name: "borg photo backup"
+    user: "{{user}}"
+    special_time: daily
+    job: /home/{{user}}/.local/bin/backup-photos.sh
+
