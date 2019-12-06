@@ -27,6 +27,6 @@
     marker: '# {mark} ANSIBLE MANAGED DEFAULT CREDS'
     block: |
       [default]
-      aws_secret_access_key = {{s3_sync_secret_key}}
-      aws_access_key_id = {{s3_sync_key}}
+      aws_secret_access_key = {{aws_secret_key}}
+      aws_access_key_id = {{aws_key}}
 

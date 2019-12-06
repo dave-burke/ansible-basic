@@ -63,9 +63,11 @@ backup_client_configs:
   - user: dave
     host: compy
 
+# AWS CLI
+aws_key: "AKIAJQRAEWFN47U44MBQ"
+aws_secret_key: "{{vault_aws_secret_key}}"
+
 # S3 Sync
-s3_sync_key: "AKIAJQRAEWFN47U44MBQ"
-s3_sync_secret_key: "{{vault_s3_sync_secret_key}}"
 s3_sync_bucket_name: "{{vault_s3_sync_bucket_name}}"
 s3_sync_region: "us-east-1"
 s3_sync_items:
