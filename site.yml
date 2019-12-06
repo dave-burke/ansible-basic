@@ -16,7 +16,7 @@
         - tabby
     - development
     - minecraft_client
-    - photo-mgmt
+    - photo_mgmt
     - budget
     - role: backup_client
       backup_server_host: servy
