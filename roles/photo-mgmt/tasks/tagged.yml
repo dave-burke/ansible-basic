@@ -44,6 +44,14 @@
     group: "{{user}}"
     mode: "755"
 
+- name: Ensure borg backup key is installed
+  copy:
+    content: "{{ lookup('file', 'host_vars/{{ansible_hostname}}/files/borg-key-photos.vault')}}"
+    dest: /home/{{user}}/.config/borg/keys/servy__mnt_storage_backup_borg_photos
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: "0600"
+
 - name: "Ensure borg backup is scheduled"
   cron:
     state: "present"
