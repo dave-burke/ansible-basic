@@ -36,3 +36,11 @@
     state: link
     src: "{{install_dir}}/run-backup.sh"
 
+- name: Ensure borg backup script is on PATH
+  template:
+    src: borg-backup-photos.sh
+    dest: /home/{{user}}/.local/bin/backup-photos.sh
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: "755"
+
