@@ -1,0 +1,4 @@
+---
+- import_tasks: tagged.yml
+  tags: ['aws_cli']
+
