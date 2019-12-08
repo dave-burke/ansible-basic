@@ -20,29 +20,14 @@
       - "{{http_static_config_file}}:/etc/nginx/conf.d/static.conf:ro"
   register: docker_nginx_container_status
 
-- name: Ensure docker-gen image is up to date
-  docker_image: name={{docker_gen_image}} source=pull
-  register: docker_gen_image_status
-
-- name: Ensure template file is current
-  get_url:
-    url: https://raw.githubusercontent.com/jwilder/nginx-proxy/master/nginx.tmpl
-    dest: "/etc"
-    force: yes
-  when: docker_gen_image_status.changed
-
-- name: Ensure docker-gen container is started
+- name: Ensure docker-gen container is absent
   docker_container:
     name: nginx-gen
     image: "{{docker_gen_image}}"
-    state: started
-    recreate: "{{docker_nginx_container_status.changed}}"
-    restart_policy: always
-    volumes_from: "{{nginx_container}}"
-    volumes:
-      - "/etc/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro"
-      - "/var/run/docker.sock:/tmp/docker.sock:ro"
-    command: "-notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf"
+    state: absent
+
+- name: Ensure docker-gen image is absent
+  docker_image: name={{docker_gen_image}} state=absent
 
 - name: Ensure traefik container is started
   tags: ['traefik']
