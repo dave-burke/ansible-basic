@@ -44,3 +44,17 @@
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
     command: "-notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf"
 
+- name: Ensure traefik container is started
+  tags: ['traefik']
+  docker_container:
+    name: traefik
+    image: traefik
+    state: started
+    restart_policy: unless-stopped
+    ports:
+      - 9081:8080/tcp
+      - 9080:80/tcp
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    command: "--api.insecure=true --providers.docker"
+
