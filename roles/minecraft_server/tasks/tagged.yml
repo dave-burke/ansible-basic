@@ -19,15 +19,15 @@
       ONLINE_MODE: "false"
 
 # Mapcrafter is not compatible with the latest version :-(
-#- name: Ensure mapcrafter container is started
-  #docker_container:
-    #name: mapcrafter
-    #image: muebau/mapcrafter
-    #pull: true
-    #state: started
-    #restart_policy: always
-    #volumes:
-      #- "{{minecraft_dir}}/world:/world"
-      #- "{{minecraft_dir}}/mapcrafter:/config"
-      #- "{{http_static_dir}}/minecraft:/output"
+- name: Ensure mapcrafter container is stopped
+  docker_container:
+    name: mapcrafter
+    image: muebau/mapcrafter
+    pull: true
+    state: stopped
+    restart_policy: unless-stopped
+    volumes:
+      - "{{minecraft_dir}}/world:/world"
+      - "{{minecraft_dir}}/mapcrafter:/config"
+      - "{{http_static_dir}}/minecraft:/output"
 
