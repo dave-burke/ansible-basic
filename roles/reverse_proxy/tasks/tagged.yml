@@ -27,9 +27,11 @@
     state: started
     restart_policy: unless-stopped
     ports:
-      - 9081:8080/tcp
       - 80:80/tcp
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     command: "--api.insecure=true --providers.docker"
+    labels:
+      "traefik.http.routers.traefik.rule": "Host(`traefik.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.services.traefik.loadbalancer.server.port": "8080"
 
