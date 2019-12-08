@@ -26,6 +26,8 @@
       PGID: "{{smokeping_group.gid}}"
       VIRTUAL_HOST: "netmon.{{ansible_hostname}}.{{domain}}"
       VIRTUAL_PORT: "{{smokeping_port}}"
+    labels:
+      "traefik.http.routers.smokeping.rule": "Host(`netmon.{{ansible_hostname}}.{{domain}}`)"
 
 - name: Add redirect for root path
   lineinfile:
