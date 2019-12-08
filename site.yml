@@ -17,6 +17,7 @@
     - development
     - minecraft_client
     - photo_mgmt
+    - syncthing
     - budget
     - role: backup_client
       backup_server_host: servy
@@ -60,6 +61,7 @@
         - servy
         - compy
         - happy
+    - syncthing
     - minecraft_client
     - touchpad_toggle
     - role: backup_client
@@ -86,6 +88,7 @@
     - dns
     - vpn
     - reverse_proxy
+    - syncthing
     - plex
     - budget_web
     - torrent
@@ -115,6 +118,7 @@
         dest: /etc/modprobe.d/nobeep.conf
         content: "blacklist pcspkr"
   roles:
+    - syncthing
     - dave
     - development
     - minecraft_client

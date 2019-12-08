@@ -1,0 +1,4 @@
+---
+- name: Ensure syncthing is installed
+  package: name=syncthing state=latest
+
