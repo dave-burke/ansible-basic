@@ -1,0 +1,2 @@
+---
+borg_passphrase_photos: "{{vault_borg_passphrase_photos}}"

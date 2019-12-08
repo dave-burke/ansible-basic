@@ -1,0 +1,32 @@
+---
+- name: "Ensure aws cli is installed"
+  package:
+    name: awscli
+    state: present
+
+- name: "Ensure aws config file contains default config"
+  blockinfile:
+    path: /home/{{user}}/.aws/config
+    create: yes
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: 0600
+    insertbefore: BOF
+    block: |
+      [default]
+      region = {{s3_sync_region}}
+
+- name: "Ensure aws credentials file contains default credentials"
+  blockinfile:
+    path: /home/{{user}}/.aws/credentials
+    create: yes
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: 0600
+    insertbefore: BOF
+    marker: '# {mark} ANSIBLE MANAGED DEFAULT CREDS'
+    block: |
+      [default]
+      aws_secret_access_key = {{aws_secret_key}}
+      aws_access_key_id = {{aws_key}}
+

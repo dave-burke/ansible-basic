@@ -3,4 +3,5 @@ sudo_group: sudo
 java_pkg: openjdk-{{java_version}}-jdk
 ag_pkg: silversearcher-ag
 gvim_pkg: vim-gtk3
+borg_pkg: "borgbackup"
 

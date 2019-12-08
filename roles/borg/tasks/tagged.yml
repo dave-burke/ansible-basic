@@ -1,0 +1,4 @@
+---
+- name: Ensure borg is installed
+  package: name={{borg_pkg}} state=latest
+

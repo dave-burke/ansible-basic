@@ -1,21 +1,4 @@
 ---
-- name: "Ensure aws cli is installed"
-  package:
-    name: awscli
-    state: present
-
-- name: "Ensure aws config file is present"
-  template:
-    src: config
-    dest: /home/{{user}}/.aws/config
-    mode: 0600
-
-- name: "Ensure aws credentials file is present"
-  template:
-    src: credentials
-    dest: /home/{{user}}/.aws/credentials
-    mode: 0600
-
 - name: "Ensure sync cron job is present"
   cron:
     state: "present"
