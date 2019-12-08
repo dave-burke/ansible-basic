@@ -6,7 +6,7 @@
 
 - name: Ensure nginx container is started
   docker_container:
-    name: "{{nginx_container}}"
+    name: nginx
     image: nginx
     pull: true
     state: started
@@ -14,11 +14,10 @@
     ports:
       - 9080:80/tcp
     volumes:
-      - /etc/nginx/conf.d
-      - /etc/nginx/vhost.d
       - "{{http_static_dir}}:/usr/share/nginx/html:ro"
       - "{{http_static_config_file}}:/etc/nginx/conf.d/static.conf:ro"
-  register: docker_nginx_container_status
+    labels:
+      "traefik.http.routers.nginx.rule": "Host(`static.{{ansible_hostname}}.{{domain}}`)"
 
 - name: Ensure traefik container is started
   tags: ['traefik']
