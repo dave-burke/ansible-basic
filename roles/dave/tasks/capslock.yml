@@ -6,6 +6,7 @@
     key: "/org/gnome/desktop/input-sources/xkb-options"
     value: "['caps:backspace']"
   tags: ['caps']
+  when: "'headless' not in group_names"
 
 # dotfiles set this option via .xprofile for non-gnome window managers
 
