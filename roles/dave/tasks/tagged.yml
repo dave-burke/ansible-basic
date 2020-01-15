@@ -2,6 +2,13 @@
 - name: Ensure user exists
   user: name={{username}} shell=/usr/bin/zsh
 
+- name: Ensure mosh traffic is allowed through the firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: '60000:61000'
+    proto: 'udp'
+
 - include_tasks: utils.yml
 - include_tasks: vim.yml
 - include_tasks: dotfiles.yml
