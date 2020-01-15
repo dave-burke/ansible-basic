@@ -19,6 +19,12 @@
     labels:
       "traefik.http.routers.nginx.rule": "Host(`static.{{ansible_hostname}}.{{domain}}`)"
 
+- name: Ensure HTTP traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: 'http'
+
 - name: Ensure traefik container is started
   tags: ['traefik']
   docker_container:

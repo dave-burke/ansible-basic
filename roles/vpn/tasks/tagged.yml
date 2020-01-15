@@ -63,7 +63,21 @@
     - { port: 1194, proto: udp }
     - { port: 443, proto: tcp }
   register: "docker_vpn_container_status"
- 
+
+- name: Ensure OpenVPN traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: '1194'
+    proto: 'udp'
+
+- name: Ensure OpenVPN (TLS) traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: '443'
+    proto: 'tcp'
+
 # Android does not respect OpenVPN's DNS specification.
 # This uses iptables to redirect any queries for 8.8.8.8 to
 # our internal DNS server.

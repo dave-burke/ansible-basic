@@ -2,6 +2,12 @@
 - name: Ensure nfs server is installed
   package: name=nfs-kernel-server state=present
 
+- name: Ensure nfs traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: 'nfs'
+
 - name: Ensure nfs mount directory exists
   file:
     state: directory

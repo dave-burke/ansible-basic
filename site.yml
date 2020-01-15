@@ -76,6 +76,7 @@
 
 - hosts: servy
   roles:
+    - dave
     - role: ssh_user
       user: dave
       authorized_hosts:

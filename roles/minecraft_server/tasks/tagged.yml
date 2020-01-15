@@ -2,6 +2,12 @@
 - name: Ensure minecraft directory is owned by the default user
   file: name={{minecraft_dir}} state=directory owner={{admin_user}} group={{admin_user}}
 
+- name: Ensure minecraft server traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: '25565'
+
 - name: Ensure minecraft container is started
   docker_container:
     name: minecraft

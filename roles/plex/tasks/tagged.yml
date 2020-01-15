@@ -7,6 +7,20 @@
   user: name=plex group=plex createhome=no
   register: plex_user
 
+- name: Ensure plex tcp traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: '25565,32400,3005,8324,32469'
+    proto: 'tcp'
+
+- name: Ensure plex udp traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: '1900,32410,32412,32413,32414'
+    proto: 'udp'
+
 - name: Ensure plex container is started
   docker_container:
     name: plex

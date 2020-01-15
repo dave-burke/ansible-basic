@@ -1,4 +1,10 @@
 ---
+- name: Ensure HTTP traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: '9091'
+
 - name: Ensure torrent container is started
   docker_container:
     name: torrent
