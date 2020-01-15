@@ -22,6 +22,12 @@
       search {{domain}}
     mode: 644
 
+- name: Ensure DNS traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: 'domain' # 53
+
 - name: Ensure docker container is started
   tags: ['vpn-dnsfix']
   docker_container:

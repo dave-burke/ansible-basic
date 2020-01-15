@@ -29,3 +29,15 @@
     regexp: #?PasswordAuthentication.*
     line: PasswordAuthentication no
 
+- name: Ensure SSH trafic is limited through firewall
+  tags: ['ufw']
+  ufw:
+    rule: limit
+    port: 'ssh'
+
+- name: Ensure UWF uses a default deny policy
+  tags: ['ufw']
+  ufw:
+    state: enabled
+    policy: deny
+
