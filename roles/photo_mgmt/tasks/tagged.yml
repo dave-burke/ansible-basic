@@ -5,6 +5,9 @@
 - name: Ensure exiftool is installed
   package: name=perl-image-exiftool state=latest
 
+- name: Ensure gnu parallel is installed
+  package: name=parallel state=latest
+
 - name: Clone photo-management repository
   git: 
     repo: "https://github.com/{{github_user}}/photo-management.git"
