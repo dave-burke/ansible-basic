@@ -1,4 +1,16 @@
 ---
+
+- name: Read SSH public key to authorize
+  shell: cat /home/{{username}}/.ssh/id_rsa.pub
+  register: github_ssh_pub_key
+
+- name: Authorize key with GitHub
+  local_action:
+    module: github_key
+    name: "{{inventory_hostname}}"
+    token: "{{github_token}}"
+    pubkey: '{{ github_ssh_pub_key.stdout }}'
+
 - name: Clone dotfiles repository
   become: yes
   become_user: "{{username}}"
