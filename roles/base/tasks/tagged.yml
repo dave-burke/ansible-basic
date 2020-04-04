@@ -3,22 +3,6 @@
   apt: upgrade=dist update_cache=yes
   when: ansible_os_family == "Debian"
 
-- name: Ensure local bin directory exists
-  file:
-    dest: /home/{{admin_user}}/.local/bin
-    state: directory
-    owner: "{{admin_user}}"
-    group: "{{admin_user}}"
-
-- name: Add Arch upgrade script
-  copy:
-    src: upgrade.sh
-    dest: /home/{{admin_user}}/.local/bin/upgrade.sh
-    mode: 0755
-    owner: "{{admin_user}}"
-    group: "{{admin_user}}"
-  when: ansible_os_family == "Archlinux"
-
 - name: Ensure reboot-if-needed script is present
   copy:
     src: "reboot-if-needed.sh"
@@ -44,6 +28,22 @@
     dest: /etc/ssh/sshd_config
     regexp: #?PasswordAuthentication.*
     line: PasswordAuthentication no
+
+- name: Ensure local bin directory exists
+  file:
+    dest: /home/{{admin_user}}/.local/bin
+    state: directory
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+
+- name: Add Arch upgrade script
+  copy:
+    src: upgrade.sh
+    dest: /home/{{admin_user}}/.local/bin/upgrade.sh
+    mode: 0755
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+  when: ansible_os_family == "Archlinux"
 
 - name: Ensure SSH trafic is limited through firewall
   tags: ['ufw']
