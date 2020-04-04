@@ -14,8 +14,9 @@
 - name: Clone dotfiles repository
   become: yes
   become_user: "{{username}}"
-  git: repo=git@github.com:{{github_user}}/dotfiles.git dest=/home/{{username}}/dotfiles
-  ignore_errors: yes
+  git:
+    repo: https://github.com/{{github_user}}/dotfiles.git
+    dest: /home/{{username}}/dotfiles
 
 - name: Bootstrap dotfiles
   become: yes
