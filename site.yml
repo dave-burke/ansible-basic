@@ -111,6 +111,18 @@
         - uploads
         - videos
 
+- hosts: dropey
+  roles:
+    - role: ssh_user
+      user: dave
+      authorized_hosts:
+        - compy
+        - happy
+        - phone
+        - tabby
+    - dave
+    - jitsi_meet
+
 - hosts: happy
   tasks:
     - name: Blacklist PC Speaker module
