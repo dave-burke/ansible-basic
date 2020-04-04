@@ -2,6 +2,7 @@
 admin_user: dave
 user: dave # default unless otherwise specified
 github_user: dave-burke
+github_token: "{{vault_github_token}}"
 gmail_user: "{{vault_gmail_user}}"
 gmail_password: "{{vault_gmail_password}}"
 email_recipient: "{{vault_email_recipient}}"

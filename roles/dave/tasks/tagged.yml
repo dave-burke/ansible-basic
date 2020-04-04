@@ -1,4 +1,6 @@
 ---
+- include_tasks: utils.yml
+
 - name: Ensure user exists
   user: name={{username}} shell=/usr/bin/zsh
 
@@ -9,7 +11,6 @@
     port: '60000:61000'
     proto: 'udp'
 
-- include_tasks: utils.yml
 - include_tasks: vim.yml
 - include_tasks: dotfiles.yml
 - include_tasks: capslock.yml

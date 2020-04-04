@@ -1,3 +1,12 @@
+---
+- name: "Ensure .ssh directory exists"
+  file:
+    state: directory
+    name: "/home/{{user}}/.ssh"
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: 0700
+
 - name: "Ensure public key is present"
   copy:
     src: ssh/{{user}}/{{inventory_hostname}}/id_rsa.pub

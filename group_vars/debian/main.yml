@@ -4,4 +4,6 @@ java_pkg: openjdk-{{java_version}}-jdk
 ag_pkg: silversearcher-ag
 gvim_pkg: vim-gtk3
 borg_pkg: "borgbackup"
+docker_pkg: "docker.io"
+pip_pkg: "python3-pip"
 

@@ -1,0 +1,5 @@
+---
+domain: "{{vault_domain}}"
+jitsi_admin_user: "{{vault_jitsi_admin_user}}"
+jitsi_admin_pass: "{{vault_jitsi_admin_pass}}"
+

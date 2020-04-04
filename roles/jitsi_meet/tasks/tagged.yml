@@ -1,0 +1,77 @@
+---
+- name: Ensure jitsi server TCP traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    proto: tcp
+    port: "{{item}}"
+  loop: ['80', '443', '4443']
+
+- name: Ensure jitsi server UDP traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    proto: udp
+    port: '10000'
+
+- name: Ensure compose directory exists
+  file:
+    name: "/compose"
+    state: directory
+    mode: 0755
+    owner: "{{user}}"
+    group: "{{user}}"
+
+- name: Ensure compose file exists
+  copy:
+    src: docker-compose.yml
+    dest: /compose/docker-compose.yml
+    mode: 0644
+    owner: "{{user}}"
+    group: "{{user}}"
+
+- name: Ensure env file exists
+  template:
+    src: env.template
+    dest: /compose/.env
+    mode: 0644
+    owner: "{{user}}"
+    group: "{{user}}"
+
+- name: Ensure bin directory exist
+  file:
+    state: directory
+    name: "/home/{{user}}/.local/bin"
+    mode: 0755
+    owner: "{{user}}"
+    group: "{{user}}"
+  become: yes
+  become_user: "{{user}}"
+
+- name: Ensure add user script is present
+  copy:
+    src: add-jitsi-user.sh
+    dest: "/home/{{user}}/.local/bin/add-jitsi-user"
+    mode: 0755
+    owner: "{{user}}"
+    group: "{{user}}"
+
+- name: Ensure config directories exist
+  file:
+    state: directory
+    name: "{{jitsi_config_dir}}/{{item}}"
+  become: yes
+  become_user: "{{user}}"
+  loop: ["web/letsencrypt", "transcripts", "prosody", "jicofo", "jvb"]
+
+- name: Ensure Jitsi Meet is composed
+  docker_compose:
+    project_src: "/compose"
+  become: yes
+  become_user: "{{user}}"
+
+- name: Ensure admin user is registered
+  command: "/home/{{user}}/.local/bin/add-jitsi-user {{jitsi_admin_user}} '{{jitsi_admin_pass}}'"
+  become: yes
+  become_user: "{{user}}"
+
