@@ -2,6 +2,9 @@
 - name: Ensure docker is installed
   package: name={{docker_pkg}} state=present
 
+- name: Ensure docker-compose is installed
+  package: name=docker-compose state=present
+
 - name: Add a docker group
   group: name=docker
 
