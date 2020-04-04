@@ -16,8 +16,10 @@
 
 - name: install certain python modules for docker
   pip:
-    name: docker
+    name: "{{item}}"
     state: latest
+    executable: pip3
+  loop: ['docker', 'docker-compose']
 
 - name: Add docker-clean script
   copy:
