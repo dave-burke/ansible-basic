@@ -25,3 +25,8 @@
   args:
     creates: /home/{{username}}/.commonrc
 
+- name: Install plugins
+  command: "vim +PluginInstall +qa"
+  become: yes
+  become_user: "{{username}}"
+
