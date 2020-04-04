@@ -1,6 +1,6 @@
 ---
 - name: Ensure docker is installed
-  apt: name=docker.io state=present
+  package: name={{docker_pkg}} state=present
 
 - name: Add a docker group
   group: name=docker
@@ -9,7 +9,7 @@
   user: name={{user}} groups=docker append=true
 
 - name: Ensure pip is installed
-  apt: name=python-pip state=latest
+  package: name={{pip_pkg}} state=latest
 
 - name: install certain python modules for docker
   pip:
