@@ -23,6 +23,14 @@
   user: name={{admin_user}} groups={{sudo_group}} append=true shell=/usr/bin/zsh
   register: base_user
 
+  # I have no idea why the 'user' module doesn't do this
+- name: Ensure user is the owner of their home dir
+  file:
+    state: directory
+    name: /home/{{admin_user}}
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+
 - name: Disable SSH password logins
   lineinfile:
     dest: /etc/ssh/sshd_config
