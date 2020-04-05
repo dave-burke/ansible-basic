@@ -122,6 +122,7 @@
         - tabby
     - dave
     - jitsi_meet
+    - minecraft_server
 
 - hosts: happy
   tasks:

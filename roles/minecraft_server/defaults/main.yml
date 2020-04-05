@@ -1,0 +1,5 @@
+---
+minecraft_server_env:
+  DIFFICULTY: normal
+  ONLINE_MODE: "false"
+
