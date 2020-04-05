@@ -67,6 +67,7 @@
 - name: Ensure Jitsi Meet is composed
   docker_compose:
     project_src: "/compose"
+    pull: yes
   become: yes
   become_user: "{{user}}"
 
