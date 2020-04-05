@@ -111,7 +111,7 @@
         - uploads
         - videos
 
-- hosts: dropey
+- hosts: dropy
   roles:
     - role: ssh_user
       user: dave
