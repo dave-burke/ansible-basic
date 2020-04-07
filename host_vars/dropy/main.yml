@@ -5,7 +5,6 @@ jitsi_admin_pass: "{{vault_jitsi_admin_pass}}"
 minecraft_dir: "/opt/minecraft/"
 minecraft_server_env:
   DIFFICULTY: normal
-  ONLINE_MODE: "false"
   TYPE: "BUKKIT"
   VERSION: "1.15.2"
 
