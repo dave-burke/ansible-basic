@@ -1,0 +1,5 @@
+---
+minecraft_server_core:
+  EULA: "true"
+  CONSOLE: "false"
+

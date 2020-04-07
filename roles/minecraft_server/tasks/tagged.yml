@@ -19,8 +19,13 @@
       - "{{minecraft_dir}}:/data"
     ports:
       - "25565:25565/tcp"
-    env:
-      EULA: "true"
-      DIFFICULTY: normal
-      ONLINE_MODE: "false"
+    env: "{{ minecraft_server_core | combine(minecraft_server_env) }}"
+
+- name: Ensure rcon script is present
+  copy:
+    src: rcon.sh
+    dest: /home/{{user}}/.local/bin/rcon
+    mode: 0755
+    owner: "{{user}}"
+    group: "{{user}}"
 
