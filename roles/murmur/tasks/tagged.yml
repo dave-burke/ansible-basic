@@ -1,0 +1,32 @@
+---
+- name: Ensure Mumble traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: '{{murmur_port}}'
+
+- name: Ensure murmur directory exists
+  file:
+    state: directory
+    name: "{{murmur_dir}}"
+    mode: 0755
+
+- name: Ensure murmur.ini is present
+  template:
+    src: murmur.ini
+    dest: "{{murmur_dir}}/murmur.ini"
+    mode: 0644
+
+- name: Ensure murmur container is started
+  docker_container:
+    name: mumble
+    image: mattikus/murmur
+    pull: true
+    state: started
+    restart_policy: unless-stopped
+    volumes:
+      - "{{murmur_dir}}/data:/data"
+      - "{{murmur_dir}}/murmur.ini:/etc/murmur.ini:ro"
+    ports:
+      - "{{murmur_port}}:64738"
+

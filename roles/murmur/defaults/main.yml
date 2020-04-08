@@ -1,0 +1,5 @@
+---
+murmur_dir: "/opt/murmur"
+murmur_port: 64738
+murmur_welcome: "<br />Welcome to this server running <b>Murmur</b>.<br />Enjoy your stay!<br />"
+

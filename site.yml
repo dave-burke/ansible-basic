@@ -123,6 +123,7 @@
     - dave
     - jitsi_meet
     - minecraft_server
+    - murmur
 
 - hosts: happy
   tasks:

@@ -7,4 +7,5 @@ minecraft_server_env:
   DIFFICULTY: normal
   TYPE: "BUKKIT"
   VERSION: "1.15.2"
+murmur_password: "{{vault_murmur_password}}"
 
