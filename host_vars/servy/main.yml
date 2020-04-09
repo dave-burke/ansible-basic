@@ -56,10 +56,8 @@ minecraft_dir: "{{docker_root}}/minecraft"
 http_static_config_file: "{{docker_root}}/nginx/static.conf"
 http_static_dir: "{{docker_root}}/http/static"
 
-backup_server_root_dir: "{{storage_root}}/backup"
+backup_server_root_dir: "{{storage_root}}/backup/borg"
 backup_client_configs:
-  - user: suz
-    host: asuz
   - user: dave
     host: compy
 

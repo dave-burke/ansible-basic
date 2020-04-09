@@ -1,49 +1,43 @@
 ---
-- name: Ensure rdiff-backup is installed
-  package: name=rdiff-backup state=present
+- name: Ensure borg is installed
+  package: name={{borg_pkg}} state=latest
+
+- name: Ensure borgmatic is installed
+  package: name=borgmatic state=latest
 
 - name: Ensure backup private key is present
   copy:
-    src: ssh/{{backup_client_user}}/{{inventory_hostname}}/id_rsa_backup
-    dest: "/home/{{backup_client_user}}/.ssh/{{backup_client_keyfile}}"
+    src: ssh/{{item.user}}/{{inventory_hostname}}/id_rsa_backup
+    dest: "/home/{{item.user}}/.ssh/id_rsa_backup"
     mode: 0600
-    owner: "{{backup_client_user}}"
-    group: "{{backup_client_user}}"
+    owner: "{{item.user}}"
+    group: "{{item.user}}"
+  loop: "{{borgmatic_configs}}"
 
-- name: Ensure backup ssh config is present
-  blockinfile:
-    dest: "/home/{{backup_client_user}}/.ssh/config"
-    create: yes
-    mode: 0644
-    owner: "{{backup_client_user}}"
-    group: "{{backup_client_user}}"
-    block: |
-      host backup
-        hostname {{backup_server_host}}.{{hostvars[backup_server_host].domain}}
-        user {{backup_server_user}}
-        identityfile /home/{{backup_client_user}}/.ssh/{{backup_client_keyfile}}
-
-- name: Ensure local bin directory is present in user home
+- name: Ensure borgmatic config dir is present
   file:
     state: directory
-    dest: "/home/{{backup_client_user}}/.local/bin/"
+    name: "/home/{{item.user}}/.config/borgmatic.d"
     mode: 0755
-    owner: "{{backup_client_user}}"
-    group: "{{backup_client_user}}"
+    owner: "{{item.user}}"
+    group: "{{item.user}}"
+  loop: "{{borgmatic_configs}}"
 
-- name: Ensure backup script is present
+- name: Ensure backup config is present
   template:
-    src: backup.sh
-    dest: "/home/{{backup_client_user}}/.local/bin/backup.sh"
-    mode: 0744
-    owner: "{{backup_client_user}}"
-    group: "{{backup_client_user}}"
-    
+    src: borgmatic_config.yml.j2
+    dest: "/home/{{item.user}}/.config/borgmatic.d/{{item.name}}.yml"
+    mode: 0644
+    owner: "{{item.user}}"
+    group: "{{item.user}}"
+  loop: "{{borgmatic_configs}}"
+
 - name: Ensure cron task is present
   cron:
-    name: "Backup documents"
+    name: "Backup: {{item.name}}"
     state: present
-    user: "{{backup_client_user}}"
+    user: "{{item.user}}"
     special_time: daily
-    job: "~/.local/bin/backup.sh"
+    job: "borgmatic --syslog-verbosity 1"
+  loop: "{{borgmatic_configs}}"
 

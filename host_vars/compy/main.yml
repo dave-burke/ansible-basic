@@ -1,2 +1,31 @@
 ---
 borg_passphrase_photos: "{{vault_borg_passphrase_photos}}"
+
+borgmatic_configs:
+  - name: home
+    user: dave
+    passphrase: "{{vault_borg_passphrase}}"
+    #repo_key: ""
+    healthcheck_uuid: "{{vault_borg_healthcheck_uuid}}"
+    source_dirs:
+      - /home/dave
+    repositories:
+      - dave@servy:/mnt/storage/backup/borg/compy/dave
+    exclude_patterns:
+      - ".Idea"
+      - ".cache"
+      - ".config/syncthing/index*db"
+      - ".dropbox*"
+      - ".eclipse"
+      - ".gradle"
+      - ".local/share/Steam"
+      - ".local/share/Trash"
+      - ".local/share/irrationalgames"
+      - ".local/share/tracker"
+      - "Desktop/LiftingVids"
+      - "Desktop/recent_photos"
+      - "Downloads"
+      - "Dropbox*"
+      - "audio"
+      - "photos"
+      - "tmp"
