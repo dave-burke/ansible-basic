@@ -15,7 +15,6 @@
         - phone
         - tabby
     - development
-    - minecraft_client
     - photo_mgmt
     - syncthing
     - budget
@@ -62,7 +61,6 @@
         - compy
         - happy
     - syncthing
-    - minecraft_client
     - touchpad_toggle
     - role: backup_client
       backup_server_host: servy
@@ -136,7 +134,6 @@
     - syncthing
     - dave
     - development
-    - minecraft_client
     - role: ssh_user
       user: dave
       authorized_hosts:
