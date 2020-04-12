@@ -2,6 +2,13 @@
 domain: "{{vault_domain}}"
 jitsi_admin_user: "{{vault_jitsi_admin_user}}"
 jitsi_admin_pass: "{{vault_jitsi_admin_pass}}"
+jitsi_jicofo_secret: "{{vault_jitsi_jicofo_secret}}"
+jitsi_jicofo_auth_password: "{{vault_jitsi_jicofo_auth_password}}"
+jitsi_jvb_password: "{{vault_jitsi_jvb_password}}"
+jitsi_jigasi_password: "{{vault_jitsi_jigasi_password}}"
+jitsi_jibri_rec_password: "{{vault_jitsi_jibri_rec_password}}"
+jitsi_jibri_xmpp_password: "{{vault_jitsi_jibri_xmpp_password}}"
+
 minecraft_dir: "/opt/minecraft/"
 minecraft_server_env:
   DIFFICULTY: normal
