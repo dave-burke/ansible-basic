@@ -99,6 +99,15 @@
     - wasabi_cli
     - nfs_server
   tasks:
+    - name: "Ensure {{item}} has access to syncthing GUI"
+      tags: ['ufw', 'test']
+      ufw:
+        comment: 'Syncthing from {{item}}'
+        rule: allow
+        from_ip: "{{hostvars[item].ansible_host}}"
+        port: '8384'
+        proto: 'tcp'
+      loop: ['compy','happy']
     - name: "Link to {{item}}"
       file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link
       with_items:
