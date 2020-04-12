@@ -1,4 +1,17 @@
 ---
+- name: Add syncthing apt signing key
+  apt_key:
+    url: https://syncthing.net/release-key.txt
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Add syncthing repo
+  apt_repository:
+    repo: deb https://apt.syncthing.net/ syncthing stable
+    state: present
+    filename: syncthing
+  when: ansible_os_family == "Debian"
+
 - name: Ensure syncthing is installed
   package: name=syncthing state=latest
 
