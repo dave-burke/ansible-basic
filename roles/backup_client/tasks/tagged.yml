@@ -8,7 +8,7 @@
 - name: Ensure backup private key is present
   copy:
     src: ssh/{{item.user}}/{{inventory_hostname}}/id_rsa_backup
-    dest: "/home/{{item.user}}/.ssh/id_rsa_backup"
+    dest: "{% if item.user == 'root' %}/root{% else %}/home/{{item.user}}{% endif %}/.ssh/id_rsa_backup"
     mode: 0600
     owner: "{{item.user}}"
     group: "{{item.user}}"
@@ -17,7 +17,7 @@
 - name: Ensure borgmatic config dir is present
   file:
     state: directory
-    name: "/home/{{item.user}}/.config/borgmatic.d"
+    name: "{% if item.user == 'root' %}/etc/borgmatic{% else %}/home/{{item.user}}/.config{% endif %}/borgmatic.d"
     mode: 0755
     owner: "{{item.user}}"
     group: "{{item.user}}"
@@ -26,7 +26,7 @@
 - name: Ensure backup config is present
   template:
     src: borgmatic_config.yml.j2
-    dest: "/home/{{item.user}}/.config/borgmatic.d/{{item.name}}.yml"
+    dest: "{% if item.user == 'root' %}/etc/borgmatic{% else %}/home/{{item.user}}/.config{% endif %}/borgmatic.d/{{item.name}}.yml"
     mode: 0644
     owner: "{{item.user}}"
     group: "{{item.user}}"
