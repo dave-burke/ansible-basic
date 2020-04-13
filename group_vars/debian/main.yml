@@ -6,4 +6,5 @@ gvim_pkg: vim-gtk3
 borg_pkg: "borgbackup"
 docker_pkg: "docker.io"
 pip_pkg: "python3-pip"
+llfuse_pkg: "python3-llfuse"
 

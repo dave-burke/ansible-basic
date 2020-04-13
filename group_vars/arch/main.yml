@@ -6,4 +6,5 @@ gvim_pkg: "gvim"
 borg_pkg: "borg"
 docker_pkg: "docker"
 pip_pkg: "python-pip"
+llfuse_pkg: "python-llfuse"
 
