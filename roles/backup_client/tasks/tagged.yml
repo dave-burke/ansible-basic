@@ -23,8 +23,8 @@
 
 - name: Ensure backup private key is present
   copy:
-    src: ssh/{{item.user}}/{{inventory_hostname}}/id_rsa_backup
-    dest: "{% if item.user == 'root' %}/root{% else %}/home/{{item.user}}{% endif %}/.ssh/id_rsa_backup"
+    src: "ssh/{{item.user}}/{{inventory_hostname}}/{{item.ssh_key | default('id_rsa_backup')}}"
+    dest: "{% if item.user == 'root' %}/root{% else %}/home/{{item.user}}{% endif %}/.ssh/{{item.ssh_key | default('id_rsa_backup')}}"
     mode: 0600
     owner: "{{item.user}}"
     group: "{{item.user}}"

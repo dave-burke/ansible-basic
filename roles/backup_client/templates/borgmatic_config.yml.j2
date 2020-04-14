@@ -140,7 +140,7 @@ storage:
 
     # Command to use instead of "ssh". This can be used to specify ssh options.
     # Defaults to not set.
-    ssh_command: ssh -i /home/{{item.user}}/.ssh/id_rsa_backup
+    ssh_command: ssh -i {% if item.user == 'root' %}/root{% else %}/home/{{item.user}}{% endif %}/.ssh/{{item.ssh_key | default('id_rsa_backup')}}
 
     # Base path used for various Borg directories. Defaults to $HOME, ~$USER, or ~.
     # See https://borgbackup.readthedocs.io/en/stable/usage/general.html#environment-variables for details.
