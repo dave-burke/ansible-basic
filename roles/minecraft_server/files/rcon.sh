@@ -2,5 +2,5 @@
 
 set -e
 
-docker exec -i minecraft rcon-cli
+docker exec -i minecraft rcon-cli $@
 

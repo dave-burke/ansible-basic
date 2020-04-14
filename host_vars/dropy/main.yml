@@ -16,3 +16,17 @@ minecraft_server_env:
   VERSION: "1.15.2"
 murmur_password: "{{vault_murmur_password}}"
 
+borgmatic_configs:
+  - name: minecraft
+    user: dave
+    passphrase: "{{vault_borg_minecraft_passphrase}}"
+    source_dirs:
+      - /opt/minecraft
+    repositories:
+      - "{{vault_borg_minecraft_repo}}"
+    before_backup:
+      - "rcon save-off"
+      - "rcon save-all"
+    after_backup:
+      - "rcon save-on"
+

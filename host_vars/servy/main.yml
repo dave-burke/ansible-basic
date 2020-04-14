@@ -56,23 +56,25 @@ minecraft_dir: "{{docker_root}}/minecraft"
 http_static_config_file: "{{docker_root}}/nginx/static.conf"
 http_static_dir: "{{docker_root}}/http/static"
 
-backup_server_root_dir: "{{storage_root}}/backup"
+backup_server_root_dir: "{{storage_root}}/backup/borg"
 backup_client_configs:
-  - user: suz
-    host: asuz
   - user: dave
     host: compy
 
-# AWS CLI
-aws_key: "AKIAJQRAEWFN47U44MBQ"
-aws_secret_key: "{{vault_aws_secret_key}}"
-
-# S3 Sync
-s3_sync_bucket_name: "{{vault_s3_sync_bucket_name}}"
-s3_sync_region: "us-east-1"
-s3_sync_items:
-  - prefix: minecraft
-    path: "{{minecraft_dir}}"
+borgmatic_configs:
+  - name: minecraft
+    user: dave
+    passphrase: "{{vault_borg_minecraft_passphrase}}"
+    ssh_key: "id_rsa_borgbase"
+    source_dirs:
+      - /mnt/storage/docker/minecraft
+    repositories:
+      - "{{vault_borg_minecraft_repo}}"
+    before_backup:
+      - "rcon save-off"
+      - "rcon save-all"
+    after_backup:
+      - "rcon save-on"
 
 # Wasabi CLI
 wasabi_key: "ZGY6IWQSZRDT8ZDRNAEI"

@@ -1,20 +1,21 @@
 ---
-- name: Ensure rdiff-backup is installed
-  apt: name=rdiff-backup state=present
+- name: Ensure borg is installed
+  package: name={{borg_pkg}} state=latest
 
 - name: Ensure backup directories exist
   file:
     state: directory
-    path: "{{backup_server_root_dir}}/{{item.user}}/{{item.host}}"
-    owner: "root"
-    group: "root"
+    path: "{{backup_server_root_dir}}/{{item.host}}/{{item.user}}"
+    mode: 0700
+    owner: "{{item.user}}"
+    group: "{{item.user}}"
   with_items: "{{backup_client_configs}}"
 
 - name: Ensure backup keys are authorized
   authorized_key:
     state: present
-    user: root
+    user: '{{item.user}}'
     key: "{{ lookup('file', 'ssh/{{item.user}}/{{item.host}}/id_rsa_backup.pub') }}"
-    key_options: "command=\"rdiff-backup --server --restrict {{backup_server_root_dir}}/{{item.user}}/{{item.host}}\",no-port-forwarding,no-X11-forwarding,no-pty"
+    key_options: "command=\"borg serve --restrict-to-path {{backup_server_root_dir}}/{{item.host}}/{{item.user}}\",restrict,no-port-forwarding,no-X11-forwarding,no-pty"
   with_items: "{{backup_client_configs}}"
 

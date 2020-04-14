@@ -1,2 +1,40 @@
 ---
 borg_passphrase_photos: "{{vault_borg_passphrase_photos}}"
+
+borgmatic_configs:
+  - name: home
+    user: dave
+    passphrase: "{{vault_borg_passphrase}}"
+    healthcheck_uuid: "{{vault_borg_healthcheck_uuid}}"
+    source_dirs:
+      - /home/dave
+      - /mnt/storage/docs
+    repositories:
+      - dave@servy:/mnt/storage/backup/borg/compy/dave
+    exclude_patterns:
+      - "/home/dave/.Idea*"
+      - "/home/dave/.PlayOnLinux"
+      - "/home/dave/.cache"
+      - "/home/dave/.config/Code - OSS"
+      - "/home/dave/.config/chromium"
+      - "/home/dave/.config/syncthing/index*db"
+      - "/home/dave/.dropbox*"
+      - "/home/dave/.eclipse"
+      - "/home/dave/.gradle"
+      - "/home/dave/.local/share/Steam"
+      - "/home/dave/.local/share/Trash"
+      - "/home/dave/.local/share/irrationalgames"
+      - "/home/dave/.local/share/tracker"
+      - "/home/dave/.node_modules"
+      - "/home/dave/.npm"
+      - "/home/dave/.vim"
+      - "/home/dave/.vscode*"
+      - "/home/dave/.wine"
+      - "/home/dave/Calibre Library"
+      - "/home/dave/Desktop/LiftingVids"
+      - "/home/dave/Desktop/recent_photos"
+      - "/home/dave/Downloads"
+      - "/home/dave/Dropbox*"
+      - "/home/dave/repos"
+      - "/home/dave/tmp"
+

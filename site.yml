@@ -18,29 +18,7 @@
     - photo_mgmt
     - syncthing
     - budget
-    - role: backup_client
-      backup_server_host: servy
-      backup_client_user: dave
-      backup_client_dirs:
-        - name: home
-          dir: "/home/dave"
-          exclusions:
-            - ".Idea"
-            - ".cache"
-            - ".config/syncthing/index*db"
-            - ".dropbox*"
-            - ".eclipse"
-            - ".gradle"
-            - ".local/share/Steam"
-            - ".local/share/Trash"
-            - ".local/share/irrationalgames"
-            - ".local/share/tracker"
-            - "Desktop/LiftingVids"
-            - "Desktop/recent_photos"
-            - "Downloads"
-            - "Dropbox*"
-            - "tmp"
-        - dir: "/mnt/storage/docs"
+    - backup_client
   tasks:
     - name: Ensure storage disk is mounted
       mount:
@@ -62,15 +40,7 @@
         - happy
     - syncthing
     - touchpad_toggle
-    - role: backup_client
-      backup_server_host: servy
-      backup_client_user: suz
-      backup_client_dirs:
-        - dir: /home/suz/Desktop
-          exclusions:
-            - "Recent Photos"
-        - dir: /home/suz/Documents
-        - dir: /home/suz/pics
+    - backup_client
 
 - hosts: servy
   roles:
@@ -94,8 +64,8 @@
     - netmon
     - dyndns_client
     - minecraft_server
+    - backup_client
     - backup_server
-    - s3_sync
     - wasabi_cli
     - nfs_server
   tasks:
@@ -130,6 +100,7 @@
     - dave
     - jitsi_meet
     - minecraft_server
+    - backup_client
     - murmur
 
 - hosts: happy
