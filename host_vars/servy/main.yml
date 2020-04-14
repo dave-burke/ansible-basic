@@ -61,6 +61,21 @@ backup_client_configs:
   - user: dave
     host: compy
 
+borgmatic_configs:
+  - name: minecraft
+    user: dave
+    passphrase: "{{vault_borg_minecraft_passphrase}}"
+    ssh_key: "id_rsa_borgbase"
+    source_dirs:
+      - /mnt/storage/docker/minecraft
+    repositories:
+      - "{{vault_borg_minecraft_repo}}"
+    before_backup:
+      - "rcon save-off"
+      - "rcon save-all"
+    after_backup:
+      - "rcon save-on"
+
 # AWS CLI
 aws_key: "AKIAJQRAEWFN47U44MBQ"
 aws_secret_key: "{{vault_aws_secret_key}}"
