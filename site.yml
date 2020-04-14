@@ -101,6 +101,7 @@
     - dave
     - jitsi_meet
     - minecraft_server
+    - backup_client
     - murmur
 
 - hosts: happy
