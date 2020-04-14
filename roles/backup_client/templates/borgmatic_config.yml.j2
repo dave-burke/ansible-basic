@@ -71,10 +71,12 @@ location:
         # - '*.pyc'
         # - ~/*/.cache
         # - /etc/ssl
+    {% if item.exclude_patterns is defined -%}
     exclude_patterns:
         {% for exclude in item.exclude_patterns -%}
             - "{{exclude}}"
         {% endfor %}
+    {% endif %}
 
     # Read exclude patterns from one or more separate named files, one pattern per
     # line. See the output of "borg help patterns" for more details.
@@ -276,7 +278,7 @@ hooks:
     # List of one or more shell commands or scripts to execute before creating a
     # backup, run once per configuration file.
     {% if item.after_backup is defined -%}
-        before_backup:
+    before_backup:
         {% for action in item.before_backup -%}
             - "{{action}}"
         {% endfor %}
@@ -295,7 +297,7 @@ hooks:
     # List of one or more shell commands or scripts to execute after creating a
     # backup, run once per configuration file.
     {% if item.after_backup is defined -%}
-        after_backup:
+    after_backup:
         {% for action in item.after_backup -%}
             - "{{action}}"
         {% endfor %}
@@ -393,7 +395,9 @@ hooks:
     # See
     # https://torsion.org/borgmatic/docs/how-to/monitor-your-backups/#healthchecks-hook
     # for details.
+    {% if item.healthcheck_uuid is defined %}
     healthchecks: https://hc-ping.com/{{item.healthcheck_uuid}}
+    {% endif %}
 
     # Cronitor ping URL to notify when a backup begins, ends, or errors. Create an
     # account at https://cronitor.io if you'd like to use this service. See
