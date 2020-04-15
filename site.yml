@@ -34,6 +34,7 @@
 
 - hosts: asuz
   roles:
+    - users_dave
     - users_suz
     - users_wesley
     - users_andrew
