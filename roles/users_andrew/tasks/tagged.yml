@@ -1,0 +1,4 @@
+---
+- name: Ensure user exists
+  user: name=andrew shell=/usr/bin/bash
+

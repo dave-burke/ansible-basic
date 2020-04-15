@@ -7,6 +7,7 @@
   roles:
     - users_dave
     - users_wesley
+    - users_andrew
     - role: ssh_user
       user: dave
       authorized_hosts:
@@ -35,6 +36,7 @@
   roles:
     - users_suz
     - users_wesley
+    - users_andrew
     - role: ssh_user
       user: dave
       authorized_hosts:
