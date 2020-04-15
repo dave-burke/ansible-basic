@@ -32,6 +32,7 @@
 
 - hosts: asuz
   roles:
+    - users_suz
     - role: ssh_user
       user: dave
       authorized_hosts:
@@ -45,6 +46,7 @@
 - hosts: servy
   roles:
     - users_dave
+    - users_suz
     - role: ssh_user
       user: dave
       authorized_hosts:

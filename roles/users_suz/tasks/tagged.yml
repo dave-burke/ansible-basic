@@ -1,0 +1,4 @@
+---
+- name: Ensure user exists
+  user: name=suz shell=/usr/bin/bash
+
