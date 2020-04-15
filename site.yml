@@ -6,6 +6,7 @@
 - hosts: compy
   roles:
     - users_dave
+    - users_wesley
     - role: ssh_user
       user: dave
       authorized_hosts:
@@ -33,6 +34,7 @@
 - hosts: asuz
   roles:
     - users_suz
+    - users_wesley
     - role: ssh_user
       user: dave
       authorized_hosts:
