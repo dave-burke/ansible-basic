@@ -5,7 +5,9 @@
 
 - hosts: compy
   roles:
-    - dave
+    - users_dave
+    - users_wesley
+    - users_andrew
     - role: ssh_user
       user: dave
       authorized_hosts:
@@ -32,6 +34,10 @@
 
 - hosts: asuz
   roles:
+    - users_dave
+    - users_suz
+    - users_wesley
+    - users_andrew
     - role: ssh_user
       user: dave
       authorized_hosts:
@@ -44,7 +50,8 @@
 
 - hosts: servy
   roles:
-    - dave
+    - users_dave
+    - users_suz
     - role: ssh_user
       user: dave
       authorized_hosts:
@@ -97,7 +104,7 @@
         - happy
         - phone
         - tabby
-    - dave
+    - users_dave
     - jitsi_meet
     - minecraft_server
     - backup_client
@@ -112,7 +119,7 @@
         content: "blacklist pcspkr"
   roles:
     - syncthing
-    - dave
+    - users_dave
     - development
     - role: ssh_user
       user: dave
