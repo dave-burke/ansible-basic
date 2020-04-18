@@ -76,6 +76,17 @@ borgmatic_configs:
     after_backup:
       - "rcon save-on"
 
+# AWS CLI
+aws_key: "AKIAJQRAEWFN47U44MBQ"
+aws_secret_key: "{{vault_aws_secret_key}}"
+
+# S3 Sync
+s3_sync_bucket_name: "{{vault_s3_sync_bucket_name}}"
+s3_sync_region: "us-east-1"
+s3_sync_items:
+  - prefix: minecraft
+    path: "{{minecraft_dir}}"
+
 # Wasabi CLI
 wasabi_key: "ZGY6IWQSZRDT8ZDRNAEI"
 wasabi_secret_key: "{{vault_wasabi_secret_key}}"
