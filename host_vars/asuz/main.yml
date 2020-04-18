@@ -1,0 +1,14 @@
+---
+borgmatic_configs:
+  - name: home
+    user: suz
+    passphrase: "{{vault_borg_passphrase}}"
+    healthcheck_uuid: "{{vault_borg_healthcheck_uuid}}"
+    source_dirs:
+      - /home/suz
+    repositories:
+      - "suz@{{vault_borg_domain}}:/mnt/storage/backup/borg/asuz/suz"
+    exclude_patterns:
+      - "/home/suz/Desktop/Recent Photos"
+      - "/home/suz/Pictures"
+
