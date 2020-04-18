@@ -1,4 +1,9 @@
 ---
-- name: Ensure user exists
-  user: name=andrew shell=/usr/bin/bash
+- name: Ensure Andrew user exists
+  user: 
+    name: andrew
+    shell: /bin/bash
+    password: "{{ andrew_password | password_hash('sha512') }}"
+    update_password: on_create
+    groups: ''
 

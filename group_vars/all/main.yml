@@ -7,3 +7,6 @@ gmail_user: "{{vault_gmail_user}}"
 gmail_password: "{{vault_gmail_password}}"
 email_recipient: "{{vault_email_recipient}}"
 
+suz_password: "{{vault_suz_password}}"
+wesley_password: "{{vault_wesley_password}}"
+andrew_password: "{{vault_andrew_password}}"
