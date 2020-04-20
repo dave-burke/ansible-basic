@@ -8,6 +8,7 @@ borgmatic_configs:
       - /home/suz
     repositories:
       - "suz@{{vault_borg_domain}}:/mnt/storage/backup/borg/asuz/suz"
+      - "gw6a7f8p@gw6a7f8p.repo.borgbase.com:repo"
     exclude_patterns:
       - "/home/suz/Desktop/Recent Photos"
       - "/home/suz/Pictures"
