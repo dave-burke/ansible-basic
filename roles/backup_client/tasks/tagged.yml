@@ -53,8 +53,8 @@
     name: "Backup: {{item.name}}"
     state: present
     user: "{{item.user}}"
-    hour: 3
-    minute: 0
-    job: "borgmatic --syslog-verbosity 1"
+    hour: "3"
+    minute: "0"
+    job: "PATH=$PATH:/usr/bin:/usr/local/bin:$HOME/.local/bin borgmatic --syslog-verbosity 1"
   loop: "{{borgmatic_configs}}"
 
