@@ -5,12 +5,13 @@ docker_root: "{{storage_root}}/docker"
 
 # DNS config
 hosts:
-  - { ip: 192.168.2.150, host: servy }
-  - { ip: 192.168.2.142, host: compy }
-  - { ip: 192.168.2.143, host: asuzw }
-  - { ip: 192.168.2.144, host: asuz }
-  - { ip: 192.168.2.1, host: rowdy}
-  - { ip: 192.168.1.1, host: rowdyjr}
+  - { ip: 10.1.1.1, host: servy }
+  - { ip: 10.1.42.1, host: compy }
+  - { ip: 10.1.42.2, host: happy }
+  - { ip: 10.1.143.2, host: asuzw }
+  - { ip: 10.1.143.1, host: asuz }
+  - { ip: 10.1.0.1, host: rowdy}
+  - { ip: 10.2.0.1, host: rowdyjr}
 domain: "{{vault_domain}}"
 public_domain: "{{vault_public_domain}}"
 
