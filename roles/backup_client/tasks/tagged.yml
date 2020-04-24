@@ -48,7 +48,7 @@
     group: "{{item.user}}"
   loop: "{{borgmatic_configs}}"
 
-- name: Ensure cron task is present
+- name: Ensure cron task is present in user crontab
   cron:
     name: "Backup: {{item.name}}"
     state: present
@@ -57,4 +57,12 @@
     minute: "0"
     job: "PATH=$PATH:/usr/bin:/usr/local/bin:$HOME/.local/bin borgmatic --syslog-verbosity 1"
   loop: "{{borgmatic_configs}}"
+  when: "{{item.user != 'root'}}"
 
+- name: Ensure daily cron (or anacron) script is in /etc/cron.daily
+  copy:
+    src: daily.sh
+    dest: "/etc/cron.daily/borgmatic.sh"
+    mode: 0644
+  when: "{{item.user == 'root'}}"
+  loop: "{{borgmatic_configs}}"
