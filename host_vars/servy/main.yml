@@ -61,7 +61,7 @@ backup_server_root_dir: "{{storage_root}}/backup/borg"
 backup_client_configs:
   - user: dave
     host: compy
-  - user: suz
+  - user: root
     host: asuz
 
 borgmatic_configs:
