@@ -1,8 +1,4 @@
 ---
-- name: Update all apt packages to the latest version
-  apt: upgrade=dist update_cache=yes
-  when: ansible_os_family == "Debian"
-
 - name: Ensure reboot-if-needed script is present
   copy:
     src: "reboot-if-needed.sh"
@@ -46,12 +42,11 @@
 
 - name: Add Arch upgrade script
   copy:
-    src: upgrade.sh
+    src: "{{ansible_pkg_mgr}}-upgrade.sh"
     dest: /home/{{admin_user}}/.local/bin/upgrade.sh
     mode: 0755
     owner: "{{admin_user}}"
     group: "{{admin_user}}"
-  when: ansible_os_family == "Archlinux"
 
 - name: Ensure SSH trafic is limited through firewall
   tags: ['ufw']
