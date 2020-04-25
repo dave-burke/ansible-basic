@@ -62,7 +62,7 @@
 - name: Ensure daily cron (or anacron) script is in /etc/cron.daily
   copy:
     src: daily.sh
-    dest: "/etc/cron.daily/borgmatic.sh"
-    mode: 0644
+    dest: "/etc/cron.daily/borgmatic"
+    mode: 0755
   when: "{{item.user == 'root'}}"
   loop: "{{borgmatic_configs}}"
