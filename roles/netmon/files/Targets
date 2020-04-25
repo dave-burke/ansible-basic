@@ -25,7 +25,7 @@ title = Local Network
 	++ RowdyJr
 	menu = Rowdy Jr
 	title = Rowdy Jr
-	host = 10.2.0.1
+	host = 10.0.1.2
 
 	++ CableModem
 	menu = Cable Modem
