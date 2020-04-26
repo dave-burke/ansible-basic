@@ -1,0 +1,9 @@
+---
+- name: Ensure resize script is present
+  copy:
+    src: do-resize.sh
+    dest: "/home/{{user}}/.local/bin/"
+    mode: 0755
+    owner: "{{user}}"
+    group: "{{user}}"
+
