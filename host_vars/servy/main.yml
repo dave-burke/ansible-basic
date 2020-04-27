@@ -99,3 +99,6 @@ nfs_mounts:
     name: music
   - dir: /mnt/storage/photos
     name: photos
+
+digital_ocean_token: "{{vault_digital_ocean_token}}"
+
