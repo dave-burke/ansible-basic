@@ -7,4 +7,5 @@ borg_pkg: "borgbackup"
 docker_pkg: "docker.io"
 pip_pkg: "python3-pip"
 llfuse_pkg: "python3-llfuse"
+aws_cli_pkg: "awscli"
 

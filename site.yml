@@ -21,6 +21,7 @@
     - syncthing
     - budget
     - backup_client
+    - aws_cli
   tasks:
     - name: Ensure storage disk is mounted
       mount:
@@ -73,7 +74,6 @@
     - minecraft_server
     - backup_client
     - backup_server
-    - s3_sync
     - wasabi_cli
     - nfs_server
   tasks:

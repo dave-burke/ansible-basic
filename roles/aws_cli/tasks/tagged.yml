@@ -1,7 +1,7 @@
 ---
 - name: "Ensure aws cli is installed"
   package:
-    name: awscli
+    name: "{{aws_cli_pkg}}"
     state: present
 
 - name: "Ensure aws config file contains default config"
@@ -14,7 +14,7 @@
     insertbefore: BOF
     block: |
       [default]
-      region = {{s3_sync_region}}
+      region = {{aws_region}}
 
 - name: "Ensure aws credentials file contains default credentials"
   blockinfile:

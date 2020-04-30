@@ -38,3 +38,8 @@ borgmatic_configs:
       - "/home/dave/repos"
       - "/home/dave/tmp"
 
+# AWS CLI
+aws_key: "AKIAZ4U4D464WU5YA6GU"
+aws_secret_key: "{{vault_aws_secret_key}}"
+aws_region: "us-east-1"
+
