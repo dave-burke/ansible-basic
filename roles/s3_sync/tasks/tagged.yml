@@ -4,7 +4,8 @@
     state: "present"
     name: "{{item.prefix}} backup"
     user: "{{user}}"
-    special_time: daily
+    hour: "2"
+    minute: "0"
     job: "aws s3 sync {{item.path}} s3://{{s3_sync_bucket_name}}/{{item.prefix}} > /dev/null"
   with_items: "{{s3_sync_items}}"
 

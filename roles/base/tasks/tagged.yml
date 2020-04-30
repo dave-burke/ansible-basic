@@ -10,8 +10,8 @@
   cron:
     name: "Reboot if needed"
     user: "root"
-    minute: "0"
-    hour: "3"
+    hour: "4"
+    minute: "30"
     job: "/root/reboot-if-needed.sh"
   when: "'headless' in group_names and ansible_pkg_mgr == 'apt'"
 
