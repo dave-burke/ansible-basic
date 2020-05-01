@@ -1,0 +1,24 @@
+---
+- name: Ensure doctl is installed
+  snap: name=doctl state=present
+  when: ansible_os_family == "Debian"
+
+- name: Ensure doctl is installed
+  snap: name=doctl state=present
+  when: ansible_os_family != "Debian"
+
+- name: "Initialize doctl for {{user}}"
+  command: "doctl auth init --access-token '{{digital_ocean_token}}'"
+  args:
+    creates: "/home/{{user}}/.config/doctl/config.yaml"
+  become: yes
+  become_user: "{{user}}"
+
+- name: Ensure resize script is present
+  copy:
+    src: do-resize.sh
+    dest: "/home/{{user}}/.local/bin/"
+    mode: 0755
+    owner: "{{user}}"
+    group: "{{user}}"
+
