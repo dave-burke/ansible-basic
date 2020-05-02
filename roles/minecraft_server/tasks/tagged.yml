@@ -14,7 +14,7 @@
     image: itzg/minecraft-server
     pull: true
     state: started
-    restart_policy: always
+    restart_policy: unless-stopped
     volumes:
       - "{{minecraft_dir}}:/data"
     ports:
