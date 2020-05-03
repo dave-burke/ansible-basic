@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# You can have only one forced command in ~/.ssh/authorized_keys. Use this
+# wrapper to allow several commands.
+
+set -e
+
+case "$SSH_ORIGINAL_COMMAND" in
+{% for command in commands %}
+	"{{command}}")
+		{{command}}
+		;;
+{% endfor %}
+	*)
+		echo "Access denied: '${SSH_ORIGINAL_COMMAND}'"
+		exit 1
+		;;
+esac
+

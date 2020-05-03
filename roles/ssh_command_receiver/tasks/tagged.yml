@@ -1,0 +1,16 @@
+---
+- name: "Ensure receiver script is present"
+  template:
+    src: ssh_allow.sh.j2
+    dest: "/home/{{user}}/.local/bin/ssh_allow_{{action_name}}.sh"
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: 0755
+
+- name: "Ensure public key is authorized"
+  authorized_key:
+    state: present
+    user: '{{user}}'
+    key: "{{ lookup('file', auth_key) }}"
+    key_options: "command=\"/home/{{user}}/.local/bin/ssh_allow_{{action_name}}.sh\",restrict,no-port-forwarding,no-X11-forwarding,no-pty"
+
