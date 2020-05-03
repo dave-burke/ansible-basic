@@ -1,0 +1,18 @@
+---
+- name: "Ensure private key is present"
+  copy:
+    src: "{{auth_key}}"
+    dest: "/home/{{user}}/.ssh/"
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: 0600
+
+- name: "Ensure scripts are present"
+  copy:
+    src: "{{item}}"
+    dest: "/home/{{user}}/.local/bin/"
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: 0755
+  with_items: "{{scripts}}"
+
