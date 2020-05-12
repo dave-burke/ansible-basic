@@ -28,6 +28,12 @@
     rule: allow
     port: 'domain' # 53
 
+- name: Clone hosts repository
+  git: 
+    repo: "https://github.com/StevenBlack/hosts.git"
+    dest: "{{hosts_repo_dir}}"
+    force: yes
+
 - name: Ensure docker container is started
   tags: ['vpn-dnsfix']
   docker_container:
@@ -36,7 +42,9 @@
     pull: true
     state: started
     restart_policy: always
-    volumes: /etc/hosts:/etc/hosts:ro
+    volumes:
+      - "/etc/hosts:/etc/hosts:ro"
+      - "{{hosts_repo_dir}}/hosts:/etc/hosts-blacklist:ro"
     ports:
       - 53:53/tcp
       - 53:53/udp
@@ -45,6 +53,7 @@
     command: >
       --address /.{{ansible_hostname}}.{{domain}}/{{ansible_default_ipv4.address}}
       --domain={{domain}}
+      --addn-hosts=/etc/hosts-blacklist
       --no-resolv
       --no-negcache
       --server 9.9.9.9
