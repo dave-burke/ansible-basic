@@ -2,17 +2,16 @@
 - name: "Ensure hledger-web container is started"
   docker_container:
     name: hledger
-    image: dburke/hledger-web
+    image: dastapov/hledger
     pull: true
     state: started
-    restart_policy: always
+    restart_policy: unless-stopped
     volumes:
-      - "{{hledger_dir}}:/data/:ro"
+      - "{{hledger_dir}}:/data"
     ports:
       - "5000:5000"
     env:
       HLEDGER_JOURNAL_FILE: "/data/main.ledger"
-      HLEDGER_HOST: "0.0.0.0"
       HLEDGER_BASE_URL: "http://budget.{{ansible_hostname}}.{{domain}}"
       VIRTUAL_HOST: "budget.{{ansible_hostname}}.{{domain}}"
       VIRTUAL_PORT: "5000"

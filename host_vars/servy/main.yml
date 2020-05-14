@@ -89,7 +89,7 @@ wasabi_key: "ZGY6IWQSZRDT8ZDRNAEI"
 wasabi_secret_key: "{{vault_wasabi_secret_key}}"
 
 # hledger config
-hledger_dir: "/mnt/storage/backup/dave/compy/docs/personal/finances/budget/"
+hledger_dir: "/mnt/storage/sync/budget"
 
 # nfs config
 nfs_mounts:
