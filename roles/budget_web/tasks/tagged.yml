@@ -5,7 +5,7 @@
     image: dastapov/hledger
     pull: true
     state: started
-    restart_policy: always
+    restart_policy: unless-stopped
     volumes:
       - "{{hledger_dir}}:/data"
     ports:
