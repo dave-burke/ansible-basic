@@ -15,3 +15,17 @@
 - name: Ensure syncthing is installed
   package: name=syncthing state=latest
 
+- name: Ensure syncthing listening port allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    proto: tcp
+    port: '22000'
+
+- name: Ensure syncthing discovery traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    proto: udp
+    port: '21027'
+
