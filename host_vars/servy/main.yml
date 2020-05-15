@@ -5,6 +5,7 @@ docker_root: "{{storage_root}}/docker"
 
 # DNS config
 hosts:
+  - { ip: 10.1.1.1, host: "{{vault_dyndns_domain}}.duckdns.org" }
   - { ip: 10.1.1.1, host: servy }
   - { ip: 10.1.42.1, host: compy }
   - { ip: 10.1.42.2, host: happy }

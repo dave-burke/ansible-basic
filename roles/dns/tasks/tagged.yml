@@ -2,7 +2,7 @@
 - name: Add hosts
   lineinfile:
     path: /etc/hosts
-    regexp: ".*{{item.host}}$"
+    regexp: ".*\\s{{item.host}}$"
     line: "{{item.ip}}	{{item.host}}"
   with_items: "{{hosts}}"
 
