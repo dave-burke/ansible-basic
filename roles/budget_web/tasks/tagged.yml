@@ -10,9 +10,8 @@
       - "{{hledger_dir}}:/data"
     ports:
       - "5000:5000"
+    command: "hledger-web --serve --host='0.0.0.0' --file='/data/main.ledger' --base-url=http://budget.{{ansible_hostname}}.{{domain}} --cors='*'"
     env:
-      HLEDGER_JOURNAL_FILE: "/data/main.ledger"
-      HLEDGER_BASE_URL: "http://budget.{{ansible_hostname}}.{{domain}}"
       VIRTUAL_HOST: "budget.{{ansible_hostname}}.{{domain}}"
       VIRTUAL_PORT: "5000"
     labels:
