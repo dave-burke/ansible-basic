@@ -32,7 +32,13 @@
   git: 
     repo: "https://github.com/StevenBlack/hosts.git"
     dest: "{{hosts_repo_dir}}"
-    force: yes
+    update: no
+
+- name: Ensure blacklist update task is scheduled
+  template:
+    src: update-dns-blacklist.sh
+    dest: /etc/cron.weekly
+    mode: 0755
 
 - name: Ensure docker container is started
   tags: ['vpn-dnsfix']
