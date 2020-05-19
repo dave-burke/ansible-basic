@@ -53,6 +53,8 @@ dyndns_token: "{{vault_dyndns_token}}"
 
 # Minecraft config
 minecraft_dir: "{{docker_root}}/minecraft"
+minecraft_server_env:
+  MODE: creative
 
 # NGINX config
 http_static_config_file: "{{docker_root}}/nginx/static.conf"
