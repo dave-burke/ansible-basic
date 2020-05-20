@@ -34,6 +34,15 @@
     dest: "{{hosts_repo_dir}}"
     update: no
 
+- name: Ensure whitelist allows Emoji Blitz free spins
+  copy:
+    dest: "{{hosts_repo_dir}}/whitelist"
+    content: |
+      # Domains added below will be ignored, For example:
+      # your-domain-name.com
+      jamcity.com 
+      unityads.unity3d.com
+
 - name: Ensure blacklist update task is scheduled
   template:
     src: update-dns-blacklist.sh
