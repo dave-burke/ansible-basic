@@ -40,6 +40,12 @@
     dest: /etc/cron.weekly
     mode: 0755
 
+- name: Ensure blacklist update has been run once
+  command:
+    cmd: "/etc/cron.weekly/update-dns-blacklist.sh"
+    # 'creates' could also use whitelist/blacklist or touch a file in the update script
+    creates: "{{hosts_repo_dir}}/myhosts"
+
 - name: Ensure docker container is started
   tags: ['vpn-dnsfix']
   docker_container:
