@@ -34,6 +34,11 @@
     dest: "{{hosts_repo_dir}}"
     update: no
 
+- name: Install blacklist dependencies
+  pip:
+    executable: pip3
+    requirements: "{{hosts_repo_dir}}/requirements.txt"
+
 - name: Ensure whitelist allows Emoji Blitz free spins
   copy:
     dest: "{{hosts_repo_dir}}/whitelist"
