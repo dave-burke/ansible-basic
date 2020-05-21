@@ -32,7 +32,28 @@
   git: 
     repo: "https://github.com/StevenBlack/hosts.git"
     dest: "{{hosts_repo_dir}}"
-    force: yes
+    update: no
+
+- name: Install blacklist dependencies
+  pip:
+    executable: pip3
+    requirements: "{{hosts_repo_dir}}/requirements.txt"
+
+- name: Ensure whitelist allows Emoji Blitz free spins
+  copy:
+    dest: "{{hosts_repo_dir}}/whitelist"
+    content: |
+      # Domains added below will be ignored, For example:
+      # your-domain-name.com
+      jamcity.com 
+      unityads.unity3d.com
+  notify: regenerate_dns_blacklist
+
+- name: Ensure blacklist update task is scheduled
+  template:
+    src: update-dns-blacklist.sh
+    dest: /etc/cron.weekly
+    mode: 0755
 
 - name: Ensure docker container is started
   tags: ['vpn-dnsfix']

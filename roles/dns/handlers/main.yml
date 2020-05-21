@@ -1,0 +1,6 @@
+---
+- name: Regenerate DNS blacklist
+  listen: regenerate_dns_blacklist
+  command:
+    cmd: "/etc/cron.weekly/update-dns-blacklist.sh"
+

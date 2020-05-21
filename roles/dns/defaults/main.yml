@@ -1,2 +1,2 @@
 ---
-hosts_repo_dir: /usr/local/share/dns-blocklist/
+hosts_repo_dir: /opt/dns-blocklist/
