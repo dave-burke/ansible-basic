@@ -62,7 +62,7 @@ http_static_dir: "{{docker_root}}/http/static"
 
 backup_server_root_dir: "{{storage_root}}/backup/borg"
 backup_client_configs:
-  - user: dave
+  - user: root
     host: compy
   - user: root
     host: asuz

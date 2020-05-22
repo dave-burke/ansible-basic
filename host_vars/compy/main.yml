@@ -3,14 +3,16 @@ borg_passphrase_photos: "{{vault_borg_passphrase_photos}}"
 
 borgmatic_configs:
   - name: home
-    user: dave
+    user: root
     passphrase: "{{vault_borg_passphrase}}"
     healthcheck_uuid: "{{vault_borg_healthcheck_uuid}}"
     source_dirs:
       - /home/dave
       - /mnt/storage/docs
+      - /home/wesley
     repositories:
-      - dave@servy:/mnt/storage/backup/borg/compy/dave
+      - servy:/mnt/storage/backup/borg/compy/root
+      - fqwv9h58@fqwv9h58.repo.borgbase.com:repo
     exclude_patterns:
       - "/home/dave/.Idea*"
       - "/home/dave/.PlayOnLinux"
