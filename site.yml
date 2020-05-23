@@ -84,6 +84,7 @@
     - backup_server
     - wasabi_cli
     - nfs_server
+    - couchdb
   tasks:
     - name: "Ensure {{item}} has access to syncthing GUI"
       tags: ['ufw', 'test']

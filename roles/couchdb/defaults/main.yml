@@ -1,0 +1,4 @@
+---
+couchdb_user: "admin"
+couchdb_data_volume: "couchdb-data"
+

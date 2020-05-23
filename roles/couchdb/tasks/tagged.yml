@@ -1,0 +1,23 @@
+---
+- name: Ensure couchdb data volume exists
+  docker_volume: name={{couchdb_data_volume}} state=present
+
+- name: Ensure couchdb container is started
+  docker_container:
+    name: couchdb
+    image: couchdb
+    pull: true
+    state: started
+    restart_policy: unless-stopped
+    ports:
+      - 5984:5984/tcp
+    volumes:
+      - "{{couchdb_config_path}}:/opt/couchdb/etc/local.d:rw"
+      - "{{couchdb_data_volume}}:/opt/couchdb/data"
+    env:
+      COUCHDB_USER: "{{couchdb_user}}"
+      COUCHDB_PASSWORD: "{{couchdb_password}}"
+    labels:
+      "traefik.http.routers.couchdb.rule": "Host(`couchdb.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.services.couchdb.loadbalancer.server.port": "5984"
+
