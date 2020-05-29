@@ -47,9 +47,9 @@
       # your-domain-name.com
       jamcity.com 
       unityads.unity3d.com
-      #supersonicads.com
-      #swrve.com
-      #adjust.com
+      supersonicads.com
+      swrve.com
+      adjust.com
   notify: regenerate_dns_blacklist
 
 - name: Ensure blacklist update task is scheduled
@@ -85,9 +85,9 @@
       --server 149.112.112.112
       --expand-hosts
       --log-facility=/logs/log.txt
-      --log-queries
       --dns-forward-max 1000
       --domain-needed
       --bogus-priv
+# --log-queries
   register: "docker_dns_container_status"
 
