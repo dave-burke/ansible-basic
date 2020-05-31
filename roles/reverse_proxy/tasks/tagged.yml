@@ -34,6 +34,7 @@
   template:
     src: traefik.toml
     dest: "{{traefik_config_dir}}/traefik.toml"
+  notify: restart_traefik
 
 - name: Ensure acme.json is present
   file:
