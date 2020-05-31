@@ -20,4 +20,6 @@
     labels:
       "traefik.http.routers.couchdb.rule": "Host(`couchdb.{{ansible_hostname}}.{{domain}}`)"
       "traefik.http.services.couchdb.loadbalancer.server.port": "5984"
+      "traefik.http.routers.couchdb.tls": "true"
+      "traefik.http.routers.couchdb.tls.certresolver": "do-resolver"
 

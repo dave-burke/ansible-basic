@@ -57,7 +57,7 @@
     command: ovpn_run --proto {{item.proto}}
   with_items:
     - { port: 1194, proto: udp }
-    - { port: 443, proto: tcp }
+    - { port: 11443, proto: tcp }
   register: "docker_vpn_container_status"
 
 - name: Ensure OpenVPN traffic allowed through firewall
