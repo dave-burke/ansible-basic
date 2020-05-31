@@ -19,6 +19,10 @@
     labels:
       "traefik.http.routers.nginx.rule": "Host(`static.{{ansible_hostname}}.{{domain}}`)"
       "traefik.http.routers.app.rule": "Host(`apps.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.routers.nginx.tls": "true"
+      "traefik.http.routers.nginx.tls.certresolver": "do-resolver"
+      "traefik.http.routers.app.tls": "true"
+      "traefik.http.routers.app.tls.certresolver": "do-resolver"
 
 - name: Ensure HTTP traffic allowed through firewall
   tags: ['ufw']
