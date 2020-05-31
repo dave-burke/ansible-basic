@@ -55,7 +55,7 @@
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "{{traefik_config_dir}}/traefik.toml:/etc/traefik/traefik.toml:ro"
-      - "{{traefik_config_dir}}/acme.json:/acme.json:ro"
+      - "{{traefik_config_dir}}/acme.json:/acme.json:rw"
     env:
       "DO_AUTH_TOKEN": "{{traefik_do_token}}"
     labels:
