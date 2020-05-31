@@ -73,7 +73,7 @@ borgmatic_configs:
     passphrase: "{{vault_borg_minecraft_passphrase}}"
     ssh_key: "id_rsa_borgbase"
     source_dirs:
-      - /mnt/storage/docker/minecraft
+      - "{{docker_root}}/minecraft"
     repositories:
       - "{{vault_borg_minecraft_repo}}"
     before_backup:
@@ -92,15 +92,15 @@ wasabi_key: "ZGY6IWQSZRDT8ZDRNAEI"
 wasabi_secret_key: "{{vault_wasabi_secret_key}}"
 
 # hledger config
-hledger_dir: "/mnt/storage/sync/budget"
+hledger_dir: "{{storage_root}}/sync/budget"
 
 # nfs config
 nfs_mounts:
-  - dir: /mnt/storage/videos
+  - dir: "{{storage_root}}/videos"
     name: videos
-  - dir: /mnt/storage/audio/music
+  - dir: "{{storage_root}}/audio/music"
     name: music
-  - dir: /mnt/storage/photos
+  - dir: "{{storage_root}}/photos"
     name: photos
 
 digital_ocean_token: "{{vault_digital_ocean_token}}"
@@ -110,4 +110,5 @@ couchdb_password: "{{vault_couchdb_password}}"
 
 # Traefik config
 traefik_do_token: "{{vault_traefik_do_token}}"
+traefik_config_dir: "{{docker_root}}/traefik"
 

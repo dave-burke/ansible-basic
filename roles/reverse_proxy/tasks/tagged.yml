@@ -33,11 +33,11 @@
 - name: Ensure traefik config file is present
   template:
     src: traefik.toml
-    dest: "/mnt/storage/docker/traefik/traefik.toml"
+    dest: "{{traefik_config_dir}}/traefik.toml"
 
 - name: Ensure acme.json is present
   file:
-    path: "/mnt/storage/docker/traefik/acme.json"
+    path: "{{traefik_config_dir}}/acme.json"
     mode: 0600
 
 - name: Ensure traefik container is started
@@ -53,8 +53,8 @@
       - 8080:8080/tcp
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "/mnt/storage/docker/traefik/traefik.toml:/etc/traefik/traefik.toml:ro"
-      - "/mnt/storage/docker/traefik/acme.json:/acme.json:ro"
+      - "{{traefik_config_dir}}/traefik.toml:/etc/traefik/traefik.toml:ro"
+      - "{{traefik_config_dir}}/acme.json:/acme.json:ro"
     env:
       "DO_AUTH_TOKEN": "{{traefik_do_token}}"
     labels:
