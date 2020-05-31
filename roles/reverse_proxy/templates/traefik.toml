@@ -17,7 +17,7 @@ defaultEntryPoints = ["http", "https"]
 [certificatesResolvers.do-resolver.acme]
   email = "{{email_recipient}}"
   storage = "acme.json"
-  caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+  # caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
 
   [certificatesResolvers.do-resolver.acme.dnsChallenge]
     provider = "digitalocean"
