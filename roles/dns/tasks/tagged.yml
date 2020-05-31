@@ -47,6 +47,9 @@
       # your-domain-name.com
       jamcity.com 
       unityads.unity3d.com
+      supersonicads.com
+      swrve.com
+      adjust.com
   notify: regenerate_dns_blacklist
 
 - name: Ensure blacklist update task is scheduled
@@ -60,12 +63,13 @@
   docker_container:
     name: dns
     image: andyshinn/dnsmasq
-    pull: true
+    #pull: true
     state: started
     restart_policy: always
     volumes:
       - "/etc/hosts:/etc/hosts:ro"
       - "{{hosts_repo_dir}}/hosts:/etc/hosts-blacklist:ro"
+      - "/mnt/storage/docker/dns/:/logs"
     ports:
       - 53:53/tcp
       - 53:53/udp
@@ -80,9 +84,10 @@
       --server 9.9.9.9
       --server 149.112.112.112
       --expand-hosts
-      --log-facility=-
+      --log-facility=/logs/log.txt
       --dns-forward-max 1000
       --domain-needed
       --bogus-priv
+# --log-queries
   register: "docker_dns_container_status"
 
