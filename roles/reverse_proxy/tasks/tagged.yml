@@ -26,6 +26,11 @@
     rule: allow
     port: 'http'
 
+- name: Ensure traefik config file is present
+  template:
+    src: traefik.toml
+    dest: "/mnt/storage/docker/traefik/traefik.toml"
+
 - name: Ensure traefik container is started
   tags: ['traefik']
   docker_container:
@@ -35,10 +40,15 @@
     restart_policy: unless-stopped
     ports:
       - 80:80/tcp
+      - 8080:443/tcp
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-    command: "--api.insecure=true --providers.docker"
+      - "/mnt/storage/docker/traefik/:/etc/traefik/:ro"
+    env:
+      "DO_AUTH_TOKEN": "{{traefik_do_token}}"
     labels:
       "traefik.http.routers.traefik.rule": "Host(`traefik.{{ansible_hostname}}.{{domain}}`)"
       "traefik.http.services.traefik.loadbalancer.server.port": "8080"
+      "traefik.http.routers.traefik.tls": "true"
+      "traefik.http.routers.traefik.tls.certresolver": "do-resolver"
 

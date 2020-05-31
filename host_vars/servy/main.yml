@@ -108,3 +108,6 @@ digital_ocean_token: "{{vault_digital_ocean_token}}"
 couchdb_config_path: "{{docker_root}}/couchdb/"
 couchdb_password: "{{vault_couchdb_password}}"
 
+# Traefik config
+traefik_do_token: "{{vault_traefik_do_token}}"
+

@@ -1,0 +1,47 @@
+defaultEntryPoints = ["http", "https"]
+
+[log]
+  level = "DEBUG"
+
+################################################################
+# Entrypoints configuration
+################################################################
+
+[entryPoints]
+  [entryPoints.http]
+    address = ":80"
+
+  [entryPoints.https]
+    address = ":443"
+
+[certificatesResolvers.do-resolver.acme]
+  email = "{{email_recipient}}"
+  storage = "acme.json"
+  caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+
+  [certificatesResolvers.do-resolver.acme.dnsChallenge]
+    provider = "digitalocean"
+    resolvers = ["1.1.1.1:53"]
+
+################################################################
+# API and dashboard configuration
+################################################################
+
+[api]
+  insecure = true
+
+################################################################
+# Ping configuration
+################################################################
+
+# Enable ping
+[ping]
+
+################################################################
+# Docker configuration backend
+################################################################
+[providers]
+  [providers.docker]
+    defaultRule = "Host(`{{ '{{' }} trimPrefix `/` .Name {{ '}}' }}.{{inventory_hostname}}.{{domain}}`)"
+    endpoint = "unix:///var/run/docker.sock"
+
