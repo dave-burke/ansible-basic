@@ -18,8 +18,10 @@
       COUCHDB_USER: "{{couchdb_user}}"
       COUCHDB_PASSWORD: "{{couchdb_password}}"
     labels:
-      "traefik.http.routers.couchdb.rule": "Host(`couchdb.{{ansible_hostname}}.{{domain}}`)"
       "traefik.http.services.couchdb.loadbalancer.server.port": "5984"
-      "traefik.http.routers.couchdb.tls": "true"
-      "traefik.http.routers.couchdb.tls.certresolver": "do-resolver"
+      "traefik.http.routers.couchdb.rule": "Host(`couchdb.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.routers.couchdb.middlewares": "tls-redirect"
+      "traefik.http.routers.couchdb-secure.rule": "Host(`couchdb.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.routers.couchdb-secure.tls": "true"
+      "traefik.http.routers.couchdb-secure.tls.certresolver": "do-resolver"
 

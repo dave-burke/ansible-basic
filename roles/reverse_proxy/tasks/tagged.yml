@@ -18,11 +18,13 @@
       - "{{http_static_config_file}}:/etc/nginx/conf.d/static.conf:ro"
     labels:
       "traefik.http.routers.nginx.rule": "Host(`static.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.app.rule": "Host(`apps.{{ansible_hostname}}.{{domain}}`)"
       "traefik.http.routers.nginx.tls": "true"
       "traefik.http.routers.nginx.tls.certresolver": "do-resolver"
-      "traefik.http.routers.app.tls": "true"
-      "traefik.http.routers.app.tls.certresolver": "do-resolver"
+      "traefik.http.routers.app.rule": "Host(`apps.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.routers.app.middlewares": "tls-redirect"
+      "traefik.http.routers.app-secure.rule": "Host(`apps.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.routers.app-secure.tls": "true"
+      "traefik.http.routers.app-secure.tls.certresolver": "do-resolver"
 
 - name: Ensure HTTP traffic allowed through firewall
   tags: ['ufw']
@@ -60,6 +62,7 @@
       "DO_AUTH_TOKEN": "{{traefik_do_token}}"
     labels:
       "traefik.http.routers.traefik.rule": "Host(`traefik.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.middlewares.tls-redirect.redirectscheme.scheme": "https"
       "traefik.http.services.traefik.loadbalancer.server.port": "8080"
       "traefik.http.routers.traefik.tls": "true"
       "traefik.http.routers.traefik.tls.certresolver": "do-resolver"
