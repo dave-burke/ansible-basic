@@ -1,0 +1,24 @@
+---
+- name: Ensure HandBrakeCLI is installed
+  package: name=handbrake-cli state=present
+
+- name: Ensure mkvtoolnix is installed
+  package: name=mkvtoolnix-cli state=present
+
+- name: Ensure ffmpeg is installed
+  package: name=ffmpeg state=present
+
+- name: Ensure ruby is installed
+  package: name=ruby state=present
+
+- name: Ensure transcode-video gem is installed
+  gem: name=video_transcoding
+
+- name: Ensure wrapper script is present
+  copy:
+    src: transcode.sh
+    dest: "/home/{{user}}/.local/bin/transcode"
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: 0755
+

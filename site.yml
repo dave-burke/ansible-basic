@@ -22,6 +22,7 @@
     - budget
     - backup_client
     - aws_cli
+    - video_transcoding
   tasks:
     - name: Ensure storage disk is mounted
       mount:
