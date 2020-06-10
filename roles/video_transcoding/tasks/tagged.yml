@@ -2,11 +2,14 @@
 - name: Ensure HandBrakeCLI is installed
   package: name=handbrake-cli state=present
 
-- name: Ensure mkvtoolnix is installed
-  package: name=mkvtoolnix-cli state=present
-
 - name: Ensure ffmpeg is installed
   package: name=ffmpeg state=present
+
+- name: Ensure mkvtoolnix is installed for mkvpropedit
+  package: name=mkvtoolnix-cli state=present
+
+- name: Ensure libmp4v2 is installed for mp4track
+  package: name=libmp4v2 state=present
 
 - name: Ensure ruby is installed
   package: name=ruby state=present
