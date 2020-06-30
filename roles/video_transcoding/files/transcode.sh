@@ -8,13 +8,13 @@ Usage: $0 [TYPE] [transcode-video options] [FILENAME]
 
 Types:
 
-    --animation = --tune animation --filter nlmeans=medium --filter nlmeans-tune=animation
-    --cgi       = --filter nlmeans=light
-    --film      = --tune film --filter nlmeans=light --filter nlmeans-tune=film
-    --grain     = --tune grain --filter nlmeans=light --filter nlmeans-tune=grain
-    --bsg       = --tune film --filter nlmeans=light --filter nlmeans-tune=highmotion
-    --kids      = --quick --target=480p=500 --audio-width all=stereo
-    [default]   = --filter nlmeans=light"
+    --animation   = --filter nlmeans=medium --filter nlmeans-tune=animation
+    --cgi         = --filter nlmeans=light
+    --film        = --filter nlmeans=light --filter nlmeans-tune=film
+    --grain       = --filter nlmeans=light --filter nlmeans-tune=grain
+    --bsg         = --filter nlmeans=light --filter nlmeans-tune=highmotion
+    --kid-tablets = --quick --filter nlmeans=light --avbr --target 500 --max-width 1024 --max-height 600 --audio-width all=stereo
+    [default]     = --filter nlmeans=light
 
 Common transcode-video options are:
 
@@ -83,8 +83,8 @@ case $1 in
 		ARGS+="--filter nlmeans=light --filter nlmeans-tune=highmotion"
 		shift
 		;;
-    --kids)
-		ARGS+="--quick --avbr --target 500 --audio-width all=stereo"
+    --kid-tablets)
+		ARGS+="--quick --filter nlmeans=light --avbr --target 500 --max-width 1024 --max-height 600 --audio-width all=stereo"
 		shift
 		;;
 	*)
