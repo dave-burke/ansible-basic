@@ -1,3 +1,4 @@
 ---
 dns_hosts_repo_dir: /opt/dns-blocklist/
+dns_allowlist: ""
 

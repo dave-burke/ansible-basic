@@ -39,20 +39,13 @@
     executable: pip3
     requirements: "{{dns_hosts_repo_dir}}/requirements.txt"
 
-- name: Ensure whitelist allows Emoji Blitz free spins
+- name: Ensure host allowlist is applied
   copy:
     dest: "{{dns_hosts_repo_dir}}/whitelist"
-    content: |
-      # Domains added below will be ignored, For example:
-      # your-domain-name.com
-      jamcity.com 
-      unityads.unity3d.com
-      supersonicads.com
-      swrve.com
-      adjust.com
+    content: "{{dns_allowlist}}"
   notify: regenerate_dns_blacklist
 
-- name: Ensure blacklist update task is scheduled
+- name: Ensure blocklist update task is scheduled
   template:
     src: update-dns-blacklist.sh
     dest: /etc/cron.weekly
