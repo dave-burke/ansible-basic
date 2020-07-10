@@ -112,3 +112,13 @@ couchdb_password: "{{vault_couchdb_password}}"
 traefik_do_token: "{{vault_traefik_do_token}}"
 traefik_config_dir: "{{docker_root}}/traefik"
 
+dns_allowlist: |
+  # Domains added below will be ignored, For example:
+  # your-domain-name.com
+  jamcity.com
+  unityads.unity3d.com
+  supersonicads.com
+  swrve.com
+  adjust.com
+  googleadservices.com
+
