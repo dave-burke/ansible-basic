@@ -2,7 +2,7 @@
 
 set -e
 
-cd "{{hosts_repo_dir}}"
+cd "{{dns_hosts_repo_dir}}"
 python3 ./updateHostsFile.py --auto --nogendata --skipstatichosts
 
 echo -n "Restarting dns..."
