@@ -81,6 +81,6 @@
       --dns-forward-max 1000
       --domain-needed
       --bogus-priv
-# --log-queries
+#     --log-queries
   register: "docker_dns_container_status"
 
