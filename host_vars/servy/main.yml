@@ -115,10 +115,24 @@ traefik_config_dir: "{{docker_root}}/traefik"
 dns_allowlist: |
   # Domains added below will be ignored, For example:
   # your-domain-name.com
+  adjust.com
+  ads.mopub.com
+  api.mixpanel.com
+  app-measurement.com
+  applovin.com
+  applvn.com
+  crashlytics.com
+  decide.mixpanel.com
+  googleadservices.com
+  googlesyndication.com
+  invenio.sgn.com
   jamcity.com
-  unityads.unity3d.com
+  live.chartboost.com
+  moatads.com
+  sessions.bugsnag.com
   supersonicads.com
   swrve.com
-  adjust.com
-  googleadservices.com
+  unity3d.com
+  # ssacdn.com
+  # doubleclick.net
 
