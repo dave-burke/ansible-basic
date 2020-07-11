@@ -56,7 +56,7 @@
   docker_container:
     name: dns
     image: andyshinn/dnsmasq
-    #pull: true
+    pull: true
     state: started
     restart_policy: always
     volumes:
