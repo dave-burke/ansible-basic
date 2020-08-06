@@ -146,3 +146,9 @@
         - phone
         - tabby
         - compy
+    - role: nfs_client
+      nfs_mounts:
+        - host: servy
+          name: photos
+          dir: /mnt/nfs/photos
+

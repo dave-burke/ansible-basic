@@ -1,0 +1,21 @@
+---
+- name: Ensure nfs server is installed
+  package: name=nfs-utils state=present
+
+- name: Ensure mountpoints exist
+  file:
+    state: directory
+    path: "{{item.dir}}"
+    owner: root
+    group: root
+    mode: 0755
+  with_items: "{{nfs_mounts}}"
+
+- name: Ensure shares are mounted
+  mount:
+    state: mounted
+    fstype: "nfs"
+    src: "{{item.host}}:/srv/nfs/{{item.name}}"
+    path: "{{item.dir}}"
+  with_items: "{{nfs_mounts}}"
+
