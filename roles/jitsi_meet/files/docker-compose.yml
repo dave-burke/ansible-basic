@@ -156,6 +156,7 @@ services:
             - JVB_TCP_PORT
             - JVB_STUN_SERVERS
             - JVB_ENABLE_APIS
+            - VIDEOBRIDGE_MAX_MEMORY
             - TZ
         depends_on:
             - prosody
