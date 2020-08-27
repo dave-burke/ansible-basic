@@ -8,12 +8,12 @@
     rule: allow
     port: '25565'
 
-- name: Ensure minecraft container is started
+- name: Ensure minecraft container is {{minecraft_server_state}}
   docker_container:
     name: minecraft
     image: itzg/minecraft-server
     pull: true
-    state: started
+    state: "{{minecraft_server_state}}"
     restart_policy: unless-stopped
     volumes:
       - "{{minecraft_dir}}:/data"

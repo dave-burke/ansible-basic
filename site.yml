@@ -130,7 +130,9 @@
           - "docker start minecraft"
     - users_dave
     - jitsi_meet
-    - minecraft_server
+    - role: minecraft_server
+      vars:
+        minecraft_server_state: stopped
     - backup_client
     - murmur
 
