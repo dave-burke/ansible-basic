@@ -1,4 +1,8 @@
 ---
+- name: Ensure psutil is installed for managing dconf
+  package: name=python-psutil state=present
+  when: ansible_os_family == "Debian"
+
 - name: "Ensure caps:backspace option with dconf"
   become: yes
   become_user: "{{user}}"
