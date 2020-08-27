@@ -145,6 +145,7 @@
     - syncthing
     - users_dave
     - development
+    - budget
     - role: ssh_user
       vars:
         user: dave
