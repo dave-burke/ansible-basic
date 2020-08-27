@@ -9,13 +9,14 @@
     - users_wesley
     - users_andrew
     - role: ssh_user
-      user: dave
-      authorized_hosts:
-        - servy
-        - happy
-        - asuz
-        - phone
-        - tabby
+      vars:
+        user: dave
+        authorized_hosts:
+          - servy
+          - happy
+          - asuz
+          - phone
+          - tabby
     - development
     - photo_mgmt
     - syncthing
@@ -41,11 +42,12 @@
     - users_wesley
     - users_andrew
     - role: ssh_user
-      user: dave
-      authorized_hosts:
-        - servy
-        - compy
-        - happy
+      vars:
+        user: dave
+        authorized_hosts:
+          - servy
+          - compy
+          - happy
     - syncthing
     - touchpad_toggle
     - backup_client
@@ -55,20 +57,22 @@
     - users_dave
     - users_suz
     - role: ssh_user
-      user: dave
-      authorized_hosts:
-        - compy
-        - happy
-        - asuz
-        - phone
-        - tabby
+      vars:
+        user: dave
+        authorized_hosts:
+          - compy
+          - happy
+          - asuz
+          - phone
+          - tabby
     - role: ssh_command_sender
-      user: dave
-      remote_host: dropy
-      auth_key: ssh/dave/servy/id_rsa_minecraft
-      scripts:
-        - files/ssh/dave/servy/actions/minecraft_up.sh
-        - files/ssh/dave/servy/actions/minecraft_down.sh
+      vars:
+        user: dave
+        remote_host: dropy
+        auth_key: ssh/dave/servy/id_rsa_minecraft
+        scripts:
+          - files/ssh/dave/servy/actions/minecraft_up.sh
+          - files/ssh/dave/servy/actions/minecraft_down.sh
     - digital_ocean_cli
     - raid_storage
     - dns
@@ -109,19 +113,21 @@
 - hosts: dropy
   roles:
     - role: ssh_user
-      user: dave
-      authorized_hosts:
-        - compy
-        - happy
-        - phone
-        - tabby
+      vars:
+        user: dave
+        authorized_hosts:
+          - compy
+          - happy
+          - phone
+          - tabby
     - role: ssh_command_receiver
-      user: dave
-      action_name: minecraft
-      auth_key: ssh/dave/servy/id_rsa_minecraft.pub
-      commands:
-        - "docker stop minecraft"
-        - "docker start minecraft"
+      vars:
+        user: dave
+        action_name: minecraft
+        auth_key: ssh/dave/servy/id_rsa_minecraft.pub
+        commands:
+          - "docker stop minecraft"
+          - "docker start minecraft"
     - users_dave
     - jitsi_meet
     - minecraft_server
@@ -140,15 +146,17 @@
     - users_dave
     - development
     - role: ssh_user
-      user: dave
-      authorized_hosts:
-        - servy
-        - phone
-        - tabby
-        - compy
+      vars:
+        user: dave
+        authorized_hosts:
+          - servy
+          - phone
+          - tabby
+          - compy
     - role: nfs_client
-      nfs_mounts:
-        - host: servy
-          name: photos
-          dir: /mnt/nfs/photos
+      vars:
+        nfs_mounts:
+          - host: servy
+            name: photos
+            dir: /mnt/nfs/photos
 
