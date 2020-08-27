@@ -14,7 +14,7 @@
     group: "{{user}}"
 
 - name: "Ensure custom hl script is present"
-  copy:
+  template:
     src: hl
     dest: "/home/{{user}}/.local/bin/hl"
     mode: 0755

@@ -2,7 +2,7 @@
 
 set -e
 
-export LEDGER_FILE=~/docs/personal/finances/budget/main.ledger
+export LEDGER_FILE="{{budget_journal_file}}"
 if [[ "${1}" == "edit" ]]; then
 	dir="$(dirname ${LEDGER_FILE})"
 	cd "${dir}"
@@ -13,16 +13,16 @@ elif [[ "${1}" == "ui" ]]; then
 elif [[ "${1}" == "add" ]]; then
 	hledger $@
 elif [[ "${1}" == "quick" ]]; then
-	hl bal --flat -O csv | sed 's/assets://' | sed 's/wf://' | sed '/"Account",/d' | sed '/~/d' | sed '/"total"/d' | xclip -selection c -d ":1"
+	hledger bal --flat -V -O csv | sed 's/assets://' | sed 's/wf://' | sed '/"Account",/d' | sed '/~/d' | sed '/"total"/d' | xclip -selection c -d ":1"
 elif [[ "${1}" == "int" || "${1}" == "interest" ]]; then
 	if [[ $# -lt 2 ]]; then
 		echo "Usage: hl interest [account name]"
 		exit 1
 	fi
-	hl prices | awk -F' ' '{ print $2 }' | while read line; do
+	hledger prices | awk -F' ' '{ print $2 }' | while read line; do
 		d=$(date -d "${line}+1day" +%Y-%m-%d)
 		echo -n "${d}: "
-		hl bal -N "${2}" -V --end "${d}" | sed 's/^ *//'
+		hledger bal -N "${2}" -V --end "${d}" | sed 's/^ *//'
 	done
 else
 	hledger --auto $@
