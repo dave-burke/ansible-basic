@@ -54,6 +54,7 @@ dyndns_token: "{{vault_dyndns_token}}"
 # Minecraft config
 minecraft_dir: "{{docker_root}}/minecraft"
 minecraft_server_env:
+  MEMORY: '1536M' # 1.5G
   MODE: creative
 
 # NGINX config
