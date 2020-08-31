@@ -21,7 +21,7 @@ Common transcode-video options are:
 Output options:
 -o, --output FILENAME|DIRECTORY
                     set output path and filename, or just path
--n, --dry-run       don't transcode, just show `HandBrakeCLI` command and exit
+-n, --dry-run       don't transcode, just show 'HandBrakeCLI' command and exit
 
 Quality options:
     --avbr          use average variable bitrate (AVBR) ratecontrol
@@ -49,16 +49,13 @@ Subtitle options:
                     add track selected by number
     --no-auto-burn  don't automatically burn first forced subtitle
 
-Requires `HandBrakeCLI`, `mp4track`, `ffmpeg` and `mkvpropedit`.
+Requires 'HandBrakeCLI', 'mp4track', 'ffmpeg' and 'mkvpropedit'.
 
 EOF
+	exit
 fi
 
-if command -v realpath > /dev/null; then
-	dir=$(dirname $(realpath ${0}))
-else
-	dir="$(cd $(dirname ${0}); pwd)"
-fi
+dir="$(cd $(dirname ${0}); pwd)"
 
 ARGS="--filter decomb "
 
@@ -94,5 +91,5 @@ case $1 in
 esac
 
 echo "transcode-video ${ARGS} ${@}"
-"transcode-video" ${ARGS} "${@}"
+transcode-video ${ARGS} "${@}"
 
