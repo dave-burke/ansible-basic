@@ -1,5 +1,6 @@
 ---
 minecraft_server_core:
+  USE_AIKAR_FLAGS: "true"
   TZ: "America/Chicago"
   EULA: "true"
   CONSOLE: "false"
