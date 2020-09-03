@@ -1,7 +1,6 @@
 ---
 minecraft_server_state: started
 minecraft_server_env:
-  TZ: America/Chicago
   DIFFICULTY: normal
   ONLINE_MODE: "false"
 

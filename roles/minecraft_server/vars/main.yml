@@ -1,5 +1,6 @@
 ---
 minecraft_server_core:
+  TZ: "America/Chicago"
   EULA: "true"
   CONSOLE: "false"
 
