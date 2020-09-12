@@ -57,7 +57,7 @@ fi
 
 dir="$(cd $(dirname ${0}); pwd)"
 
-ARGS="--filter decomb "
+ARGS="--filter decomb --add-audio=eng --add-subtitle=eng "
 
 case $1 in
 	--animation)
