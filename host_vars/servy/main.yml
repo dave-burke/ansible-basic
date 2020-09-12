@@ -92,10 +92,6 @@ aws_key: "AKIAZ4U4D464WU5YA6GU"
 aws_secret_key: "{{vault_aws_secret_key}}"
 aws_region: "us-east-1"
 
-# Wasabi CLI
-wasabi_key: "ZGY6IWQSZRDT8ZDRNAEI"
-wasabi_secret_key: "{{vault_wasabi_secret_key}}"
-
 # hledger config
 hledger_dir: "{{storage_root}}/sync/budget"
 

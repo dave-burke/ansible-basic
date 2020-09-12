@@ -1,4 +1,0 @@
----
-dependencies:
-- { role: aws_cli }
-
