@@ -40,7 +40,7 @@
     owner: "{{admin_user}}"
     group: "{{admin_user}}"
 
-- name: Add Arch upgrade script
+- name: Add upgrade script
   copy:
     src: "{{ansible_pkg_mgr}}-upgrade.sh"
     dest: /home/{{admin_user}}/.local/bin/upgrade.sh
