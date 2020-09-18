@@ -26,10 +26,11 @@
     - video_transcoding
   tasks:
     - name: Ensure storage disk is mounted
+      tags: ['fstab']
       mount:
         path: "/mnt/storage"
-        src: UUID=338a8dd5-3d41-433d-87c7-56a9339fa194
-        fstype: ext3
+        src: UUID=5f0562d1-ea1b-4d1c-b47d-9587c67a2759
+        fstype: ext4
         opts: defaults
         dump: "0"
         passno: "3"
