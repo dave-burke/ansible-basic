@@ -12,9 +12,12 @@ if [[ -z "${SMARTD_SUBJECT}" ]]; then
 	SMARTD_SUBJECT="SMART daemon default subject"
 fi
 
+# Escape values for JSON
+jsonSubject=$(jq -aRs . <<< "${SMARTD_SUBJECT}")
+jsonMessage=$(jq -aRs . <<< "${SMARTD_MESSAGE\n\nSMARTD_FULLMESSAGE}")
+
 curl -X POST \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Basic $(echo -n "{{raid_notify_user}}:{{raid_notify_password}}" \
-	-d '{ "subject": "'"${SMARTD_SUBJECT}"'", "body": "'"${SMARTD_MESSAGE}\n\n${SMARTD_FULLMESSAGE}"'" }' \
+	-H "Authorization: Basic $(echo -n "{{raid_notify_user}}:{{raid_notify_password}}" | base64)" \
+	-d '{ "subject": '"${jsonSubject}"', "body": '"${jsonMessage}"' }' \
 	"{{raid_notify_endpoint}}"
-
