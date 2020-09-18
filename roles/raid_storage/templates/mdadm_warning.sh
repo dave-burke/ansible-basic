@@ -1,7 +1,5 @@
 #!/bin/bash
 
-recipient="{{email_recipient}}"
-
 event="${1}"
 device="${2}"
 component="${3}"
@@ -18,5 +16,12 @@ message+="$(mdadm --detail /dev/disk/by-uuid/{{storage_uuid}})\n\n"
 message+="$(df -h | head -n 1)\n"
 message+="$(df -h | grep /dev/md)"
 
-echo -e "${message}" | mutt -s "${subject}" "${recipient}"
+# Escape values for JSON
+jsonSubject=$(jq -aRs . <<< "${subject}")
+jsonMessage=$(jq -aRs . <<< "${message}")
 
+curl -X POST \
+	-H "Content-Type: application/json" \
+	-H "Authorization: Basic $(echo -n "{{raid_notify_user}}:{{raid_notify_password}}" | base64)" \
+	-d '{ "subject": '"${jsonSubject}"', "body": '"${jsonMessage}"' }' \
+	"{{raid_notify_endpoint}}"

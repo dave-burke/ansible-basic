@@ -3,6 +3,11 @@ storage_uuid: "4ba8b760-634e-4915-9d61-bfcc27f19848"
 storage_root: /mnt/storage
 docker_root: "{{storage_root}}/docker"
 
+# RAID config
+raid_notify_user: "{{vault_raid_notify_user}}"
+raid_notify_password: "{{vault_raid_notify_password}}"
+raid_notify_endpoint: "{{vault_raid_notify_endpoint}}"
+
 # DNS config
 hosts:
   - { ip: 10.1.1.1, host: "{{vault_dyndns_domain}}.duckdns.org" }
