@@ -1,6 +1,6 @@
 ---
 - name: Install pexpect python module for the expect task
-  pip: name=pexpect state=latest
+  pip: name=pexpect state=present
 
 - name: Ensure openvpn data volume exists
   docker_volume: name={{openvpn_data_volume}} state=present

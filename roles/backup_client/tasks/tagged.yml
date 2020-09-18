@@ -1,14 +1,14 @@
 ---
 - name: Ensure borg is installed
-  package: name={{borg_pkg}} state=latest
+  package: name={{borg_pkg}} state=present
 
 - name: Ensure borgmatic is installed
-  package: name=borgmatic state=latest
+  package: name=borgmatic state=present
   when: ansible_os_family != "Debian"
 
 # Ubuntu LTS does not have borgmatic, so we have to install via pip
 - name: Ensure pip is installed
-  package: name={{pip_pkg}} state=latest
+  package: name={{pip_pkg}} state=present
   when: ansible_os_family == "Debian"
 
 - name: Ensure borgmatic is installed via pip
@@ -19,7 +19,7 @@
   when: ansible_os_family == "Debian"
 
 - name: Ensure llfuse is installed (for mounting backups)
-  package: name={{llfuse_pkg}} state=latest
+  package: name={{llfuse_pkg}} state=present
 
 - name: Ensure backup private key is present
   copy:

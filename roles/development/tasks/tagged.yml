@@ -1,21 +1,21 @@
 ---
 - name: Ensure IntelliJ is installed
-  package: name=intellij-idea-community-edition state=latest
+  package: name=intellij-idea-community-edition state=present
 
 - name: Ensure VS Code is installed
-  package: name=code state=latest
+  package: name=code state=present
 
 - name: Ensure NPM is installed
-  package: name=npm state=latest
+  package: name=npm state=present
 
 - name: Ensure Firefox is installed
-  package: name=firefox state=latest
+  package: name=firefox state=present
 
 - name: Ensure Chromium is installed
-  package: name=chromium state=latest
+  package: name=chromium state=present
 
 - name: Ensure cmake is installed
-  package: name=cmake state=latest
+  package: name=cmake state=present
 
 - name: Install YouCompleteMe
   command: "/home/{{user}}/.vim/bundle/youcompleteme/install.py"

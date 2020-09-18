@@ -12,7 +12,7 @@
   user: name={{user}} groups=docker append=true
 
 - name: Ensure pip is installed
-  package: name={{pip_pkg}} state=latest
+  package: name={{pip_pkg}} state=present
 
 - name: install certain python modules for docker
   pip:

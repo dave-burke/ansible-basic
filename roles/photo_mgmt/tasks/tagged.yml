@@ -1,12 +1,12 @@
 ---
 - name: Ensure Digikam is installed
-  package: name=digikam state=latest
+  package: name=digikam state=present
 
 - name: Ensure exiftool is installed
-  package: name=perl-image-exiftool state=latest
+  package: name=perl-image-exiftool state=present
 
 - name: Ensure gnu parallel is installed
-  package: name=parallel state=latest
+  package: name=parallel state=present
 
 - name: Clone photo-management repository
   git: 

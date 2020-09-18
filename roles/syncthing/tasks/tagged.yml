@@ -13,7 +13,7 @@
   when: ansible_os_family == "Debian"
 
 - name: Ensure syncthing is installed
-  package: name=syncthing state=latest
+  package: name=syncthing state=present
 
 - name: Ensure syncthing listening port allowed through firewall
   tags: ['ufw']

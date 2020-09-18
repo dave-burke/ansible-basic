@@ -1,40 +1,40 @@
 ---
 - name: Ensure mosh is installed
-  package: name=mosh state=latest
+  package: name=mosh state=present
 
 - name: Ensure tmux is installed
-  package: name=tmux state=latest
+  package: name=tmux state=present
 
 - name: Ensure git is installed
-  package: name=git state=latest
+  package: name=git state=present
 
 - name: Ensure zsh is installed
-  package: name=zsh state=latest
+  package: name=zsh state=present
 
 - name: Ensure zip is installed
-  package: name=zip state=latest
+  package: name=zip state=present
 
 - name: Ensure tree is installed
-  package: name=tree state=latest
+  package: name=tree state=present
 
 - name: Ensure pv is installed
-  package: name=pv state=latest
+  package: name=pv state=present
 
 - name: Ensure tomb in installed
-  package: name=tomb state=latest
+  package: name=tomb state=present
 
 - name: Ensure bat is installed
-  package: name=bat state=latest
+  package: name=bat state=present
   when: ansible_os_family == "Archlinux"
 
 - name: Ensure fd is installed
-  package: name=fd state=latest
+  package: name=fd state=present
   when: ansible_os_family == "Archlinux"
 
 - name: Ensure pulsemixer is installed
-  package: name=pulsemixer state=latest
+  package: name=pulsemixer state=present
   when: ansible_os_family == "Archlinux"
 
 - name: Ensure ag is installed
-  package: name={{ag_pkg}} state=latest
+  package: name={{ag_pkg}} state=present
 

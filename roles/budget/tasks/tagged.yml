@@ -1,9 +1,9 @@
 ---
 - name: "Ensure hledger is present"
-  package: name=hledger state=latest
+  package: name=hledger state=present
 
 - name: "Ensure hledger ui is present"
-  package: name=hledger-ui state=latest
+  package: name=hledger-ui state=present
 
 - name: "Ensure local bin directory is present"
   file:

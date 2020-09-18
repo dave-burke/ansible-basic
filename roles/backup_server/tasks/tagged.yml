@@ -1,6 +1,6 @@
 ---
 - name: Ensure borg is installed
-  package: name={{borg_pkg}} state=latest
+  package: name={{borg_pkg}} state=present
 
 - name: Ensure backup directories exist
   file:

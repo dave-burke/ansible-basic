@@ -1,6 +1,6 @@
 ---
 - name: Ensure dig is installed
-  package: name=dnsutils state=latest
+  package: name=dnsutils state=present
 
 - name: Ensure script dir is present
   file: name=/opt/dyndns_update state=directory
