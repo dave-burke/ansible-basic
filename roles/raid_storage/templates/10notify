@@ -14,7 +14,9 @@ fi
 
 # Escape values for JSON
 jsonSubject=$(jq -aRs . <<< "${SMARTD_SUBJECT}")
-jsonMessage=$(jq -aRs . <<< "${SMARTD_MESSAGE\n\nSMARTD_FULLMESSAGE}")
+jsonMessage=$(jq -aRs . <<< "${SMARTD_MESSAGE}
+
+${SMARTD_FULLMESSAGE}")
 
 curl -X POST \
 	-H "Content-Type: application/json" \
