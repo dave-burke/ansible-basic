@@ -9,7 +9,7 @@ if [[ "${1}" == "edit" ]]; then
 	file="$(ls -1t | head -n 1)"
 	vim -p "${dir}/${file}"
 elif [[ "${1}" == "ui" ]]; then
-	hledger --auto ui -- --watch
+	hledger --auto -V ui -- --watch
 elif [[ "${1}" == "add" ]]; then
 	hledger $@
 elif [[ "${1}" == "quick" ]]; then
