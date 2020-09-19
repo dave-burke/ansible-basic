@@ -4,7 +4,6 @@
     src: "reboot-if-needed.sh"
     dest: "/root/reboot-if-needed.sh"
     mode: "0755"
-  when: "'headless' in group_names and ansible_pkg_mgr == 'apt'"
 
 - name: Ensure reboot-if-needed is run overnight
   cron:
@@ -13,7 +12,6 @@
     hour: "4"
     minute: "30"
     job: "/root/reboot-if-needed.sh"
-  when: "'headless' in group_names and ansible_pkg_mgr == 'apt'"
 
 - name: Add a non-root user
   user: name={{admin_user}} groups={{sudo_group}} append=true shell=/usr/bin/zsh
