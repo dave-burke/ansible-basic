@@ -1,4 +1,18 @@
 ---
+- name: "Ensure aws credentials file contains s3 sync credentials"
+  blockinfile:
+    path: /home/{{user}}/.aws/credentials
+    create: yes
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: 0600
+    insertbefore: BOF
+    marker: '# {mark} ANSIBLE MANAGED S3 SYNC CREDS'
+    block: |
+      [s3sync]
+      aws_secret_access_key = {{s3_sync_secret_key}}
+      aws_access_key_id = {{s3_sync_key}}
+
 - name: "Ensure sync cron job is present"
   cron:
     state: "present"
@@ -6,6 +20,6 @@
     user: "{{user}}"
     hour: "2"
     minute: "0"
-    job: "aws s3 sync {{item.path}} s3://{{s3_sync_bucket_name}}/{{item.prefix}} > /dev/null"
+    job: "aws --profile s3sync s3 sync {{item.path}} s3://{{s3_sync_bucket_name}}/{{item.prefix}} > /dev/null"
   with_items: "{{s3_sync_items}}"
 
