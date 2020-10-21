@@ -144,10 +144,6 @@
         dest: /etc/modprobe.d/nobeep.conf
         content: "blacklist pcspkr"
   roles:
-    - syncthing
-    - users_dave
-    - development
-    - budget
     - role: ssh_user
       vars:
         user: dave
@@ -156,6 +152,10 @@
           - phone
           - tabby
           - compy
+    - users_dave
+    - development
+    - syncthing
+    - budget
     - role: nfs_client
       vars:
         nfs_mounts:
