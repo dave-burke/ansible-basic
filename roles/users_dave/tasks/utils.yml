@@ -20,6 +20,15 @@
 - name: Ensure pv is installed
   package: name=pv state=present
 
+# TODO This is a pre-requisite for installing tomb on arch, but tomb still can't be
+# installed because it's only in the AUR.
+#- name: Ensure tomb gpg key is imported
+  ## Pinned comment at https://aur.archlinux.org/packages/tomb/ as of this
+  ## writing. In the future, this could be expanded into a GPG role that include
+  ## configuring the keyserver globally.
+  #command: gpg --keyserver pool.sks-keyservers.net --recv-keys 6113D89CA825C5CEDD02C87273B35DA54ACB7D10
+  #when: ansible_os_family == "Archlinux"
+
 - name: Ensure tomb in installed
   package: name=tomb state=present
 
