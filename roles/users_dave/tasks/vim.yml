@@ -1,9 +1,14 @@
 ---
-- name: Ensure gvim is installed
-  package: name={{gvim_pkg}} state=present
-  when: "'headless' not in group_names"
-
-- name: Ensure vim is installed
+- name: Ensure vim is installed on headless machines
   package: name=vim state=present
   when: "'headless' in group_names"
+
+# package 'vim' conflicts with 'gvim' on Arch
+- name: Ensure vim is NOT installed on GUI Arch machines
+  package: name=vim state=absent
+  when: "'headless' not in group_names and ansible_os_family == 'Archlinux'"
+
+- name: Ensure gvim is installed on GUI machines
+  package: name={{gvim_pkg}} state=present
+  when: "'headless' not in group_names"
 
