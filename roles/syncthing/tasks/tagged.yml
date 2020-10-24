@@ -15,6 +15,15 @@
 - name: Ensure syncthing is installed
   package: name=syncthing state=present
 
+- name: Ensure syncthing user service is running
+  become: yes
+  become_user: "{{user}}"
+  systemd:
+    name: syncthing
+    scope: user
+    state: started
+    enabled: true
+
 - name: Ensure syncthing listening port allowed through firewall
   tags: ['ufw']
   ufw:
