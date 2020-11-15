@@ -5,6 +5,9 @@
 - name: "Ensure hledger ui is present"
   package: name=hledger-ui state=present
 
+- name: "Ensure xclip is present"
+  package: name=xclip state=present
+
 - name: "Ensure local bin directory is present"
   file:
     name: "/home/{{user}}/.local/bin"
