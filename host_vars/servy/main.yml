@@ -62,7 +62,7 @@ minecraft_server_env:
   MEMORY: '1536M' # 1.5G
   MODE: creative
   DIFFICULTY: peaceful
-  ONLINE_MODE: "false"
+  ONLINE_MODE: "true"
   VERSION: 'LATEST'
   #VERSION: 1.2.5 # For Super Hostile Map "Infernal Sky II"
 
