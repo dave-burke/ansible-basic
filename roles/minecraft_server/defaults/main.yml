@@ -2,5 +2,5 @@
 minecraft_server_state: started
 minecraft_server_env:
   DIFFICULTY: normal
-  ONLINE_MODE: "false"
+  ONLINE_MODE: "true"
 
