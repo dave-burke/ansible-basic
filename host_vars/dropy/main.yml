@@ -13,7 +13,7 @@ minecraft_dir: "/opt/minecraft/"
 minecraft_server_env:
   DIFFICULTY: normal
   TYPE: "BUKKIT"
-  VERSION: "1.15.2"
+  VERSION: "1.16.4"
 murmur_password: "{{vault_murmur_password}}"
 
 borgmatic_configs:
