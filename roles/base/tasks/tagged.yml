@@ -63,7 +63,7 @@
     state: present
     dest: /etc/hosts
     regexp: '.*{{ item }}$'
-    line: "{{ hostvars[item].ansible_host }} {{item}}"
+    line: "{{ hostvars[item].ansible_host }}	{{item}}"
   when: hostvars[item].ansible_host is defined
   with_items: "{{ groups.all }}"
 

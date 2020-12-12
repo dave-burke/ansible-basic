@@ -3,6 +3,7 @@
 - name: Read SSH public key to authorize
   shell: cat /home/{{username}}/.ssh/id_rsa.pub
   register: github_ssh_pub_key
+  changed_when: false
 
 - name: Authorize key with GitHub
   local_action:
@@ -29,4 +30,5 @@
   command: "vim +PluginInstall +qa"
   become: yes
   become_user: "{{username}}"
+  changed_when: false
 
