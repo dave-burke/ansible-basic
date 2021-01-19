@@ -163,3 +163,15 @@
             name: photos
             dir: /mnt/nfs/photos
 
+- hosts: nextcloud
+  roles:
+    - role: ssh_user
+      vars:
+        user: dave
+        authorized_hosts:
+          - compy
+          - happy
+          - phone
+          - tabby
+    - users_dave
+    - nextcloud
