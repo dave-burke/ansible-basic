@@ -11,9 +11,6 @@
     ports:
       - "5000:5000"
     command: "hledger-web --serve --host='0.0.0.0' --file='/data/main.ledger' --base-url=https://budget.{{ansible_hostname}}.{{domain}} --cors='*'"
-    env:
-      VIRTUAL_HOST: "budget.{{ansible_hostname}}.{{domain}}"
-      VIRTUAL_PORT: "5000"
     labels:
       "traefik.http.routers.hledger.rule": "Host(`budget.{{ansible_hostname}}.{{domain}}`)"
       "traefik.http.routers.hledger.middlewares": "tls-redirect"
