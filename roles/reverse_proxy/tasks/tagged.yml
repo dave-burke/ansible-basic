@@ -5,6 +5,12 @@
     rule: allow
     port: 'http'
 
+- name: Ensure HTTPS traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: 'https'
+
 - name: Ensure traefik config file is present
   template:
     src: traefik.toml
