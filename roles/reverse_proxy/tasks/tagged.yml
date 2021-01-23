@@ -44,10 +44,4 @@
       - "{{traefik_config_dir}}/acme.json:/acme.json:rw"
     env:
       "DO_AUTH_TOKEN": "{{traefik_do_token}}"
-    labels:
-      "traefik.http.routers.traefik.rule": "Host(`traefik.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.middlewares.tls-redirect.redirectscheme.scheme": "https"
-      "traefik.http.services.traefik.loadbalancer.server.port": "8080"
-      "traefik.http.routers.traefik.tls": "true"
-      "traefik.http.routers.traefik.tls.certresolver": "do-resolver"
-
+    labels: "{{traefik_labels}}"
