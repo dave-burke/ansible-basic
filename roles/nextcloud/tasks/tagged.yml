@@ -1,0 +1,74 @@
+---
+- name: Ensure a postgres group exists
+  group: name=postgres
+  register: postgres_group
+
+- name: Ensure postgres user exists
+  user: name=postgres group=postgres createhome=no
+  register: postgres_user
+
+- name: "Ensure nextcloud root directory exists"
+  file:
+    name: "/opt/nextcloud"
+    state: directory
+    mode: 0755
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+
+- name: "Ensure nextcloud web directory exists"
+  file:
+    name: "/opt/nextcloud/web"
+    state: directory
+    mode: 0755
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+
+- name: "Ensure nextcloud db directory exists"
+  file:
+    name: "/opt/nextcloud/db"
+    state: directory
+    mode: 0755
+    owner: "{{postgres_user.name}}"
+    group: "{{postgres_group.name}}"
+
+- name: Ensure nextcloud postgres db container is started
+  docker_container:
+    name: nextcloud-db
+    image: postgres:13
+    pull: true
+    state: started
+    restart_policy: unless-stopped
+    user: "{{postgres_user.uid}}:{{postgres_group.gid}}"
+    hostname: "{{nextcloud_db_hostname}}"
+    env:
+      POSTGRES_USER: "{{nextcloud_db_user}}"
+      POSTGRES_PASSWORD: "{{nextcloud_db_password}}"
+      POSTGRES_DB: "{{nextcloud_db_name}}"
+    volumes:
+      - "/opt/nextcloud/db:/var/lib/postgresql/data:rw"
+      - "/etc/localtime:/etc/localtime:ro"
+  register: nextcloud_db
+
+- name: Ensure nextcloud container is started
+  docker_container:
+    name: nextcloud
+    image: nextcloud:20-apache
+    pull: true
+    state: started
+    restart_policy: unless-stopped
+    volumes:
+      - "/opt/nextcloud/web:/var/www/html:rw"
+      - "/etc/localtime:/etc/localtime:ro"
+    links: ["nextcloud-db:{{nextcloud_db_hostname}}"]
+    env:
+      POSTGRES_DB: "{{nextcloud_db_name}}"
+      POSTGRES_USER: "{{nextcloud_db_user}}"
+      POSTGRES_PASSWORD: "{{nextcloud_db_password}}"
+      POSTGRES_HOST: "{{nextcloud_db_hostname}}"
+      NEXTCLOUD_ADMIN_USER: "{{nextcloud_admin_user}}"
+      NEXTCLOUD_ADMIN_PASSWORD: "{{nextcloud_admin_password}}"
+    labels:
+      "traefik.http.services.nextcloud.loadbalancer.server.port": "80"
+      "traefik.http.routers.nextcloud-secure.rule": "Host(`nextcloud.{{domain}}`)"
+      "traefik.http.routers.nextcloud-secure.tls": "true"
+      "traefik.http.routers.nextcloud-secure.tls.certresolver": "tls-resolver"

@@ -174,4 +174,9 @@
           - phone
           - tabby
     - users_dave
+    - role: reverse_proxy
+      vars:
+        traefik_labels: {}
+        traefik_config_dir: "/opt/traefik"
     - nextcloud
+
