@@ -28,6 +28,11 @@ defaultEntryPoints = ["http", "https"]
     provider = "digitalocean"
     resolvers = ["1.1.1.1:53"]
 
+[certificatesResolvers.tls-resolver.acme]
+  email = "{{email_recipient}}"
+  storage = "acme.json"
+  [certificatesResolvers.tls-resolver.acme.tlsChallenge]
+
 ################################################################
 # API and dashboard configuration
 ################################################################
