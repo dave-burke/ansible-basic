@@ -1,9 +1,17 @@
 ---
+- name: Ensure a torrent group exists
+  group: name=torrent
+  register: torrent_group
+
+- name: Ensure torrent user exists
+  user: name=torrent group=torrent createhome=no
+  register: torrent_user
+
 - name: Ensure HTTP traffic allowed through firewall
   tags: ['ufw']
   ufw:
     rule: allow
-    port: '9091'
+    port: '{{web_ui_port}}'
 
 - name: Ensure torrent container is started
   docker_container:
@@ -26,8 +34,8 @@
       # they are rejected as spoofing attempts.
       - "{{ansible_docker0.ipv4.address}}"
     env:
-      PUID: "{{base_user.uid}}"
-      PGID: "{{base_user.group}}"
+      PUID: "{{torrent_user.uid}}"
+      PGID: "{{torrent_user.group}}"
       OPENVPN_OPTS: "--inactive 3600 --ping 10 --ping-exit 60"
       OPENVPN_PROVIDER: "{{openvpn_provider}}"
       OPENVPN_CONFIG: "{{openvpn_config}}"
