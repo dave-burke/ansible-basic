@@ -51,8 +51,6 @@
     labels:
       "traefik.http.services.plex.loadbalancer.server.port": "32400"
       "traefik.http.routers.plex.rule": "Host(`plex.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.plex.middlewares": "tls-redirect"
-      "traefik.http.routers.plex-secure.rule": "Host(`plex.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.plex-secure.tls": "true"
-      "traefik.http.routers.plex-secure.tls.certresolver": "do-resolver"
+      "traefik.http.routers.plex.tls": "true"
+      "traefik.http.routers.plex.tls.certresolver": "do-resolver"
 

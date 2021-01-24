@@ -12,9 +12,7 @@
       - "5000:5000"
     command: "hledger-web --serve --host='0.0.0.0' --file='/data/main.ledger' --base-url=https://budget.{{ansible_hostname}}.{{domain}} --cors='*'"
     labels:
-      "traefik.http.routers.hledger.rule": "Host(`budget.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.hledger.middlewares": "tls-redirect"
-      "traefik.http.routers.hledger-secure.rule": "Host(`budget.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.hledger-secure.tls": "true"
-      "traefik.http.routers.hledger-secure.tls.certresolver": "do-resolver"
+      "traefik.http.routers.budget.rule": "Host(`budget.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.routers.budget.tls": "true"
+      "traefik.http.routers.budget.tls.certresolver": "do-resolver"
 

@@ -68,7 +68,6 @@
       NEXTCLOUD_ADMIN_USER: "{{nextcloud_admin_user}}"
       NEXTCLOUD_ADMIN_PASSWORD: "{{nextcloud_admin_password}}"
     labels:
-      "traefik.http.services.nextcloud.loadbalancer.server.port": "80"
-      "traefik.http.routers.nextcloud-secure.rule": "Host(`nextcloud.{{domain}}`)"
-      "traefik.http.routers.nextcloud-secure.tls": "true"
-      "traefik.http.routers.nextcloud-secure.tls.certresolver": "tls-resolver"
+      "traefik.http.routers.nextcloud.rule": "Host(`nextcloud.{{domain}}`)"
+      "traefik.http.routers.nextcloud.tls": "true"
+      "traefik.http.routers.nextcloud.tls.certresolver": "tls-resolver"

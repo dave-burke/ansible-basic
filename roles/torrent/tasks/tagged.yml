@@ -42,10 +42,7 @@
       TRANSMISSION_SPEED_LIMIT_DOWN: "{{torrent_speed_limit_down}}"
       TRANSMISSION_SPEED_LIMIT_DOWN_ENABLED: "{{torrent_speed_limit_down_enabled}}"
     labels:
-      "traefik.http.services.torrent.loadbalancer.server.port": "32400"
       "traefik.http.routers.torrent.rule": "Host(`torrent.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.torrent.middlewares": "tls-redirect"
-      "traefik.http.routers.torrent-secure.rule": "Host(`torrent.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.torrent-secure.tls": "true"
-      "traefik.http.routers.torrent-secure.tls.certresolver": "do-resolver"
+      "traefik.http.routers.torrent.tls": "true"
+      "traefik.http.routers.torrent.tls.certresolver": "do-resolver"
 
