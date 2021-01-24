@@ -59,12 +59,22 @@ dyndns_token: "{{vault_dyndns_token}}"
 # Minecraft config
 minecraft_dir: "{{docker_root}}/minecraft"
 minecraft_server_env:
+  TYPE: vanilla
+  MOTD: 'Drehmal: Primordial'
+  VERSION: '1.16.4'
+  LEVEL: 'world-drehmal'
+  MODE: 'survival'
+  DIFFICULTY: 'easy'
+  SPAWN_PROTECTION: '0'
+  VIEW_DISTANCE: '20'
+  ONLINE_MODE: 'true'
+  OPS: 'thoughtcriminal'
   MEMORY: '1536M' # 1.5G
-  MODE: creative
-  DIFFICULTY: peaceful
-  ONLINE_MODE: "true"
-  VERSION: 'LATEST'
-  #VERSION: 1.2.5 # For Super Hostile Map "Infernal Sky II"
+  USE_AIKAR_FLAGS: 'true'
+  CONSOLE: 'false'
+  GUI: 'false'
+  TZ: 'America/Chicago'
+  OVERRIDE_SERVER_PROPERTIES: 'true'
 
 # NGINX config
 http_static_config_file: "{{docker_root}}/http/static.conf"
