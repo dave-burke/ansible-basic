@@ -79,6 +79,7 @@
     - dns
     - vpn
     - reverse_proxy
+    - static_web_host
     - syncthing
     - plex
     - budget_web

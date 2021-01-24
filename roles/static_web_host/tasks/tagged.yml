@@ -1,0 +1,20 @@
+---
+- name: Ensure static config file exists
+  template:
+    src: static.conf
+    dest: "{{http_static_config_file}}"
+
+- name: Ensure nginx container is started
+  docker_container:
+    name: nginx
+    image: nginx
+    pull: true
+    state: started
+    restart_policy: always
+    volumes:
+      - "{{http_static_dir}}:/usr/share/nginx/html:ro"
+      - "{{http_static_config_file}}:/etc/nginx/conf.d/default.conf:ro"
+    labels:
+      "traefik.http.routers.static.rule": "Host(`static.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.routers.static.tls": "true"
+      "traefik.http.routers.static.tls.certresolver": "tls-resolver"
