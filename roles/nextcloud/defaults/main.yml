@@ -1,0 +1,4 @@
+---
+nextcloud_db_hostname: 'nextcloud-db'
+nextcloud_db_user: 'nextcloud'
+nextcloud_db_name: 'nextcloud'

@@ -43,8 +43,6 @@
       ADVERTISE_IP: "http://{{ansible_default_ipv4.address}}:32400/"
       PLEX_UID: "{{plex_user.uid}}"
       PLEX_GID: "{{plex_group.gid}}"
-      VIRTUAL_HOST: "plex.{{ansible_hostname}}.{{domain}}"
-      VIRTUAL_PORT: "32400"
     hostname: "plex.{{ansible_hostname}}.{{domain}}"
     volumes:
       - "{{plex_config_dir}}:/config"
@@ -53,8 +51,6 @@
     labels:
       "traefik.http.services.plex.loadbalancer.server.port": "32400"
       "traefik.http.routers.plex.rule": "Host(`plex.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.plex.middlewares": "tls-redirect"
-      "traefik.http.routers.plex-secure.rule": "Host(`plex.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.plex-secure.tls": "true"
-      "traefik.http.routers.plex-secure.tls.certresolver": "do-resolver"
+      "traefik.http.routers.plex.tls": "true"
+      "traefik.http.routers.plex.tls.certresolver": "do-resolver"
 

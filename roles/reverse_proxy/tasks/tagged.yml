@@ -1,36 +1,21 @@
 ---
-- name: Ensure static config file exists
-  template:
-    src: static.conf
-    dest: "{{http_static_config_file}}"
-
-- name: Ensure nginx container is started
-  docker_container:
-    name: nginx
-    image: nginx
-    pull: true
-    state: started
-    restart_policy: always
-    ports:
-      - 9080:80/tcp
-    volumes:
-      - "{{http_static_dir}}:/usr/share/nginx/html:ro"
-      - "{{http_static_config_file}}:/etc/nginx/conf.d/static.conf:ro"
-    labels:
-      "traefik.http.routers.nginx.rule": "Host(`static.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.nginx.tls": "true"
-      "traefik.http.routers.nginx.tls.certresolver": "do-resolver"
-      "traefik.http.routers.app.rule": "Host(`apps.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.app.middlewares": "tls-redirect"
-      "traefik.http.routers.app-secure.rule": "Host(`apps.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.app-secure.tls": "true"
-      "traefik.http.routers.app-secure.tls.certresolver": "do-resolver"
-
 - name: Ensure HTTP traffic allowed through firewall
   tags: ['ufw']
   ufw:
     rule: allow
     port: 'http'
+
+- name: Ensure HTTPS traffic allowed through firewall
+  tags: ['ufw']
+  ufw:
+    rule: allow
+    port: 'https'
+
+- name: Ensure traefik config dir is present
+  file:
+    name: "{{traefik_config_dir}}"
+    state: directory
+    mode: 0755
 
 - name: Ensure traefik config file is present
   template:
@@ -53,17 +38,10 @@
     ports:
       - 80:80/tcp
       - 443:443/tcp
-      - 8080:8080/tcp
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "{{traefik_config_dir}}/traefik.toml:/etc/traefik/traefik.toml:ro"
       - "{{traefik_config_dir}}/acme.json:/acme.json:rw"
     env:
       "DO_AUTH_TOKEN": "{{traefik_do_token}}"
-    labels:
-      "traefik.http.routers.traefik.rule": "Host(`traefik.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.middlewares.tls-redirect.redirectscheme.scheme": "https"
-      "traefik.http.services.traefik.loadbalancer.server.port": "8080"
-      "traefik.http.routers.traefik.tls": "true"
-      "traefik.http.routers.traefik.tls.certresolver": "do-resolver"
-
+    labels: "{{traefik_labels}}"

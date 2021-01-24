@@ -1,9 +1,17 @@
 ---
+- name: Ensure a torrent group exists
+  group: name=torrent
+  register: torrent_group
+
+- name: Ensure torrent user exists
+  user: name=torrent group=torrent createhome=no
+  register: torrent_user
+
 - name: Ensure HTTP traffic allowed through firewall
   tags: ['ufw']
   ufw:
     rule: allow
-    port: '9091'
+    port: '{{web_ui_port}}'
 
 - name: Ensure torrent container is started
   docker_container:
@@ -26,8 +34,8 @@
       # they are rejected as spoofing attempts.
       - "{{ansible_docker0.ipv4.address}}"
     env:
-      PUID: "{{base_user.uid}}"
-      PGID: "{{base_user.group}}"
+      PUID: "{{torrent_user.uid}}"
+      PGID: "{{torrent_user.group}}"
       OPENVPN_OPTS: "--inactive 3600 --ping 10 --ping-exit 60"
       OPENVPN_PROVIDER: "{{openvpn_provider}}"
       OPENVPN_CONFIG: "{{openvpn_config}}"
@@ -41,6 +49,8 @@
       TRANSMISSION_SPEED_LIMIT_UP_ENABLED: "{{torrent_speed_limit_up_enabled}}"
       TRANSMISSION_SPEED_LIMIT_DOWN: "{{torrent_speed_limit_down}}"
       TRANSMISSION_SPEED_LIMIT_DOWN_ENABLED: "{{torrent_speed_limit_down_enabled}}"
-      VIRTUAL_HOST: "torrent.{{ansible_hostname}}.{{domain}}"
-      VIRTUAL_PORT: "{{web_ui_port}}" 
+    labels:
+      "traefik.http.routers.torrent.rule": "Host(`torrent.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.routers.torrent.tls": "true"
+      "traefik.http.routers.torrent.tls.certresolver": "do-resolver"
 

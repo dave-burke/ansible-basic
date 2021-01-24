@@ -24,14 +24,10 @@
       TZ: "America/Chicago"
       PUID: "{{smokeping_user.uid}}"
       PGID: "{{smokeping_group.gid}}"
-      VIRTUAL_HOST: "netmon.{{ansible_hostname}}.{{domain}}"
-      VIRTUAL_PORT: "{{smokeping_port}}"
     labels:
-      "traefik.http.routers.smokeping.rule": "Host(`netmon.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.smokeping.middlewares": "tls-redirect"
-      "traefik.http.routers.smokeping-secure.rule": "Host(`netmon.{{ansible_hostname}}.{{domain}}`)"
-      "traefik.http.routers.smokeping-secure.tls": "true"
-      "traefik.http.routers.smokeping-secure.tls.certresolver": "do-resolver"
+      "traefik.http.routers.netmon.rule": "Host(`netmon.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.routers.netmon.tls": "true"
+      "traefik.http.routers.netmon.tls.certresolver": "do-resolver"
 
 - name: Add redirect for root path
   lineinfile:
