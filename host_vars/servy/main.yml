@@ -59,6 +59,29 @@ dyndns_token: "{{vault_dyndns_token}}"
 # Minecraft config
 minecraft_dir: "{{docker_root}}/minecraft"
 minecraft_server_env:
+  OPS: 'thoughtcriminal'
+  MEMORY: '1536M' # 1.5G
+  USE_AIKAR_FLAGS: 'true'
+  CONSOLE: 'false'
+  GUI: 'false'
+  TZ: 'America/Chicago'
+  OVERRIDE_SERVER_PROPERTIES: 'true'
+  ONLINE_MODE: 'true'
+  #
+  # Vanilla creative
+  #
+  # TYPE: vanilla
+  # MOTD: 'Family creative mode server'
+  # VERSION: 'LATEST'
+  # LEVEL: 'world-boyscreative'
+  # MODE: 'creative'
+  # DIFFICULTY: 'easy'
+  # SPAWN_PROTECTION: '16'
+  # VIEW_DISTANCE: '10'
+  # ONLINE_MODE: 'true'
+  #
+  # Drehmal
+  #
   TYPE: vanilla
   MOTD: 'Drehmal: Primordial'
   VERSION: '1.16.4'
@@ -67,15 +90,27 @@ minecraft_server_env:
   DIFFICULTY: 'easy'
   SPAWN_PROTECTION: '0'
   VIEW_DISTANCE: '20'
-  ONLINE_MODE: 'true'
-  OPS: 'thoughtcriminal'
-  MEMORY: '1536M' # 1.5G
-  USE_AIKAR_FLAGS: 'true'
-  CONSOLE: 'false'
-  GUI: 'false'
-  TZ: 'America/Chicago'
-  OVERRIDE_SERVER_PROPERTIES: 'true'
-
+  #
+  # Island of Sodor
+  #
+  #TYPE: 'FORGE'
+  #VERSION: '1.7.10'
+  #MOTD: 'A Traincraft server'
+  #LEVEL: 'world-sodor'
+  #MODE: 'creative'
+  #DIFFICULTY: 'normal'
+  #
+  # Super Hostile
+  #
+  # TYPE: vanilla
+  # MOTD: 'Super Hostile: Infernal Sky II'
+  # VERSION: '1.2.5'
+  # LEVEL: 'world-superhostile'
+  # MODE: 'survival'
+  # DIFFICULTY: 'normal'
+  # SPAWN_PROTECTION: '16'
+  # VIEW_DISTANCE: '20'
+ 
 # NGINX config
 http_static_config_file: "{{docker_root}}/http/static.conf"
 http_static_dir: "{{docker_root}}/http/static"
