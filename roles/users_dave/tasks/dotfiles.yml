@@ -16,8 +16,9 @@
   become: yes
   become_user: "{{username}}"
   git:
-    repo: https://github.com/{{github_user}}/dotfiles.git
+    repo: https://github.com:{{github_user}}/dotfiles.git
     dest: /home/{{username}}/dotfiles
+    update: no
 
 - name: Bootstrap dotfiles
   become: yes
