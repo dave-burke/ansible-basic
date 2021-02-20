@@ -1,0 +1,4 @@
+---
+- name: Ensure docker is installed
+  package: name={{docker_pkg}} state=present
+
