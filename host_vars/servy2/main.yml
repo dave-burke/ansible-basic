@@ -1,5 +1,5 @@
 ---
-storage_uuid: "" # TODO Add storage UUID
+storage_device: /dev/md/storage
 storage_root: /mnt/storage
 docker_root: "{{storage_root}}/docker"
 

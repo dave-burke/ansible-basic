@@ -4,10 +4,8 @@
 - name: Ensure storage raid is mounted
   mount:
     path: "{{storage_root}}"
-    #src: /dev/md0
-    src: UUID={{storage_uuid}}
+    src: "{{storage_device}}"
     fstype: ext4
-    #opts: rw,relatime,data=ordered
     opts: defaults 
     state: mounted
 
