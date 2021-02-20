@@ -16,3 +16,29 @@ re-usable.
 `smartd.conf` specifies `-M test` for the first drive in the array, so a test
 email is sent whenever smartctl is started (whenever the system reboots).
 
+## Sample RAID creation
+
+(as root)
+```
+# Create a RAID6 array with 4 disks
+mdadm --crate /dev/md/storage /dev/sda /dev/sdb /dev/sdc /dev/sdd --level=6 --raid-devices=4
+
+# Create an ext4 filesystem on the array
+mkfs.ext4 -F /dev/md/storage
+
+# Mount the array
+mkdir -p /mnt/storage
+mount /dev/md/storage /mnt/storage
+
+# Verify the array is mounted and available
+df -h -x devtmpfs -x tmpfs
+
+# Save the array layout so it gets reassembled on boot
+mdadm --detail --scan | tee -a /etc/mdadm/mdadm.conf
+
+# Save the mount configuration to fstab so it gets mounted at boot
+echo "/dev/md/storage /mnt/storage ext4 defaults 0 0" | tee -a /etc/fstab
+
+# Watch the raid creation status if desired
+watch -n 60 cat /proc/mdstat
+```
