@@ -125,7 +125,7 @@
           - phone
           - tabby
     - syncthing
-    #- raid_storage
+    - raid_storage
     #- dns
     #- vpn
     #- static_web_host
