@@ -5,9 +5,6 @@
 - name: Add smartd.conf
   copy: src=smartd.conf dest=/etc/smartd.conf
 
-- name: Remove legacy script
-  file: name=/etc/smartmontools/run.d/10mutt state=absent
-
 - name: Add smartmontools run script for mutt
   template: src=10notify dest=/etc/smartmontools/run.d/10notify mode=755
 
