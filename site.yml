@@ -126,8 +126,10 @@
           - tabby
     - syncthing
     - raid_storage
+    - docker
     #- dns
     #- vpn
+    #- reverse_proxy
     #- static_web_host
     #- plex
     #- budget_web
@@ -138,7 +140,6 @@
     #- backup_server
     #- nfs_server
     #- digital_ocean_cli
-    #- reverse_proxy
     #- dyndns_client
   tasks:
     - name: "Ensure {{item}} has access to syncthing GUI"
