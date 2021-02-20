@@ -1,4 +1,5 @@
 servy ansible_host=10.1.1.1
+servy2 ansible_host=10.1.2.52
 compy ansible_host=10.1.42.1 #ansible_connection=local
 asuz ansible_host=10.1.143.1
 happy ansible_host=10.1.42.2
@@ -7,6 +8,7 @@ nextcloud ansible_host=45.79.15.68
 
 [debian]
 servy
+servy2
 asuz
 dropy
 nextcloud
@@ -17,5 +19,6 @@ happy
 
 [headless]
 servy
+servy2
 dropy
 nextcloud

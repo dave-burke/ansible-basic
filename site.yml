@@ -111,6 +111,55 @@
         - uploads
         - videos
 
+- hosts: servy2
+  roles:
+    - users_dave
+    #- users_suz
+    - role: ssh_user
+      vars:
+        user: dave
+        authorized_hosts:
+          - compy
+          - happy
+          - asuz
+          - phone
+          - tabby
+    - syncthing
+    #- raid_storage
+    #- dns
+    #- vpn
+    #- static_web_host
+    #- plex
+    #- budget_web
+    #- torrent
+    #- netmon
+    #- minecraft_server
+    #- backup_client
+    #- backup_server
+    #- nfs_server
+    #- digital_ocean_cli
+    #- reverse_proxy
+    #- dyndns_client
+  tasks:
+    - name: "Ensure {{item}} has access to syncthing GUI"
+      tags: ['ufw', 'test']
+      ufw:
+        comment: 'Syncthing from {{item}}'
+        rule: allow
+        from_ip: "{{hostvars[item].ansible_host}}"
+        port: '8384'
+        proto: 'tcp'
+      loop: ['compy','happy']
+    #- name: "Link to {{item}}"
+      #file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link
+      #with_items:
+        #- audio
+        #- backup
+        #- dev
+        #- photos
+        #- uploads
+        #- videos
+
 - hosts: dropy
   roles:
     - role: ssh_user
