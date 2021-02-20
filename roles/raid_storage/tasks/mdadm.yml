@@ -2,6 +2,9 @@
 - name: Ensure mdadm is installed
   apt: name=mdadm state=present
 
+- name: Ensure jq is installed
+  package: name=jq state=present
+
 - name: Add mdadm_warning.sh mdadm
   template: src=mdadm_warning.sh dest=/etc/mdadm_warning.sh mode=755
 

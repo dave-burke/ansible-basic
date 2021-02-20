@@ -11,6 +11,3 @@
     opts: defaults 
     state: mounted
 
-- name: Ensure jq is installed
-  package: name=jq state=present
-
