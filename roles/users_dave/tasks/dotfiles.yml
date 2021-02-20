@@ -1,9 +1,14 @@
 ---
 
+- name: Check if ssh key exists
+  stat: path=/home/{{username}}/.ssh/id_rsa.pub
+  register: ssh_key_file
+
 - name: Read SSH public key to authorize
   shell: cat /home/{{username}}/.ssh/id_rsa.pub
   register: github_ssh_pub_key
   changed_when: false
+  when: ssh_key_file.stat.exists
 
 - name: Authorize key with GitHub
   local_action:
@@ -11,12 +16,13 @@
     name: "{{inventory_hostname}}"
     token: "{{github_token}}"
     pubkey: '{{ github_ssh_pub_key.stdout }}'
+  when: ssh_key_file.stat.exists
 
 - name: Clone dotfiles repository
   become: yes
   become_user: "{{username}}"
   git:
-    repo: https://github.com:{{github_user}}/dotfiles.git
+    repo: https://github.com/{{github_user}}/dotfiles.git
     dest: /home/{{username}}/dotfiles
     update: no
 
