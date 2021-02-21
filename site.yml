@@ -53,7 +53,7 @@
     - touchpad_toggle
     - backup_client
 
-- hosts: servy
+- hosts: servy0
   roles:
     - users_dave
     - users_suz
@@ -111,7 +111,7 @@
         - uploads
         - videos
 
-- hosts: servy2
+- hosts: servy
   roles:
     - users_dave
     #- users_suz

@@ -1,5 +1,5 @@
 ---
-storage_device: /dev/md/storage
+storage_device: "/dev/disk/by-uuid/4ba8b760-634e-4915-9d61-bfcc27f19848"
 storage_root: /mnt/storage
 docker_root: "{{storage_root}}/docker"
 
@@ -122,7 +122,20 @@ backup_client_configs:
   - user: root
     host: asuz
 
-borgmatic_configs: [] # TODO Add borgmatic configs
+borgmatic_configs:
+  - name: minecraft
+    user: dave
+    passphrase: "{{vault_borg_minecraft_passphrase}}"
+    ssh_key: "id_rsa_borgbase"
+    source_dirs:
+      - "{{docker_root}}/minecraft"
+    repositories:
+      - "{{vault_borg_minecraft_repo}}"
+    before_backup:
+      - "rcon save-off"
+      - "rcon save-all"
+    after_backup:
+      - "rcon save-on"
 
 # AWS CLI
 aws_key: "AKIAZ4U4D4642YOPPJNZ"
@@ -142,6 +155,9 @@ nfs_mounts:
     name: photos
 
 digital_ocean_token: "{{vault_digital_ocean_token}}"
+
+couchdb_config_path: "{{docker_root}}/couchdb/"
+couchdb_password: "{{vault_couchdb_password}}"
 
 # Traefik config
 traefik_do_token: "{{vault_traefik_do_token}}"
