@@ -47,6 +47,7 @@
     path: "/etc/systemd/resolved.conf"
     line: "DNSStubListener=no"
     regexp: "DNSStubListener="
+  notify: restart_systemd_dns
 
 - name: Manage resolv.conf file
   copy:
@@ -57,7 +58,7 @@
       nameserver 127.0.0.1
       search {{domain}}
     mode: 644
-  notify: restart_systemd_dns # Otherwise the container can't start due to port 53 conflicts
+  notify: restart_systemd_dns
 
 - name: Ensure docker container is started
   tags: ['vpn-dnsfix']

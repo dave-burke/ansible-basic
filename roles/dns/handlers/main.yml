@@ -7,6 +7,7 @@
 - name: Reload foo service
   listen: restart_systemd_dns
   systemd:
-    name: "systemd-resolved"
+    name: systemd-resolved
+    daemon_reload: yes
     state: restarted
 
