@@ -4,3 +4,9 @@
   command:
     cmd: "/etc/cron.weekly/update-dns-blacklist.sh"
 
+- name: Reload foo service
+  listen: restart_systemd_dns
+  systemd:
+    name: "systemd-resolved"
+    state: restarted
+
