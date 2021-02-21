@@ -76,12 +76,9 @@
           - files/ssh/dave/servy/actions/minecraft_down.sh
     - digital_ocean_cli
     - raid_storage
-    - dns
     - vpn
-    - reverse_proxy
     - static_web_host
     - syncthing
-    - plex
     - budget_web
     - torrent
     - netmon
@@ -129,7 +126,7 @@
     - docker
     - dns
     - reverse_proxy
-    #- plex # TODO sync config, verify directories
+    - plex
     #- minecraft_server
     #- static_web_host # TODO sync content
     #- nfs_server
