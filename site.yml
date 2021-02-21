@@ -128,17 +128,17 @@
     - raid_storage
     - docker
     - dns
-    #- reverse_proxy
+    - reverse_proxy
+    #- plex # TODO sync config, verify directories
+    #- minecraft_server
+    #- static_web_host # TODO sync content
     #- nfs_server
     #- vpn # TODO copy keys to clients
-    #- static_web_host # TODO sync content
     #- budget_web # TODO verify directories
     #- netmon
-    #- minecraft_server
-    #- plex # TODO sync config, verify directories
-    #- backup_client # TODO review backup strategy
-    #- backup_server # TODO sync data
     #- dyndns_client
+    #- backup_server # TODO sync data
+    #- backup_client # TODO review backup strategy
     #- torrent
   tasks:
     - name: "Ensure {{item}} has access to syncthing GUI"
