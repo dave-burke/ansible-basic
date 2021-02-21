@@ -23,7 +23,7 @@ domain: "{{vault_domain}}"
 public_domain: "{{vault_public_domain}}"
 
 # Plex config
-plex_config_dir: "{{docker_root}}/plex/config"
+plex_config_dir: "/var/lib/plexmediaserver" # On SSD, not RAID
 plex_upload_dir: "{{docker_root}}/plex/upload"
 plex_media_dir: "{{storage_root}}"
 
