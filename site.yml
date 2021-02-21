@@ -127,20 +127,19 @@
     - syncthing
     - raid_storage
     - docker
-    #- dns
-    #- vpn
+    - dns
     #- reverse_proxy
-    #- static_web_host
-    #- plex
-    #- budget_web
-    #- torrent
+    #- nfs_server
+    #- vpn # TODO copy keys to clients
+    #- static_web_host # TODO sync content
+    #- budget_web # TODO verify directories
     #- netmon
     #- minecraft_server
-    #- backup_client
-    #- backup_server
-    #- nfs_server
-    #- digital_ocean_cli
+    #- plex # TODO sync config, verify directories
+    #- backup_client # TODO review backup strategy
+    #- backup_server # TODO sync data
     #- dyndns_client
+    #- torrent
   tasks:
     - name: "Ensure {{item}} has access to syncthing GUI"
       tags: ['ufw', 'test']
