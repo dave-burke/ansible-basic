@@ -26,6 +26,7 @@
 - name: Ensure acme.json is present
   file:
     path: "{{traefik_config_dir}}/acme.json"
+    state: touch
     mode: 0600
 
 - name: Ensure traefik container is started
