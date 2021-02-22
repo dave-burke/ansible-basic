@@ -167,7 +167,18 @@ borgmatic_configs:
     repositories:
       - "{{vault_borg_repo}}"
     before_backup:
-      - "docker stop plex" # or minecraft is not running
+      - "docker stop plex"
     after_backup:
       - "docker start plex"
+  - name: smokeping
+    user: root
+    passphrase: "{{vault_borg_passphrase}}"
+    source_dirs:
+      - "{{smokeping_dir}}/data"
+    repositories:
+      - "{{vault_borg_repo}}"
+    before_backup:
+      - "docker stop smokeping"
+    after_backup:
+      - "docker start smokeping"
 
