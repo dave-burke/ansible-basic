@@ -27,6 +27,61 @@ plex_config_dir: "/var/lib/plexmediaserver" # On SSD, not RAID
 plex_upload_dir: "{{docker_root}}/plex/upload"
 plex_media_dir: "{{storage_root}}"
 
+# Minecraft config
+minecraft_dir: "/opt/minecraft"
+minecraft_server_env:
+  OPS: 'thoughtcriminal'
+  MEMORY: '4G' # 1.5G
+  USE_AIKAR_FLAGS: 'true'
+  CONSOLE: 'false'
+  GUI: 'false'
+  TZ: 'America/Chicago'
+  OVERRIDE_SERVER_PROPERTIES: 'true'
+  ONLINE_MODE: 'true'
+  #
+  # Vanilla creative
+  #
+  # TYPE: vanilla
+  # MOTD: 'Family creative mode server'
+  # VERSION: 'LATEST'
+  # LEVEL: 'world-boyscreative'
+  # MODE: 'creative'
+  # DIFFICULTY: 'easy'
+  # SPAWN_PROTECTION: '16'
+  # VIEW_DISTANCE: '10'
+  # ONLINE_MODE: 'true'
+  #
+  # Drehmal
+  #
+  TYPE: vanilla
+  MOTD: 'Drehmal: Primordial'
+  VERSION: '1.16.4'
+  LEVEL: 'world-drehmal'
+  MODE: 'survival'
+  DIFFICULTY: 'easy'
+  SPAWN_PROTECTION: '0'
+  VIEW_DISTANCE: '20'
+  #
+  # Island of Sodor
+  #
+  #TYPE: 'FORGE'
+  #VERSION: '1.7.10'
+  #MOTD: 'A Traincraft server'
+  #LEVEL: 'world-sodor'
+  #MODE: 'creative'
+  #DIFFICULTY: 'normal'
+  #
+  # Super Hostile
+  #
+  # TYPE: vanilla
+  # MOTD: 'Super Hostile: Infernal Sky II'
+  # VERSION: '1.2.5'
+  # LEVEL: 'world-superhostile'
+  # MODE: 'survival'
+  # DIFFICULTY: 'normal'
+  # SPAWN_PROTECTION: '16'
+  # VIEW_DISTANCE: '20'
+
 # Traefik config
 traefik_do_token: "{{vault_traefik_do_token}}"
 traefik_config_dir: "{{docker_root}}/traefik"

@@ -83,7 +83,6 @@
     - torrent
     - netmon
     - dyndns_client
-    - minecraft_server
     - backup_client
     - backup_server
     - nfs_server
@@ -127,7 +126,7 @@
     - dns
     - reverse_proxy
     - plex
-    #- minecraft_server
+    - minecraft_server
     #- static_web_host # TODO sync content
     #- nfs_server
     #- vpn # TODO copy keys to clients
