@@ -119,3 +119,43 @@ backup_client_configs:
   - user: root
     host: asuz
 
+borgmatic_configs:
+  - name: misc
+    user: root
+    passphrase: "{{vault_borg_passphrase}}"
+    source_dirs:
+      - "/mnt/storage/backup/dev"
+      - "/mnt/storage/backup/games"
+      - "/mnt/storage/backup/keys"
+      - "/mnt/storage/backup/software"
+      - "/mnt/storage/backup/trivia"
+    repositories:
+      - "{{vault_borg_repo}}"
+    before_backup: # TODO fix no hook syntax in borgmatic config template
+      - "echo Starting misc backups"
+    after_backup:
+      - "echo Finished misc backups"
+  - name: minecraft
+    user: root
+    passphrase: "{{vault_borg_passphrase}}"
+    source_dirs:
+      - "{{minecraft_dir}}"
+    repositories:
+      - "{{vault_borg_repo}}"
+    before_backup:
+      - "docker exec -i minecraft rcon-cli save-off || true" # or minecraft is not running
+      - "docker exec -i minecraft rcon-cli save-all || true"
+    after_backup:
+      - "docker exec -i minecraft rcon-cli save-on || true"
+  - name: plex
+    user: root
+    passphrase: "{{vault_borg_passphrase}}"
+    source_dirs:
+      - "{{plex_config_dir}}"
+    repositories:
+      - "{{vault_borg_repo}}"
+    before_backup:
+      - "docker stop plex" # or minecraft is not running
+    after_backup:
+      - "docker start plex"
+

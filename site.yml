@@ -83,7 +83,6 @@
     - torrent
     - netmon
     - dyndns_client
-    - backup_client
     - nfs_server
     - couchdb
   tasks:
@@ -127,13 +126,13 @@
     - plex
     - minecraft_server
     - backup_server
-    #- static_web_host # TODO sync content
+    - backup_client
     #- nfs_server
-    #- vpn # TODO copy keys to clients
     #- budget_web # TODO verify directories
     #- netmon
+    #- static_web_host # TODO sync content
+    #- vpn # TODO copy keys to clients
     #- dyndns_client
-    #- backup_client # TODO review backup strategy
     #- torrent
   tasks:
     - name: "Ensure {{item}} has access to syncthing GUI"
