@@ -79,7 +79,6 @@
     - vpn
     - static_web_host
     - syncthing
-    - budget_web
     - torrent
     - netmon
     - dyndns_client
@@ -127,7 +126,7 @@
     - backup_server
     - backup_client
     - nfs_server
-    #- budget_web # TODO verify directories
+    - budget_web
     #- netmon
     #- static_web_host # TODO sync content
     #- vpn # TODO copy keys to clients

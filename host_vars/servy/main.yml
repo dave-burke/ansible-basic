@@ -59,6 +59,8 @@ plex_config_dir: "/var/lib/plexmediaserver" # On SSD, not RAID
 plex_upload_dir: "{{docker_root}}/plex/upload"
 plex_media_dir: "{{storage_root}}"
 
+hledger_dir: "{{storage_root}}/docs/budget"
+
 # Minecraft config
 minecraft_dir: "/opt/minecraft"
 minecraft_server_env:
