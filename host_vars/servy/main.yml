@@ -31,6 +31,29 @@ hosts:
 domain: "{{vault_domain}}"
 public_domain: "{{vault_public_domain}}"
 
+dns_allowlist: |
+  # Domains added below will be ignored, For example:
+  # your-domain-name.com
+  adjust.com
+  ads.mopub.com
+  api.mixpanel.com
+  app-measurement.com
+  applovin.com
+  applvn.com
+  crashlytics.com
+  decide.mixpanel.com
+  googleadservices.com
+  googlesyndication.com
+  invenio.sgn.com
+  jamcity.com
+  live.chartboost.com
+  moatads.com
+  sessions.bugsnag.com
+  supersonicads.com
+  swrve.com
+  unity3d.com
+  mobileandroidapi.punchh.com
+
 # Plex config
 plex_config_dir: "/var/lib/plexmediaserver" # On SSD, not RAID
 plex_upload_dir: "{{docker_root}}/plex/upload"
@@ -94,31 +117,6 @@ minecraft_server_env:
 # Traefik config
 traefik_do_token: "{{vault_traefik_do_token}}"
 traefik_config_dir: "{{docker_root}}/traefik"
-
-dns_allowlist: |
-  # Domains added below will be ignored, For example:
-  # your-domain-name.com
-  adjust.com
-  ads.mopub.com
-  api.mixpanel.com
-  app-measurement.com
-  applovin.com
-  applvn.com
-  crashlytics.com
-  decide.mixpanel.com
-  googleadservices.com
-  googlesyndication.com
-  invenio.sgn.com
-  jamcity.com
-  live.chartboost.com
-  moatads.com
-  sessions.bugsnag.com
-  supersonicads.com
-  swrve.com
-  unity3d.com
-  mobileandroidapi.punchh.com
-  # ssacdn.com
-  # doubleclick.net
 
 # Backup server config
 backup_server_root_dir: "{{storage_root}}/backup/borg"
