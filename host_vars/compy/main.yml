@@ -45,3 +45,4 @@ aws_secret_key: "{{vault_aws_secret_key}}"
 aws_region: "us-east-1"
 
 budget_journal_file: "${HOME}/docs/personal/finances/budget/main.ledger"
+

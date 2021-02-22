@@ -7,7 +7,7 @@ borgmatic_configs:
     source_dirs:
       - /home
     repositories:
-      - "{{vault_borg_domain}}:/mnt/storage/backup/borg/asuz/root"
+      - "servy:/mnt/storage/backup/borg/asuz/root"
       - "gw6a7f8p@gw6a7f8p.repo.borgbase.com:repo"
     exclude_patterns:
       - "/home/suz/Desktop/Recent Photos"
