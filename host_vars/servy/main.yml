@@ -64,6 +64,10 @@ hledger_dir: "{{storage_root}}/docs/budget"
 # Smokeping config
 smokeping_dir: "/opt/smokeping"
 
+# NGINX config
+http_static_config_file: "/opt/http/static.conf"
+http_static_dir: "/opt/http/static"
+
 # Minecraft config
 minecraft_dir: "/opt/minecraft"
 minecraft_server_env:

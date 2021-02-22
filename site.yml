@@ -77,7 +77,6 @@
     - digital_ocean_cli
     - raid_storage
     - vpn
-    - static_web_host
     - syncthing
     - torrent
     - dyndns_client
@@ -127,7 +126,7 @@
     - nfs_server
     - budget_web
     - netmon
-    #- static_web_host # TODO sync content
+    - static_web_host
     #- vpn # TODO copy keys to clients
     #- dyndns_client
     #- torrent
