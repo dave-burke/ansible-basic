@@ -84,7 +84,6 @@
     - netmon
     - dyndns_client
     - backup_client
-    - backup_server
     - nfs_server
     - couchdb
   tasks:
@@ -127,13 +126,13 @@
     - reverse_proxy
     - plex
     - minecraft_server
+    - backup_server
     #- static_web_host # TODO sync content
     #- nfs_server
     #- vpn # TODO copy keys to clients
     #- budget_web # TODO verify directories
     #- netmon
     #- dyndns_client
-    #- backup_server # TODO sync data
     #- backup_client # TODO review backup strategy
     #- torrent
   tasks:

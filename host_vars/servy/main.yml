@@ -22,6 +22,14 @@ hosts:
 domain: "{{vault_domain}}"
 public_domain: "{{vault_public_domain}}"
 
+# Backup server config
+backup_server_root_dir: "{{storage_root}}/backup/borg"
+backup_client_configs:
+  - user: root
+    host: compy
+  - user: root
+    host: asuz
+
 # Plex config
 plex_config_dir: "/var/lib/plexmediaserver" # On SSD, not RAID
 plex_upload_dir: "{{docker_root}}/plex/upload"
