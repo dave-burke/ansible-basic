@@ -80,7 +80,6 @@
     - static_web_host
     - syncthing
     - torrent
-    - netmon
     - dyndns_client
     - couchdb
   tasks:
@@ -127,11 +126,12 @@
     - backup_client
     - nfs_server
     - budget_web
-    #- netmon
+    - netmon
     #- static_web_host # TODO sync content
     #- vpn # TODO copy keys to clients
     #- dyndns_client
     #- torrent
+    #- couchdb
   tasks:
     - name: "Ensure {{item}} has access to syncthing GUI"
       tags: ['ufw', 'test']
