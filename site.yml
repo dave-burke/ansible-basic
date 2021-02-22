@@ -83,7 +83,6 @@
     - torrent
     - netmon
     - dyndns_client
-    - nfs_server
     - couchdb
   tasks:
     - name: "Ensure {{item}} has access to syncthing GUI"
@@ -127,7 +126,7 @@
     - minecraft_server
     - backup_server
     - backup_client
-    #- nfs_server
+    - nfs_server
     #- budget_web # TODO verify directories
     #- netmon
     #- static_web_host # TODO sync content

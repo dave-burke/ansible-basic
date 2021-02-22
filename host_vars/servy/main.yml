@@ -8,6 +8,15 @@ raid_notify_user: "{{vault_raid_notify_user}}"
 raid_notify_password: "{{vault_raid_notify_password}}"
 raid_notify_endpoint: "{{vault_raid_notify_endpoint}}"
 
+# nfs config
+nfs_mounts:
+  - dir: "{{storage_root}}/videos"
+    name: videos
+  - dir: "{{storage_root}}/audio/music"
+    name: music
+  - dir: "{{storage_root}}/photos"
+    name: photos
+
 # DNS config
 hosts:
   - { ip: 10.1.1.1, host: "{{vault_dyndns_domain}}.duckdns.org" }
