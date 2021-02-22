@@ -29,6 +29,7 @@
     owner: "{{item.user}}"
     group: "{{item.user}}"
   loop: "{{borgmatic_configs}}"
+  no_log: true
 
 - name: Ensure borgmatic config dir is present
   file:
@@ -38,6 +39,7 @@
     owner: "{{item.user}}"
     group: "{{item.user}}"
   loop: "{{borgmatic_configs}}"
+  no_log: true
 
 - name: Ensure backup config is present
   template:
@@ -47,6 +49,7 @@
     owner: "{{item.user}}"
     group: "{{item.user}}"
   loop: "{{borgmatic_configs}}"
+  no_log: true
 
 - name: Ensure cron task is present in user crontab
   cron:
@@ -57,12 +60,15 @@
     minute: "30"
     job: "PATH=$PATH:/usr/bin:/usr/local/bin:$HOME/.local/bin borgmatic --syslog-verbosity 1"
   loop: "{{borgmatic_configs}}"
-  when: "{{item.user != 'root'}}"
+  when: item.user != 'root'
+  no_log: true
 
 - name: Ensure daily cron (or anacron) script is in /etc/cron.daily
   copy:
     src: daily.sh
     dest: "/etc/cron.daily/borgmatic"
     mode: 0755
-  when: "{{item.user == 'root'}}"
+  when: item.user == 'root'
   loop: "{{borgmatic_configs}}"
+  no_log: true
+
