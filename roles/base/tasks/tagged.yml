@@ -1,4 +1,7 @@
 ---
+- name: Ensure time zone is America/Chicago
+  timezone: name=America/Chicago
+
 - name: Ensure reboot-if-needed script is present
   copy:
     src: "reboot-if-needed.sh"
