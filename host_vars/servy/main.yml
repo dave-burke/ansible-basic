@@ -147,10 +147,6 @@ borgmatic_configs:
       - "/mnt/storage/backup/trivia"
     repositories:
       - "{{vault_borg_repo}}"
-    before_backup: # TODO fix no hook syntax in borgmatic config template
-      - "echo Starting misc backups"
-    after_backup:
-      - "echo Finished misc backups"
   - name: minecraft
     user: root
     passphrase: "{{vault_borg_passphrase}}"
