@@ -36,9 +36,56 @@ df -h -x devtmpfs -x tmpfs
 # Save the array layout so it gets reassembled on boot
 mdadm --detail --scan | tee -a /etc/mdadm/mdadm.conf
 
+# Ubuntu specific step to update initial RAM file system so the array will be available during the early boot process
+update-initramfs -u
+
 # Save the mount configuration to fstab so it gets mounted at boot
 echo "/dev/md/storage /mnt/storage ext4 defaults 0 0" | tee -a /etc/fstab
 
 # Watch the raid creation status if desired
 watch -n 60 cat /proc/mdstat
 ```
+
+## How to "activate" the array if it fails to start
+
+```
+mdadm --stop /dev/md[X]
+mdadm --assemble --scan
+```
+
+## How to remove a bad drive
+
+```
+# Determine which drive failed
+cat /proc/mdadm
+# or:
+mdadm --query --detail /dev/md[X]
+
+# Determine the serial number of the failing drive (e.g. /dev/sdb)
+lshw --class disk
+# or:
+smartctl --all /dev/sdb | grep -i Serial
+
+# Remove the disk from the array
+mdadm --manage /dev/md[X] --remove /dev/sdb
+```
+
+You can now remove the disk with the matching serial number.
+
+## How to add a new drive
+
+First, take a picture of the drive's sticker and use marker to write the number on it (the same number as the drive you replaced). This is a minor convenience for reference in case you do something silly like remove the drive and shut down the computer without checking the serial number.
+
+Next, install the drive and boot the server.
+
+```
+# Determine the device file of the new drive
+lshw --class disk
+
+# Add the drive (e.g. /dev/sdb) to the array
+mdadm --manage /dev/md[x] --add /dev/sdb
+
+# Monitor recovery process
+watch -n 1 cat /proc/mdstat
+```
+
