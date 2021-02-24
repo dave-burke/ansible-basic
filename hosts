@@ -1,4 +1,3 @@
-servy0 ansible_host=10.1.1.2
 servy ansible_host=10.1.1.1
 compy ansible_host=10.1.42.1 #ansible_connection=local
 asuz ansible_host=10.1.143.1
@@ -6,7 +5,6 @@ happy ansible_host=10.1.42.2
 dropy ansible_host=104.248.61.221
 
 [debian]
-servy0
 servy
 asuz
 dropy
@@ -16,6 +14,6 @@ compy
 happy
 
 [headless]
-servy0
 servy
 dropy
+

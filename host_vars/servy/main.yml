@@ -20,7 +20,6 @@ nfs_mounts:
 # DNS config
 hosts:
   - { ip: 10.1.1.1, host: "{{vault_dyndns_domain}}.duckdns.org" }
-  - { ip: 10.1.1.2, host: servy0 }
   - { ip: 10.1.1.1, host: servy }
   - { ip: 10.1.42.1, host: compy }
   - { ip: 10.1.42.2, host: happy }
@@ -53,6 +52,10 @@ dns_allowlist: |
   swrve.com
   unity3d.com
   mobileandroidapi.punchh.com
+
+# DynDNS config
+dyndns_domain: "{{vault_dyndns_domain}}"
+dyndns_token: "{{vault_dyndns_token}}"
 
 # Plex config
 plex_config_dir: "/var/lib/plexmediaserver" # On SSD, not RAID
@@ -181,4 +184,36 @@ borgmatic_configs:
       - "docker stop smokeping"
     after_backup:
       - "docker start smokeping"
+
+# OpenVPN Server config
+openvpn_pki_pass: "{{vault_openvpn_pki_pass}}"
+openvpn_clients:
+  - happy
+  - tabby
+  - dcell
+  - scell
+openvpn_key_dir: "{{storage_root}}/backup/keys"
+
+# OpenVPN Client config
+openvpn_provider: "{{vault_openvpn_provider}}"
+openvpn_config: "{{vault_openvpn_config}}"
+openvpn_username: "{{vault_openvpn_username}}"
+openvpn_password: "{{vault_openvpn_password}}"
+torrent_dir: "{{docker_root}}/torrent"
+torrent_blocklist_enabled: "true"
+torrent_blocklist_url: "{{vault_torrent_blocklist_url}}"
+torrent_speed_limit_up: "10000"
+torrent_speed_limit_up_enabled: "true"
+torrent_speed_limit_down: "20000"
+torrent_speed_limit_down_enabled: "true"
+
+# AWS CLI
+aws_key: "AKIAZ4U4D4642YOPPJNZ"
+aws_secret_key: "{{vault_aws_secret_key}}"
+aws_region: "us-east-1"
+
+digital_ocean_token: "{{vault_digital_ocean_token}}"
+
+couchdb_config_path: "{{docker_root}}/couchdb/"
+couchdb_password: "{{vault_couchdb_password}}"
 
