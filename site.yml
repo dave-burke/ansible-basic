@@ -156,20 +156,3 @@
             name: photos
             dir: /mnt/nfs/photos
 
-- hosts: nextcloud
-  roles:
-    - role: ssh_user
-      vars:
-        user: dave
-        authorized_hosts:
-          - compy
-          - happy
-          - phone
-          - tabby
-    - users_dave
-    - role: reverse_proxy
-      vars:
-        traefik_labels: {}
-        traefik_config_dir: "/opt/traefik"
-    - nextcloud
-

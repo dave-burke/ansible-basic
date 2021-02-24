@@ -4,14 +4,12 @@ compy ansible_host=10.1.42.1 #ansible_connection=local
 asuz ansible_host=10.1.143.1
 happy ansible_host=10.1.42.2
 dropy ansible_host=104.248.61.221
-nextcloud ansible_host=45.79.15.68
 
 [debian]
 servy0
 servy
 asuz
 dropy
-nextcloud
 
 [arch]
 compy
@@ -21,4 +19,3 @@ happy
 servy0
 servy
 dropy
-nextcloud
