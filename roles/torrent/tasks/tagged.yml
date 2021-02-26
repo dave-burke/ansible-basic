@@ -18,7 +18,7 @@
     name: torrent
     image: haugene/transmission-openvpn
     pull: true
-    state: stopped
+    state: started
     restart_policy: unless-stopped
     devices:
       - "/dev/net/tun"
