@@ -17,6 +17,7 @@
 - name: Detect Ubuntu version
   command: "lsb_release -cs"
   register: release_name
+  changed_when: false
 
 - name: Add docker repo
   apt_repository:
