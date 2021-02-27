@@ -56,7 +56,6 @@
 - hosts: servy
   roles:
     - users_dave
-    #- users_suz
     - role: ssh_user
       vars:
         user: dave
@@ -93,15 +92,14 @@
         port: '8384'
         proto: 'tcp'
       loop: ['compy','happy']
-    #- name: "Link to {{item}}"
-      #file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link
-      #with_items:
-        #- audio
-        #- backup
-        #- dev
-        #- photos
-        #- uploads
-        #- videos
+    - name: "Link to {{item}}"
+      file: src=/mnt/storage/{{item}} dest=/home/{{user}}/{{item}} state=link
+      with_items:
+        - audio
+        - backup
+        - photos
+        - videos
+        - docker
 
 - hosts: dropy
   roles:
