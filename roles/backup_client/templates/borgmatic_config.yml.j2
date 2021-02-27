@@ -278,7 +278,7 @@ hooks:
     # List of one or more shell commands or scripts to execute before creating a
     # backup, run once per configuration file.
     before_backup:
-        - echo "Starting {{item.name}} at $(date)"
+        - echo "Starting {{item.name}} backup at $(date)"
 {% if item.before_backup is defined %}
 {% for action in item.before_backup %}
         - "{{action}}"
@@ -287,18 +287,18 @@ hooks:
 
     # List of one or more shell commands or scripts to execute before pruning, run
     # once per configuration file.
-    # before_prune:
-        # - echo "Starting pruning."
+    before_prune:
+        - echo "Starting {{item.name}} prune at $(date)"
 
     # List of one or more shell commands or scripts to execute before consistency
     # checks, run once per configuration file.
-    # before_check:
-        # - echo "Starting checks."
+    before_check:
+        - echo "Starting {{item.name}} checks at $(date)"
 
     # List of one or more shell commands or scripts to execute after creating a
     # backup, run once per configuration file.
     after_backup:
-        - echo "Finished {{item.name}} at $(date)"
+        - echo "Finished {{item.name}} backup at $(date)"
 {% if item.after_backup is defined %}
 {% for action in item.after_backup %}
         - "{{action}}"
@@ -307,13 +307,13 @@ hooks:
 
     # List of one or more shell commands or scripts to execute after pruning, run once
     # per configuration file.
-    # after_prune:
-        # - echo "Finished pruning."
+    after_prune:
+        - echo "Finished {{item.name}} prune at $(date)"
 
     # List of one or more shell commands or scripts to execute after consistency
     # checks, run once per configuration file.
-    # after_check:
-        # - echo "Finished checks."
+    after_check:
+        - echo "Finished {{item.name}} checks at $(date)"
 
     # List of one or more shell commands or scripts to execute when an exception
     # occurs during a "prune", "create", or "check" action or an associated
@@ -428,7 +428,7 @@ hooks:
     # List of one or more shell commands or scripts to execute after running all
     # actions (if one of them is "create"). These are collected from all configuration
     # files and then run once before all of them (prior to all actions).
-    after_everything:
+    # after_everything:
         # - echo "Completed actions at $(date)"
 
     # Umask used when executing hooks. Defaults to the umask that borgmatic is run with.
