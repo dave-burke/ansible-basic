@@ -277,12 +277,13 @@ retention:
 hooks:
     # List of one or more shell commands or scripts to execute before creating a
     # backup, run once per configuration file.
-    {% if item.after_backup is defined -%}
     before_backup:
-        {% for action in item.before_backup -%}
-            - "{{action}}"
-        {% endfor %}
-    {% endif %}
+        - echo "Starting {{item.name}}"
+        {% if item.before_backup is defined -%}
+            {% for action in item.before_backup -%}
+                - "{{action}}"
+            {% endfor %}
+        {% endif %}
 
     # List of one or more shell commands or scripts to execute before pruning, run
     # once per configuration file.
@@ -296,12 +297,13 @@ hooks:
 
     # List of one or more shell commands or scripts to execute after creating a
     # backup, run once per configuration file.
-    {% if item.after_backup is defined -%}
     after_backup:
-        {% for action in item.after_backup -%}
-            - "{{action}}"
-        {% endfor %}
-    {% endif %}
+        - echo "Finished {{item.name}}"
+        {% if item.after_backup is defined -%}
+            {% for action in item.after_backup -%}
+                - "{{action}}"
+            {% endfor %}
+        {% endif %}
 
     # List of one or more shell commands or scripts to execute after pruning, run once
     # per configuration file.
@@ -395,7 +397,7 @@ hooks:
     # See
     # https://torsion.org/borgmatic/docs/how-to/monitor-your-backups/#healthchecks-hook
     # for details.
-    {% if item.healthcheck_uuid is defined %}
+    {% if item.healthcheck_uuid is defined -%}
     healthchecks: https://hc-ping.com/{{item.healthcheck_uuid}}
     {% endif %}
 
