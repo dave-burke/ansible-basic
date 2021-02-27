@@ -279,11 +279,11 @@ hooks:
     # backup, run once per configuration file.
     before_backup:
         - echo "Starting {{item.name}} at $(date)"
-        {% if item.before_backup is defined -%}
-            {% for action in item.before_backup -%}
-                - "{{action}}"
-            {% endfor %}
-        {% endif %}
+{% if item.before_backup is defined %}
+{% for action in item.before_backup %}
+        - "{{action}}"
+{% endfor -%}
+{% endif %}
 
     # List of one or more shell commands or scripts to execute before pruning, run
     # once per configuration file.
@@ -299,11 +299,11 @@ hooks:
     # backup, run once per configuration file.
     after_backup:
         - echo "Finished {{item.name}} at $(date)"
-        {% if item.after_backup is defined -%}
-            {% for action in item.after_backup -%}
-                - "{{action}}"
-            {% endfor %}
-        {% endif %}
+{% if item.after_backup is defined %}
+{% for action in item.after_backup %}
+        - "{{action}}"
+{% endfor %}
+{% endif %}
 
     # List of one or more shell commands or scripts to execute after pruning, run once
     # per configuration file.
