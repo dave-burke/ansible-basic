@@ -1,6 +1,9 @@
 ---
-- name: Ensure docker is installed
-  package: name={{docker_pkg}} state=present
+- import_tasks: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+
+- import_tasks: arch.yml
+  when: ansible_os_family == "Archlinux"
 
 - name: Ensure docker-compose is installed
   package: name=docker-compose state=present
@@ -28,3 +31,4 @@
     mode: 0755
     owner: "{{user}}"
     group: "{{user}}"
+

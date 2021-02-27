@@ -1,4 +1,10 @@
 ---
+- name: Ensure directory exists
+  file:
+    state: directory
+    name: "{{http_static_dir}}"
+    mode: 0755
+
 - name: Ensure static config file exists
   template:
     src: static.conf
@@ -17,4 +23,5 @@
     labels:
       "traefik.http.routers.static.rule": "Host(`static.{{ansible_hostname}}.{{domain}}`)"
       "traefik.http.routers.static.tls": "true"
-      "traefik.http.routers.static.tls.certresolver": "tls-resolver"
+      "traefik.http.routers.static.tls.certresolver": "do-resolver"
+

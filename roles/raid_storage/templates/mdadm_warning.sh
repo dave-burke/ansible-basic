@@ -11,7 +11,7 @@ fi
 
 message="$(cat /proc/mdstat)\n\n"
 
-message+="$(mdadm --detail /dev/disk/by-uuid/{{storage_uuid}})\n\n"
+message+="$(mdadm --detail {{storage_device}})\n\n"
 
 message+="$(df -h | head -n 1)\n"
 message+="$(df -h | grep /dev/md)"

@@ -75,4 +75,5 @@
   command: "/home/{{user}}/.local/bin/add-jitsi-user {{jitsi_admin_user}} '{{jitsi_admin_pass}}'"
   become: yes
   become_user: "{{user}}"
+  changed_when: false
 

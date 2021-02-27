@@ -56,7 +56,6 @@
 - hosts: servy
   roles:
     - users_dave
-    - users_suz
     - role: ssh_user
       vars:
         user: dave
@@ -66,31 +65,23 @@
           - asuz
           - phone
           - tabby
-    - role: ssh_command_sender
-      vars:
-        user: dave
-        remote_host: dropy
-        auth_key: ssh/dave/servy/id_rsa_minecraft
-        scripts:
-          - files/ssh/dave/servy/actions/minecraft_up.sh
-          - files/ssh/dave/servy/actions/minecraft_down.sh
-    - digital_ocean_cli
-    - raid_storage
-    - dns
-    - vpn
-    - reverse_proxy
-    - static_web_host
     - syncthing
+    - raid_storage
+    - docker
+    - dns
+    - reverse_proxy
     - plex
-    - budget_web
-    - torrent
-    - netmon
-    - dyndns_client
     - minecraft_server
-    - backup_client
     - backup_server
+    - backup_client
     - nfs_server
-    - couchdb
+    - budget_web
+    - netmon
+    - static_web_host
+    - torrent
+    #- vpn # TODO copy keys to clients
+    #- dyndns_client
+    #- couchdb
   tasks:
     - name: "Ensure {{item}} has access to syncthing GUI"
       tags: ['ufw', 'test']
@@ -106,10 +97,9 @@
       with_items:
         - audio
         - backup
-        - dev
         - photos
-        - uploads
         - videos
+        - docker
 
 - hosts: dropy
   roles:
@@ -121,20 +111,8 @@
           - happy
           - phone
           - tabby
-    - role: ssh_command_receiver
-      vars:
-        user: dave
-        action_name: minecraft
-        auth_key: ssh/dave/servy/id_rsa_minecraft.pub
-        commands:
-          - "docker stop minecraft"
-          - "docker start minecraft"
     - users_dave
     - jitsi_meet
-    - role: minecraft_server
-      vars:
-        minecraft_server_state: stopped
-    - backup_client
     - murmur
 
 - hosts: happy
@@ -163,21 +141,4 @@
           - host: servy
             name: photos
             dir: /mnt/nfs/photos
-
-- hosts: nextcloud
-  roles:
-    - role: ssh_user
-      vars:
-        user: dave
-        authorized_hosts:
-          - compy
-          - happy
-          - phone
-          - tabby
-    - users_dave
-    - role: reverse_proxy
-      vars:
-        traefik_labels: {}
-        traefik_config_dir: "/opt/traefik"
-    - nextcloud
 

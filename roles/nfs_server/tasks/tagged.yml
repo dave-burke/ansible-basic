@@ -34,7 +34,7 @@
     mode: 0644
     line: "/srv/nfs/{{item.name}} {{ansible_default_ipv4.network}}/{{ansible_default_ipv4.netmask}}(ro,sync,no_subtree_check)"
   with_items: "{{nfs_mounts}}"
-  #TODO exportfs -ra handler
+  notify: exportfs_ra
 
 - name: Ensure nfs service is started
   service:

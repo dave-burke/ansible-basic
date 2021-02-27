@@ -6,22 +6,6 @@
     line: "{{item.ip}}	{{item.host}}"
   with_items: "{{hosts}}"
 
-- name: Disable systemd-resolved stub listener
-  lineinfile:
-    path: "/etc/systemd/resolved.conf"
-    line: "DNSStubListener=no"
-    regexp: "DNSStubListener="
-
-- name: Manage resolv.conf file
-  copy:
-    backup: yes
-    dest: /etc/resolv.conf
-    content: |
-      # Managed by Ansible
-      nameserver 127.0.0.1
-      search {{domain}}
-    mode: 644
-
 - name: Ensure DNS traffic allowed through firewall
   tags: ['ufw']
   ufw:
@@ -51,12 +35,37 @@
     dest: /etc/cron.weekly
     mode: 0755
 
+# Need to pull before turning off regular DNS resolution
+# Otherwise, the first time this is applied we can't start the service
+- name: Pull DNS image
+  docker_image:
+    name: andyshinn/dnsmasq
+    source: pull
+
+- name: Disable systemd-resolved stub listener
+  lineinfile:
+    path: "/etc/systemd/resolved.conf"
+    line: "DNSStubListener=no"
+    regexp: "DNSStubListener="
+  notify: restart_systemd_dns
+
+- name: Manage resolv.conf file
+  copy:
+    backup: yes
+    dest: /etc/resolv.conf
+    content: |
+      # Managed by Ansible
+      nameserver 127.0.0.1
+      search {{domain}}
+    mode: 644
+  notify: restart_systemd_dns
+
 - name: Ensure docker container is started
   tags: ['vpn-dnsfix']
   docker_container:
     name: dns
     image: andyshinn/dnsmasq
-    pull: true
+    pull: no
     state: started
     restart_policy: always
     volumes:

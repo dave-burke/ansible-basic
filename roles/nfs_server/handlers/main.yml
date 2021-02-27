@@ -1,0 +1,5 @@
+---
+- name: Run exportfs
+  listen: "exportfs_ra"
+  command: exportfs -ra
+

@@ -420,14 +420,15 @@ hooks:
     # List of one or more shell commands or scripts to execute before running all
     # actions (if one of them is "create"). These are collected from all configuration
     # files and then run once before all of them (prior to all actions).
-    # before_everything:
-        # - echo "Starting actions."
+    before_everything:
+        - echo "Starting actions at $(date)"
 
     # List of one or more shell commands or scripts to execute after running all
     # actions (if one of them is "create"). These are collected from all configuration
     # files and then run once before all of them (prior to all actions).
-    # after_everything:
-        # - echo "Completed actions."
+    after_everything:
+        - echo "Completed actions at $(date)"
 
     # Umask used when executing hooks. Defaults to the umask that borgmatic is run with.
     # umask: 0077
+

@@ -1,0 +1,32 @@
+---
+- name: Remove old packages
+  apt:
+    name: [docker, docker-engine, docker.io, containerd, runc]
+    state: absent
+
+- name: Ensure apt can use https
+  apt:
+    name: [apt-transport-https, ca-certificates, curl, gnupg-agent, software-properties-common]
+    state: present
+
+- name: Add docker apt signing key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Detect Ubuntu version
+  command: "lsb_release -cs"
+  register: release_name
+  changed_when: false
+
+- name: Add docker repo
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu {{release_name.stdout}} stable
+    state: present
+    filename: docker
+
+- name: Ensure docker is installed
+  apt:
+    name: [docker-ce, docker-ce-cli, containerd.io]
+    state: present
+
