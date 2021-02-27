@@ -142,6 +142,7 @@ borgmatic_configs:
   - name: misc
     user: root
     passphrase: "{{vault_borg_passphrase}}"
+    healthcheck_uuid: "{{vault_borg_healthcheck_uuid_misc}}"
     source_dirs:
       - "/mnt/storage/backup/dev"
       - "/mnt/storage/backup/games"
@@ -153,6 +154,7 @@ borgmatic_configs:
   - name: minecraft
     user: root
     passphrase: "{{vault_borg_passphrase}}"
+    healthcheck_uuid: "{{vault_borg_healthcheck_uuid_minecraft}}"
     source_dirs:
       - "{{minecraft_dir}}"
     repositories:
@@ -165,6 +167,7 @@ borgmatic_configs:
   - name: plex
     user: root
     passphrase: "{{vault_borg_passphrase}}"
+    healthcheck_uuid: "{{vault_borg_healthcheck_uuid_plex}}"
     source_dirs:
       - "{{plex_config_dir}}"
     repositories:
@@ -176,6 +179,7 @@ borgmatic_configs:
   - name: smokeping
     user: root
     passphrase: "{{vault_borg_passphrase}}"
+    healthcheck_uuid: "{{vault_borg_healthcheck_uuid_smokeping}}"
     source_dirs:
       - "{{smokeping_dir}}/data"
     repositories:
