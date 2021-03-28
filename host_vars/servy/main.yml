@@ -85,26 +85,26 @@ minecraft_server_env:
   #
   # Vanilla creative
   #
-  # TYPE: vanilla
-  # MOTD: 'Family creative mode server'
-  # VERSION: 'LATEST'
-  # LEVEL: 'world-boyscreative'
-  # MODE: 'creative'
-  # DIFFICULTY: 'easy'
-  # SPAWN_PROTECTION: '16'
-  # VIEW_DISTANCE: '10'
-  # ONLINE_MODE: 'true'
+  TYPE: vanilla
+  MOTD: 'Family creative mode server'
+  VERSION: 'LATEST'
+  LEVEL: 'world-boyscreative'
+  MODE: 'creative'
+  DIFFICULTY: 'easy'
+  SPAWN_PROTECTION: '16'
+  VIEW_DISTANCE: '10'
+  ONLINE_MODE: 'true'
   #
   # Drehmal
   #
-  TYPE: vanilla
-  MOTD: 'Drehmal: Primordial'
-  VERSION: '1.16.4'
-  LEVEL: 'world-drehmal'
-  MODE: 'survival'
-  DIFFICULTY: 'easy'
-  SPAWN_PROTECTION: '0'
-  VIEW_DISTANCE: '20'
+  #TYPE: vanilla
+  #MOTD: 'Drehmal: Primordial'
+  #VERSION: '1.16.4'
+  #LEVEL: 'world-drehmal'
+  #MODE: 'survival'
+  #DIFFICULTY: 'easy'
+  #SPAWN_PROTECTION: '0'
+  #VIEW_DISTANCE: '20'
   #
   # Island of Sodor
   #
