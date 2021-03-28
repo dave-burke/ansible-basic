@@ -24,4 +24,7 @@
       "traefik.http.routers.static.rule": "Host(`static.{{ansible_hostname}}.{{domain}}`)"
       "traefik.http.routers.static.tls": "true"
       "traefik.http.routers.static.tls.certresolver": "do-resolver"
+      "traefik.http.routers.apps.rule": "Host(`apps.{{ansible_hostname}}.{{domain}}`)"
+      "traefik.http.routers.apps.tls": "true"
+      "traefik.http.routers.apps.tls.certresolver": "do-resolver"
 

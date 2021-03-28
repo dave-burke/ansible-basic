@@ -79,9 +79,9 @@
     - netmon
     - static_web_host
     - torrent
+    - couchdb
     #- vpn # TODO copy keys to clients
     #- dyndns_client
-    #- couchdb
   tasks:
     - name: "Ensure {{item}} has access to syncthing GUI"
       tags: ['ufw', 'test']
