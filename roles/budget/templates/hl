@@ -13,7 +13,7 @@ elif [[ "${1}" == "ui" ]]; then
 elif [[ "${1}" == "add" ]]; then
 	hledger $@
 elif [[ "${1}" == "quick" ]]; then
-	hledger bal --flat -V -O csv | sed 's/assets://' | sed 's/wf://' | sed '/"Account",/d' | sed '/~/d' | sed '/"total"/d' | xclip -selection c
+	hledger --auto bal --flat -V -O csv | sed 's/assets://' | sed 's/wf://' | sed '/"Account",/d' | sed '/~/d' | sed '/"total"/d' | xclip -selection c
 elif [[ "${1}" == "int" || "${1}" == "interest" ]]; then
 	if [[ $# -lt 2 ]]; then
 		echo "Usage: hl interest [account name]"
