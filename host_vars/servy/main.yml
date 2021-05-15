@@ -93,7 +93,6 @@ minecraft_server_env:
   DIFFICULTY: 'easy'
   SPAWN_PROTECTION: '16'
   VIEW_DISTANCE: '10'
-  ONLINE_MODE: 'true'
   #
   # Drehmal
   #
