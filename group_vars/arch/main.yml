@@ -1,11 +1,13 @@
 ---
 sudo_group: wheel
-java_pkg: "jdk{{java_version}}-openjdk"
 ag_pkg: "the_silver_searcher"
-gvim_pkg: "gvim"
-borg_pkg: "borg"
-docker_pkg: "docker"
-pip_pkg: "python-pip"
-llfuse_pkg: "python-llfuse"
 aws_cli_pkg: "aws-cli"
+borg_pkg: "borg"
+cron_pkg: "cronie"
+cron_svc: "cronie"
+docker_pkg: "docker"
+gvim_pkg: "gvim"
+java_pkg: "jdk{{java_version}}-openjdk"
+llfuse_pkg: "python-llfuse"
+pip_pkg: "python-pip"
 

@@ -1,11 +1,13 @@
 ---
 sudo_group: sudo
-java_pkg: openjdk-{{java_version}}-jdk
 ag_pkg: silversearcher-ag
-gvim_pkg: vim-gtk3
-borg_pkg: "borgbackup"
-docker_pkg: "docker.io"
-pip_pkg: "python3-pip"
-llfuse_pkg: "python3-llfuse"
 aws_cli_pkg: "awscli"
+borg_pkg: "borgbackup"
+cron_pkg: "cron"
+cron_svc: "cron"
+docker_pkg: "docker.io"
+gvim_pkg: vim-gtk3
+java_pkg: openjdk-{{java_version}}-jdk
+llfuse_pkg: "python3-llfuse"
+pip_pkg: "python3-pip"
 

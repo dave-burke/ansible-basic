@@ -2,6 +2,17 @@
 - name: Ensure time zone is America/Chicago
   timezone: name=America/Chicago
 
+- name: Ensure cron is installed
+  package:
+    name: "{{cron_pkg}}"
+    state: installed
+
+- name: Ensure cron service is running
+  systemd:
+    name: "{{cron_svc}}"
+    state: started
+    enabled: true
+
 - name: Ensure reboot-if-needed script is present
   copy:
     src: "reboot-if-needed.sh"
@@ -48,6 +59,17 @@
     mode: 0755
     owner: "{{admin_user}}"
     group: "{{admin_user}}"
+
+- name: Ensure ufw is installed
+  package:
+    name: "ufw"
+    state: installed
+
+- name: Ensure ufw service is running
+  systemd:
+    name: "ufw"
+    state: started
+    enabled: true
 
 - name: Ensure SSH trafic is limited through firewall
   tags: ['ufw']
