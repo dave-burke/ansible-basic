@@ -47,3 +47,7 @@
 - name: Ensure ag is installed
   package: name={{ag_pkg}} state=present
 
+- name: Ensure urxvt is installed on GUI machines
+  package: name=rxvt-unicode state=present
+  when: "'headless' not in group_names"
+
