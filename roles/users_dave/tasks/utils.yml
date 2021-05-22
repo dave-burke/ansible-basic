@@ -14,6 +14,10 @@
 - name: Ensure zip is installed
   package: name=zip state=present
 
+- name: Ensure unzip is installed
+  package: name=unzip state=present
+  when: ansible_os_family == "Archlinux"
+
 - name: Ensure tree is installed
   package: name=tree state=present
 
@@ -40,8 +44,16 @@
   package: name=fd state=present
   when: ansible_os_family == "Archlinux"
 
-- name: Ensure pulsemixer is installed
-  package: name=pulsemixer state=present
+- name: Ensure dmenu is installed
+  package: name=dmenu state=present
+  when: ansible_os_family == "Archlinux"
+
+- name: Ensure man is installed
+  package: name=man-db state=present
+  when: ansible_os_family == "Archlinux"
+
+- name: Ensure man pages are installed
+  package: name=man-pages state=present
   when: ansible_os_family == "Archlinux"
 
 - name: Ensure ag is installed
