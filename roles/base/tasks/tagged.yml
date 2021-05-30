@@ -60,6 +60,18 @@
     owner: "{{admin_user}}"
     group: "{{admin_user}}"
 
+- name: Check if GDM Xsession file exists
+  stat:
+    path: /etc/gdm/Xsession
+  register: gdm_xsession
+
+- name: Allow pre-processing of user Xresources files in GDM sessions
+  lineinfile:
+    dest: /etc/gdm/Xsession
+    regexp: 'xrdb -nocpp -merge "\$userresources"'
+    line: '    xrdb -merge "$userresources"'
+  when: gdm_xsession.stat.exists == true
+
 - name: Ensure ufw is installed
   package:
     name: "ufw"
