@@ -1,11 +1,11 @@
 ---
-- name: Ensure doctl is installed
+- name: Ensure doctl is installed as a snap
   snap: name=doctl state=present
   when: ansible_os_family == "Debian"
 
 - name: Ensure doctl is installed
-  snap: name=doctl state=present
-  when: ansible_os_family != "Debian"
+  package: name=doctl state=present
+  when: ansible_os_family == "Archlinux"
 
 - name: "Initialize doctl for {{user}}"
   command: "doctl auth init --access-token '{{digital_ocean_token}}'"

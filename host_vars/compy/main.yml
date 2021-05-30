@@ -46,3 +46,4 @@ aws_region: "us-east-1"
 
 budget_journal_file: "${HOME}/docs/personal/finances/budget/main.ledger"
 
+digital_ocean_token: "{{vault_digital_ocean_token}}"
