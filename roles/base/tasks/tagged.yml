@@ -5,7 +5,7 @@
 - name: Ensure cron is installed
   package:
     name: "{{cron_pkg}}"
-    state: installed
+    state: present
 
 - name: Ensure cron service is running
   systemd:
@@ -63,7 +63,7 @@
 - name: Ensure ufw is installed
   package:
     name: "ufw"
-    state: installed
+    state: present
 
 - name: Ensure ufw service is running
   systemd:
