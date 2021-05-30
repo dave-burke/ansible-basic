@@ -85,7 +85,7 @@
     #- dyndns_client
   tasks:
     - name: "Ensure {{item}} has access to syncthing GUI"
-      tags: ['ufw', 'test']
+      tags: ['ufw']
       ufw:
         comment: 'Syncthing from {{item}}'
         rule: allow
