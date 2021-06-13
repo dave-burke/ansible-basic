@@ -136,10 +136,4 @@
     - development
     - syncthing
     - budget
-    - role: nfs_client
-      vars:
-        nfs_mounts:
-          - host: servy
-            name: photos
-            dir: /mnt/nfs/photos
 
